@@ -1,0 +1,7 @@
+*.pyc
+venv*
+.DS_Store
+.idea
+.pydevproject
+*.log
+static*
