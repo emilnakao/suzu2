@@ -18,16 +18,33 @@ FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TOR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 DEALINGS IN THE SOFTWARE
 """
-from braces.views import LoginRequiredMixin, CsrfExemptMixin, PermissionRequiredMixin
-from django.views.generic import CreateView
+from crispy_forms.bootstrap import FormActions, Accordion, AccordionGroup
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Button, Field
+from floppyforms import ModelForm
 from .models import Yokoshi
-from .forms import YokoshiForm
 
 
-class YokoshiCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-    """
-    see: http://django-braces.readthedocs.org/en/latest/index.html
-    """
-    model = Yokoshi
-    form_class = YokoshiForm
-    permission_required = 'registration.yokoshi_create'
+class YokoshiForm(ModelForm):
+
+    class Meta:
+        model = Yokoshi
+
+    def __init__(self, *args, **kwargs):
+        super(YokoshiForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Field('complete_name', wrapper_class='spam3'),
+            Accordion(
+                AccordionGroup('Contato e endereco',
+                               'omitama_level'
+                ),
+                AccordionGroup('Mais detalhes',
+                               'radio_buttons'
+                ),
+            ),
+        FormActions(
+            Submit('save', 'Salvar'),
+            Button('cancel', 'Cancelar')
+        )
+        )

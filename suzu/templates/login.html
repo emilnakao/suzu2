@@ -1,0 +1,16 @@
+{% extends 'root.html' %}
+{% load i18n %}
+{% block quicklogin %}{% endblock %}
+{% block page %}
+    <div data-role="page" class="django-mahikari-page" {% if request %} data-url="{{ request.path }}" {% endif %}
+         id="login">
+        <div data-role="content" data-add-back-btn="true">
+            <h1>{% trans 'login' %}</h1>
+            <form action="{% url 'login' %}" data-ajax="false" method="POST">
+                {% include "formfields.html" %}
+                <input type="submit" class="btn btn-primary" value="{% trans 'login' %}"/>
+                <input type="hidden" name="next" value="{{ next }}"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}

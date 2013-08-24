@@ -1,0 +1,20 @@
+{% load i18n %}
+{% load widget_tweaks %}
+{# generic form-field display template fragment #}
+{% csrf_token %}
+{{ form.non_field_errors }}
+
+{% for field in form.visible_fields %}
+    <div class="form-group {% if field.field.required %}required{% endif %}">
+    {# Include the hidden fields in the form #}
+    {{ field.label_tag }} {{ field|add_class:"form-control" }}
+    {% if field.help_text %}
+        <button data-role="none" href="#" class="help-trigger" data-iconpos="notext" data-icon="info">?</button>
+        <div class="field-help hidden">{{field.help_text}}</div>
+    {% endif %}
+    {{ field.errors }}
+</div>
+{% endfor %}
+{% for hidden in form.hidden_fields %}
+    {{ hidden }}
+{% endfor %}
