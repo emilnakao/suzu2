@@ -19,10 +19,17 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE
 """
 from braces.views import LoginRequiredMixin, CsrfExemptMixin, PermissionRequiredMixin
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
+from django.views.generic.base import TemplateView
 from .models import Yokoshi
 from .forms import YokoshiForm
 
+
+class RegistrationHomeView(LoginRequiredMixin, TemplateView):
+    """
+    Home screen; easy access to all registration screens
+    """
+    template_name = 'registration/home.html'
 
 class YokoshiCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """
@@ -31,3 +38,12 @@ class YokoshiCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     model = Yokoshi
     form_class = YokoshiForm
     permission_required = 'registration.yokoshi_create'
+
+class YokoshiListView(LoginRequiredMixin, ListView):
+    """
+
+    """
+    model = Yokoshi
+
+    #def get_queryset(self):
+       # return Yokoshi.objects.filter(complete_name__icontains=self.args[0])

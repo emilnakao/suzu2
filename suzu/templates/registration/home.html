@@ -1,0 +1,51 @@
+{% extends "root.html" %}
+{% load i18n %}
+{% block page %}
+    <h1><span class="glyphicon glyphicon-book"></span> Cadastros</h1>
+    <hr>
+  <div class="container marketing col-md-9">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row ">
+        <div class="col-md-6">
+           <img class="img-thumbnail img-responsive" src="{{ STATIC_URL }}img/register_kumite.jpg" alt="Generic placeholder image">
+          <h3>Kumite</h3>
+          <p>Cadastre aqui amigos yokoshi que j&aacute; s&atilde;o kumite.</p>
+          <p><a class="btn btn-default btn-lg btn-block" href="{% url 'yokoshicreate' %}"><span class="glyphicon glyphicon-plus"></span> Cadastrar &raquo;</a></p>
+          <p><a class="btn btn-default btn-lg btn-block" href="{% url 'yokoshilist' %}"><span class="glyphicon glyphicon-search"></span> Procurar &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-md-6">
+          <img class="img-thumbnail img-responsive" src="{{ STATIC_URL }}img/register_mikumite.jpg" alt="Generic placeholder image">
+          <h3>Mi-Kumite e Primeira Vez</h3>
+          <p>Cadastre aqui convidados.</p>
+          <p><a class="btn btn-default btn-lg btn-block" href="#"><span class="glyphicon glyphicon-plus"></span> Cadastrar &raquo;</a></p>
+          <p><a class="btn btn-default btn-lg btn-block" href="#"><span class="glyphicon glyphicon-search"></span> Procurar &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+    <hr>
+  <div class="row">
+        <div class="col-md-6">
+           <img class="img-thumbnail img-responsive" src="{{ STATIC_URL }}img/register_eventtype.jpg" alt="Generic placeholder image">
+          <h3>Tipos de Evento</h3>
+          <p>Exemplos de tipos de evento: cerim&ocaret;nia mensal, dia normal, frontal pelos dirigentes. </p>
+           <p><a class="btn btn-default btn-lg btn-block" href="#"><span class="glyphicon glyphicon-plus"></span> Cadastrar &raquo;</a></p>
+          <p><a class="btn btn-default btn-lg btn-block" href="#"><span class="glyphicon glyphicon-search"></span> Procurar &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-md-6">
+           <img class="img-thumbnail img-responsive" src="{{ STATIC_URL }}img/register_event.jpg" alt="Generic placeholder image">
+          <h3>Eventos</h3>
+          <p>S&atilde;o tipos de evento com data e local definidos.</p>
+           <p><a class="btn btn-default btn-lg btn-block" href="#"><span class="glyphicon glyphicon-plus"></span> Cadastrar &raquo;</a></p>
+          <p><a class="btn btn-default btn-lg btn-block" href="#"><span class="glyphicon glyphicon-search"></span> Procurar &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+  </div>
+    <hr>
+    <h2>Outros cadastros</h2>
+    <p><a class="btn btn-default btn-lg btn-block" href="#"> N&uacute;cleo &raquo;</a></p>
+    <p><a class="btn btn-default btn-lg btn-block" href="#"> Regional (Dojo) &raquo;</a></p>
+    <p><a class="btn btn-default btn-lg btn-block" href="#"> Bairro &raquo;</a></p>
+    <p><a class="btn btn-default btn-lg btn-block" href="#"> Cidade &raquo;</a></p>
+    <p><a class="btn btn-default btn-lg btn-block" href="#"> Estado &raquo;</a></p>
+    <p><a class="btn btn-default btn-lg btn-block" href="#"> Pa&iacute;s &raquo;</a></p>
+{% endblock %}

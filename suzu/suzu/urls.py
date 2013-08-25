@@ -20,6 +20,9 @@ urlpatterns = patterns('',
                        url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',
                            dict(template_name='logout.html', ), name='logout', ),
 
+                       # Redirecting profile to home
+                       url(r'^accounts/profile/$', HomeView.as_view(), name='homeprofile', ),
+
                         # Required to make static serving work
                        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': commons.STATIC_ROOT}),
 

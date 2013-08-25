@@ -20,8 +20,10 @@ DEALINGS IN THE SOFTWARE
 """
 
 from django.conf.urls import patterns, url
-from .views import YokoshiCreateView
+from .views import YokoshiCreateView, RegistrationHomeView, YokoshiListView
 
 urlpatterns = patterns('',
-    url(r'^yokoshi/create$', YokoshiCreateView.as_view()),
+    url(r'^yokoshi/create$', YokoshiCreateView.as_view(), name="yokoshicreate"),
+    url(r'^yokoshi/list$', YokoshiListView.as_view(), name="yokoshilist"),
+    url(r'^home$', RegistrationHomeView.as_view(), name="registrationhome")
 )

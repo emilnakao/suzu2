@@ -1,12 +1,40 @@
 {% extends "root.html" %}
 {% load i18n %}
 {% block page %}
-    <div class="jumbotron masthead resize-img">
+    <div class="jumbotron">
         <div class="container">
-            <h1>SUZU<sub>beta</sub></h1>
+            <h1>SUZU2<sub>beta</sub></h1>
+
             <p>Sistema de Utilidades para o dia-a-dia no Dojo.</p>
-            v1.0 - slim
+            v2.0
         </div>
     </div>
 
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-lg-4">
+                <h2>Cadastros</h2>
+
+                <p>Cadastre aqui amigos yokoshi, sejam eles kumite ou mi-kumite. Cadastre tamb&eacute;m eventos e localidades. </p>
+
+                <p><a class="btn btn-default" href="{% url 'registrationhome' %}">Tela de Cadastros &raquo;</a></p>
+            </div>
+            <div class="col-lg-4">
+                <h2>Check-in</h2>
+
+                <p>Marque a presen&ccedil;a de amigos yokoshi em eventos do dojo. </p>
+
+                <p><a class="btn btn-default" href="#">Tela de Check-in &raquo;</a></p>
+            </div>
+            <div class="col-lg-4">
+                <h2>Relat&oacute;rios</h2>
+
+                <p>Veja e imprima relat&oacute;rios de presen&ccedil;as e outras estat&iacute;ticas.</p>
+
+                <p><a class="btn btn-default" href="#">Tela de Relat&oacute;rios &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+    <hr>
 {% endblock %}

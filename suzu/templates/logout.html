@@ -1,6 +1,5 @@
-{% extends 'suzu/root.html' %}
+{% extends 'root.html' %}
 {% load i18n %}
-{% load suzu_tags %}
 
 {% block page %}
     <div data-role="page" class="django-mahikari-page" {% if request %} data-url="{{ request.path }}" {% endif %}
@@ -8,7 +7,7 @@
         <h1>Logout</h1>
         <p>{% blocktrans %}auth.root.logged_out.msg{% endblocktrans %}</p>
 
-        <p><a data-role="button" href="{% url login %}" rel="external">{% blocktrans %}auth.root.login_again.btn{% endblocktrans %}</a></p>
+        <p><a data-role="button" href="{% url 'login' %}" rel="external">{% blocktrans %}auth.root.login_again.btn{% endblocktrans %}</a></p>
 
     </div>
 {% endblock %}

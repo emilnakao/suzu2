@@ -1,0 +1,35 @@
+{% extends "root.html" %}
+{% load i18n %}
+{% block page %}
+    <h2>Yokoshi</h2>
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="input-group">
+                <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" primary="true" type="button">Procurar</button>
+      </span>
+            </div>
+            <!-- /input-group -->
+        </div>
+        <!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>N&uacute;cleo</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for yokoshi in object_list %}
+            <tr>
+                <td>{{ yokoshi.complete_name }}</td>
+                <td>{{ yokoshi.han.name }}</td>
+
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
