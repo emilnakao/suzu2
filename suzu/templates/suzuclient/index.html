@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" ng-app="suzuClientApp">
+<head>
+    <meta charset="utf-8">
+    <title><b>SUZU</b>2</title>
+    <!-- Le styles -->
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/datepicker.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/suzu.css" rel="stylesheet">
+</head>
+<body>
+<ul class="navbar navbar-inverse navbar-fixed-top">
+    <li><a href="#/view1">view1</a></li>
+    <li><a href="#/view2">view2</a></li>
+</ul>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'home' %}"><b>SUZU2</b></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li><a href="#/registration"><span class="glyphicon glyphicon-book"></span> Cadastros</a></li>
+                <li><a href="#/contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--/.navbar-collapse -->
+    </div>
+
+</div>
+
+
+<div ng-view></div>
+
+<div>SUZU2: v<span app-version></span></div>
+
+<!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+-->
+<script src="{{ STATIC_URL }}js/third/jquery.js"></script>
+<script src="{{ STATIC_URL }}js/third/bootstrap.js"></script>
+<script src="{{ STATIC_URL }}js/third/angular.js"></script>
+<script src="{{ STATIC_URL }}js/third/angularstrap.js"></script>
+<script src="{{ STATIC_URL }}js/third/date.js"></script>
+<script src="{{ STATIC_URL }}js/third/bootstrap-datepicker.js"></script>
+<script src="{{ STATIC_URL }}js/third/messaging-services.js"></script>
+<script src="{{ STATIC_URL }}js/keyevents.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/suzuclient.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/controllers/CheckInController.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/controllers/DummyController.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/controllers/EventController.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/controllers/EventEditController.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/controllers/YokoshiController.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/controllers/YokoshiEditController.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/services/EventService.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/services/YokoshiService.js"></script>
+</body>
+</html>

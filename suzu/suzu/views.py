@@ -19,8 +19,14 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE
 """
 from braces.views import LoginRequiredMixin
+from django.shortcuts import render_to_response, render
 from django.views.generic import TemplateView
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
-    template_name = 'index.html'
+    template_name = 'suzuclient/index.html'
+
+
+def route_request(request, path):
+
+    return render(request,path)

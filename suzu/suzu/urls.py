@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from registration import urls as registrationurls
 from .settings import commons
-from .views import HomeView
+from .views import HomeView, route_request
 
 admin.autodiscover()
 
@@ -11,6 +11,9 @@ urlpatterns = patterns('',
 
                        # Uncomment the admin/doc line below to enable admin documentation:
                        # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+                       # redireciona requests a templates/<arquivo> para o arquivo.html propriamente dito
+                       url(r'^templates/(?P<path>.*)', route_request),
 
                        # Login Screen
                        url(r'^accounts/login/$', 'django.contrib.auth.views.login', dict(template_name='login.html', ),
@@ -23,7 +26,7 @@ urlpatterns = patterns('',
                        # Redirecting profile to home
                        url(r'^accounts/profile/$', HomeView.as_view(), name='homeprofile', ),
 
-                        # Required to make static serving work
+                       # Required to make static serving work
                        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': commons.STATIC_ROOT}),
 
                        url(r'^admin/', include(admin.site.urls)),
