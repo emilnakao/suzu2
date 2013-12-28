@@ -1,0 +1,37 @@
+{% load angularjs %}{% load i18n %}
+<h3>Cadastro de Nova Pessoa</h3>
+<div class="well">
+    <form name="yokoshi" novalidate ng-submit="save()">
+        <div class="form-group" ng-class="{'has-error':yokoshi.completeName.$invalid}">
+            <label for="completeNameInput">Nome Completo</label>
+            <input type="text" class="form-control" id="completeNameInput" name="completeName" ng-model="completeName" placeholder="Digite o nome completo" required>
+            <span ng-show="yokoshi.completeName.$error.required" class="help-inline">Campo Obrigat&oacute;rio</span>
+        </div>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox1" value="option1" ng-model="isKumite"> Kumite
+        </label>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox2" value="option2" ng-model="isMtai"> Mahikari-tai
+        </label>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox3" value="option3" ng-model="isOssuewanin"> Ossuewanin
+        </label>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox4" value="option4" ng-model="isFirstTimer"> <b>Primeira vez</b>
+        </label>
+        <span class="help-block">Caso nenhuma opcao seja selecionada, a pessoa sera considerada mi-kumite (visitante).</span>
+        <div class="form-group" ng-class="{'has-error':yokoshi.email.$invalid}">
+            <label for="emailInput">Email</label>
+            <input type="email" class="form-control" name="email" id="emailInput" ng-model="email" placeholder="usuario@exemplo.com">
+        </div>
+        <div class="form-group" ng-class="{'has-error':yokoshi.hanId.$invalid}">
+            <label for="hanInput">N&uacute;cleo</label>
+            <select class="form-control" ng-model="hanId" required name="hanId">
+                <option ng-repeat="han in hans" value="{% ng han.id %}">{% ng han.name %}</option>
+            </select>
+            <span ng-show="yokoshi.hanId.$error.required" class="help-inline">Campo Obrigat&oacute;rio</span>
+        </div>
+        <button type="button" class="btn btn-default" ng-click="clear()">Limpar Formulario</button>
+        <button type="submit" class="btn btn-primary" ng-disabled="yokoshi.$invalid">Salvar</button>
+    </form>
+</div>

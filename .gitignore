@@ -4,4 +4,4 @@ venv*
 .idea
 .pydevproject
 *.log
-static*
+

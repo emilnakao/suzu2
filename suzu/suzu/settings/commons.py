@@ -101,6 +101,8 @@ INSTALLED_APPS = (
     'braces',
     'south',
     'registration',
+    'tastypie',
+
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )

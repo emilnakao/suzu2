@@ -1,6 +1,10 @@
 {% extends 'root.html' %}
 {% load i18n %}
 {% block quicklogin %}{% endblock %}
+{% block styles %}
+    <link href="{{STATIC_URL}}css/login.css" rel="stylesheet">
+
+{% endblock %}
 {% block page %}
     <div data-role="page" class="django-mahikari-page" {% if request %} data-url="{{ request.path }}" {% endif %}
          id="login">
