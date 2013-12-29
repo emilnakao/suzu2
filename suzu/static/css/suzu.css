@@ -33,6 +33,67 @@
     margin-left: 300px;
 }
 
+.suzu-select-event-btn{
+    float: right;
+    margin-top: -5px;
+    margin-right: -10px;
+}
+
+.suzu-event-modal-search-btn{
+    right: 5px;
+}
+
+.suzu-event-modal-row-chkbtn{
+    float: right;
+    margin-top: -40px;
+}
+
+.suzu-checkin-input{
+    margin-bottom: 20px;
+}
+
+.suzu-checkin-row-presencebtn{
+    float: right;
+    margin-top: -25px;
+}
+
+div.suzu-checkin-row{
+    background-color: #f4f8fa;
+    border-color:  #bce8f1;
+    margin: 0;
+    padding: 10px;
+    border-left: 3px solid #002a80;
+}
+
+.suzu-checkin-row h4{
+    color: #34789a;
+}
+
+/** Do site do bootstrap: */
+.bs-callout-info {
+    background-color: #f4f8fa;
+    border-color: #bce8f1;
+}
+
+.bs-callout {
+    margin: 0;
+    padding: 10px;
+    border-left: 3px solid #eee;
+}
+
+.bs-callout-info:nth-child(even){
+    background-color: #ebebeb;
+}
+
+.bs-callout-info h4 {
+color: #34789a;
+}
+
+.bs-callout h4 {
+margin-top: 0;
+margin-bottom: 5px;
+}
+
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
   position: absolute;

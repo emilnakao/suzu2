@@ -14,3 +14,37 @@
  * IN THE SOFTWARE
  *
  */
+suzuClientApp.controller('EventController', function ($scope, $rootScope, $http, $cookieStore, eventService, notificationService) {
+
+    /**
+     * Populando a lista de tipos de evento para busca
+     */
+    eventService.findEventTypes(function (data) {
+        $scope.eventTypes = data;
+    });
+
+    /**
+     * Handler para busca de eventos
+     * @param eventTypeId
+     * @param eventDateStr
+     */
+    $scope.searchEvent = function (eventTypeId, eventDateStr) {
+        eventService.findEvent(function (data) {
+            $scope.events = data;
+        }, eventTypeId, eventDateStr);
+    };
+
+    /**
+     * Seleciona um evento, que é guardado na sessão do usuário
+     * @param event um objeto event
+     */
+    $scope.selectEvent = function(event){
+        $cookieStore.put('event', event);
+        $rootScope.$broadcast('eventSelected', event);
+        notificationService.success('Sucesso', 'O evento ' + event.event_type.name + ' foi selecionado com sucesso.');
+
+        // fecha o modal de seleção de eventos
+        $('#selectEventModal').modal('hide');
+    };
+
+});

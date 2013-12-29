@@ -15,9 +15,16 @@
  *
  */
 
-suzuClientApp.controller('SidebarController', function($scope){
+suzuClientApp.controller('SidebarController', function($scope, $cookieStore, eventService){
 
-    $scope.goTo = function(){
+    // inicializacao
+    if($cookieStore.get('event') != undefined){
+        $scope.currentEvent = $cookieStore.get('event');
+    }
 
-    };
-})
+    $scope.$on('eventSelected', function(eventMsg, event){
+        $scope.currentEvent = event;
+    });
+
+
+});

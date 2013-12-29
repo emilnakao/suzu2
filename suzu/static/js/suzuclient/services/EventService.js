@@ -14,3 +14,116 @@
  * IN THE SOFTWARE
  *
  */
+suzuClientApp.factory('eventService', ['$http', '$cookieStore', 'notificationService', function ($http, $cookieStore, notificationService) {
+    var currentEvent = {};
+
+    return {
+        currentEvent: currentEvent,
+
+        /**
+         * Procura por todos os tipos de evento disponiveis
+         * @param clbk uma funcao que recebe um argumento; nele serah passado a lista de tipos de evento
+         */
+        findEventTypes: function (clbk) {
+            $http.get('/api/v1/event_type/?format=json').success(function (data) {
+                clbk(data.objects);
+            });
+        },
+
+        /**
+         * Procura por eventos que tenham tipo de evento com o id passado, e a data especificada. Se nenhum parâmetro
+         * for especificado, retorna todos os eventos disponíveis (qtde. limitada pela paginação).
+         *
+         * @param clbk uma função que recebe um argumento; nele será passada a lista de eventos encontrados
+         * @param eventTypeId opcional; o id do tipo de evento
+         * @param date opcional; a data do evento (yyyy-MM-dd)
+         */
+        findEvent: function (clbk, eventTypeId, date) {
+            var searchUrl = '/api/v1/event/?format=json';
+
+            var parsedDate = moment(date);
+
+            if (eventTypeId != undefined) {
+                searchUrl += '&event_type=' + eventTypeId;
+            }
+
+            if (date != undefined && parsedDate.isValid()) {
+                searchUrl += '&begin_date_time__gte=' + parsedDate.startOf().format();
+                // por algum motivo no chrome se não somar 1 dia ele pega o dia anterior
+                searchUrl += '&begin_date_time__lt=' + parsedDate.add('d', 1).endOf().format();
+            }
+
+            $http.get(searchUrl).success(function (data) {
+                clbk(data.objects);
+            });
+        },
+
+        /**
+         * Procura por yokoshis cujo nome satisfaça searchToken, incluindo no resultado se o yokoshi está presente ou não no evento corrente.
+         * @param clbk
+         * @param searchTerm
+         */
+        findYokoshiForCheckin: function (searchTerm, clbk) {
+            var event = $cookieStore.get('event');
+
+            if (event == undefined) {
+                notificationService.error('Oops!!', 'Selecione um evento antes de começar a fazer checkin =)!');
+                return;
+            }
+
+            if (searchTerm.length > 0) {
+                var eventId = event.id;
+                var upperCaseRegex = new RegExp('^[A-Z]+$');
+                var usedSearchTerm = searchTerm;
+
+                var nameQueryFilter = '&complete_name__iregex=';
+                if (upperCaseRegex.test(searchTerm)) {
+                    var upperSearchToken = '.*[ ]';
+                    // TODO: melhorar essa regex
+                    var uppercaseSearchTerm = searchTerm.replace(/(?=[A-Z])([A-Z]?)/g, upperSearchToken + "$1");
+                    usedSearchTerm = uppercaseSearchTerm.substring(upperSearchToken.length) + '.*';
+                    nameQueryFilter = '&complete_name__regex='
+                } else {
+                    // TODO: refatorar isso daqui; solucao paleativa!!
+                    usedSearchTerm = usedSearchTerm.replace(' ', '.*');
+                    usedSearchTerm = usedSearchTerm.replace('e', '[eéê]');
+                    usedSearchTerm = usedSearchTerm.replace('a', '[aãáä]');
+                    usedSearchTerm = usedSearchTerm.replace('i', '[ií]');
+                    usedSearchTerm = usedSearchTerm.replace('u', '[uúü]');
+                    usedSearchTerm = usedSearchTerm.replace('o', '[oôö]');
+                }
+
+                $http.get('/api/v1/presence_count/?format=json&event_id=' + eventId + nameQueryFilter + usedSearchTerm).success(function (data) {
+                    clbk(data.objects);
+                });
+            }
+            else if (searchTerm.length == 0) {
+                clbk([]);
+            }
+        },
+
+        /**
+         *
+         * @param user
+         * @param clbk
+         */
+        confirmPresence: function (user, clbk) {
+            $http.get('/confirm_presence/?yokoshi=' + user.id).success(function (data) {
+                clbk(user);
+
+            });
+        },
+
+        /**
+         *
+         * @param user
+         * @param clbk
+         */
+        cancelPresence: function (user, clbk) {
+            $http.get('/cancel_presence/?yokoshi=' + user.id).success(function (data) {
+                clbk(user);
+
+            });
+        }
+    }
+}]);

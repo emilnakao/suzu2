@@ -19,10 +19,11 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE
 """
 from tastypie import fields, authorization
-from tastypie.authorization import Authorization
+from tastypie.authorization import Authorization, ReadOnlyAuthorization
+from tastypie.constants import ALL_WITH_RELATIONS, ALL
 from tastypie.resources import ModelResource
 from tastypie.validation import Validation
-from .models import Han, Yokoshi
+from .models import Han, Yokoshi, EventType, Event
 
 
 class HanResource(ModelResource):
@@ -47,5 +48,49 @@ class YokoshiResource(ModelResource):
         queryset = Yokoshi.objects.all()
         resource_name = 'yokoshi'
         authorization = Authorization()
-        filtering = {'complete_name': ['iregex'],}
+        filtering = {'complete_name': ['iregex'], }
         validation = Validation()
+
+
+class EventTypeResource(ModelResource):
+    class Meta:
+        queryset = EventType.objects.all()
+        resource_name = 'event_type'
+        authorization = Authorization()
+
+
+class EventResource(ModelResource):
+    event_type = fields.ForeignKey(EventTypeResource, 'event_type', full=True)
+
+    class Meta:
+        queryset = Event.objects.all()
+        resource_name = 'event'
+        authorization = Authorization()
+        filtering = {'begin_date_time': ALL, 'event_type': ALL_WITH_RELATIONS}
+
+
+class PresenceCountResource(ModelResource):
+    """
+    Returns an additional column in person rows, telling how many presences the user has in the event whose id is passed
+    """
+    presence_count = fields.IntegerField(attribute="presence_count", default=0, readonly=True)
+    event_id = 0
+
+    class Meta:
+        resource_name = 'presence_count'
+        queryset = Yokoshi.objects.all()
+        #        authentication = BasicAuthentication()
+        authorization = ReadOnlyAuthorization()
+        allowed_methods = ['get']
+        filtering = {
+            "complete_name": ['icontains', 'iregex', 'regex'],
+        }
+
+    def obj_get_list(self, bundle, **kwargs):
+        # override default implementation
+        event_id = bundle.request.GET['event_id']
+        self._meta.queryset = Yokoshi.objects.extra(select={
+        'presence_count': 'select count(p) from registration_presence p where p.yokoshi_id = registration_yokoshi.id and p.event_id=%s'},
+                                                    select_params=[event_id]).order_by('complete_name')
+
+        return super(PresenceCountResource, self).obj_get_list(bundle, **kwargs)

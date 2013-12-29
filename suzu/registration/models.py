@@ -18,6 +18,7 @@ FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TOR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 DEALINGS IN THE SOFTWARE
 """
+import datetime
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
@@ -197,4 +198,90 @@ class Address(TimeStampedModel):
     def __unicode__(self):
         return u'%s %s' % (self.street_name, self.house_number)
 
+#######################
+# CHECKIN DOMAIN
+#######################
 
+
+class EventType(models.Model):
+    """
+    An event type represents a category of event that can be
+    repeated one or more times. The event type is used to categorize events,
+    and does not contain information about when it happened (This is a responsibility
+    of the Event class).
+
+    Examples of event types:
+
+    * Monthly Ceremony (It's just a description; we will create,
+      for example, an event of type 'Monthly Ceremony' each month.
+    * Class Meeting
+    * Quarter Business Meeting
+    * Annual Conference
+    """
+
+    class Meta:
+        verbose_name = _('event_type')
+        verbose_name_plural = _('event_types')
+
+    name = models.CharField(max_length=100, unique=True, db_index=True, verbose_name=_('EventType|name'))
+    additional_information = models.TextField(max_length=30000, blank=True, null=True, verbose_name=('EventType|additional_information'))
+
+    def __unicode__(self):
+        return self.name
+
+
+class Event(models.Model):
+    """
+
+    """
+    class Meta:
+        unique_together = ("event_type", "begin_date_time")
+        verbose_name = _('event')
+        verbose_name_plural = _('events')
+
+    event_type = models.ForeignKey(EventType, db_index=True, verbose_name=_('Event|event_type'))
+    begin_date_time = models.DateTimeField(verbose_name=_('Event|begin_date_time'))
+    details = models.CharField(max_length=20000, null=True, blank=True, verbose_name=_('Event|details'))
+
+    def __unicode__(self):
+        return self.event_type.name
+
+
+class Presence(models.Model):
+
+    class Meta:
+        verbose_name = _('presence')
+        verbose_name_plural = _('presences')
+
+    event = models.ForeignKey(Event, db_index=True, verbose_name=_('Presence|event'))
+    begin_date_time = models.DateTimeField(null=True, verbose_name=_('Presence|begin_date_time'))
+    yokoshi = models.ForeignKey(Yokoshi, db_index=True, verbose_name=_('Presence|yokoshi'))
+    additional_information = models.TextField(max_length=2000, verbose_name=_('Presence|additional_information'))
+
+    @classmethod
+    def confirmPresence(cls, who, event, arrival):
+        """
+        Confirms the presence of a Person. The key arguments are who and event, which are considered unique in the db.
+        @param who a Person object to be present at the event
+        @param event an Event instance, which the user is attending
+        @return the new presence instance, retrieved from the db or saved in case it didn't exists
+        """
+        used_arrival = arrival or datetime.now()
+        presence = Presence.objects.get_or_create(event=event, person=who)[0]
+        if presence.begin_date_time is None:
+            presence.begin_date_time = used_arrival
+
+        presence.save()
+        return presence
+
+    @classmethod
+    def cancelPresence(cls, who, event):
+        """
+        Cancels the presence of a Person.
+        """
+
+        presence = Presence.objects.get(event=event, person=who)
+        presence.delete()
+
+    def __unicode__(self):
+        return u'%s em %s (%s a %s)' % (self.person, self.event, self.begin_date_time, self.end_date_time)

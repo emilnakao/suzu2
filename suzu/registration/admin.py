@@ -19,7 +19,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE
 """
 from django.contrib import admin
-from .models import Country, State, Address, City, Neighborhood, Yokoshi, Han, Regional
+from .models import Country, State, Address, City, Neighborhood, Yokoshi, Han, Regional, EventType, Presence, Event
 
 admin.site.register(Country)
 admin.site.register(State)
@@ -29,3 +29,6 @@ admin.site.register(Neighborhood)
 admin.site.register(Yokoshi)
 admin.site.register(Han)
 admin.site.register(Regional)
+admin.site.register(EventType)
+admin.site.register(Presence)
+admin.site.register(Event)

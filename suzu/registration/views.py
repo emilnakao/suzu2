@@ -19,9 +19,11 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE
 """
 from braces.views import LoginRequiredMixin, CsrfExemptMixin, PermissionRequiredMixin
-from django.views.generic import CreateView, ListView
+import datetime
+from django.utils.translation import ugettext
+from django.views.generic import CreateView, ListView, DetailView
 from django.views.generic.base import TemplateView
-from .models import Yokoshi
+from .models import Yokoshi, Presence
 from .forms import YokoshiForm
 
 
@@ -31,6 +33,7 @@ class RegistrationHomeView(LoginRequiredMixin, TemplateView):
     """
     template_name = 'registration/home.html'
 
+
 class YokoshiCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """
     see: http://django-braces.readthedocs.org/en/latest/index.html
@@ -39,6 +42,7 @@ class YokoshiCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     form_class = YokoshiForm
     permission_required = 'registration.yokoshi_create'
 
+
 class YokoshiListView(LoginRequiredMixin, ListView):
     """
 
@@ -46,4 +50,44 @@ class YokoshiListView(LoginRequiredMixin, ListView):
     model = Yokoshi
 
     #def get_queryset(self):
-       # return Yokoshi.objects.filter(complete_name__icontains=self.args[0])
+    # return Yokoshi.objects.filter(complete_name__icontains=self.args[0])
+
+
+class PresenceConfirmationView(DetailView):
+
+    """
+    View for presence confirmation. Displays a notification message saying that the presence was successfully saved.
+    """
+    model = Yokoshi
+    template_name = 'check_in/widgets/alert_presence_successfully_saved.html'
+
+    def get_object(self):
+        # Call the superclass
+        whoId = self.request.GET["yokoshi"]
+        who = Yokoshi.objects.get(pk=whoId)
+        event = self.request.session['current_event']
+        when = datetime.now()
+        object = Presence.confirmPresence(who=who, event=event, arrival=when)
+        self.request.session['notification_message'] = who.complete_name + ' ' + ugettext(
+            "user_info.is_present_in.msg") + ' ' + event.__unicode__()
+        # Return the object
+        return who
+
+
+class PresenceCancellationView(DetailView):
+    """
+    View for presence cancellation. Displays a notification message saying that the presence was cancelled.
+    """
+    model = Yokoshi
+    template_name = 'check_in/widgets/alert_presence_successfully_cancelled.html'
+
+    def get_object(self):
+        # Call the superclass
+        whoId = self.request.GET["yokoshi"]
+        who = Yokoshi.objects.get(pk=whoId)
+        event = self.request.session['current_event']
+        object = Presence.cancelPresence(who=who, event=event)
+        self.request.session['notification_message'] = who.complete_name + ' ' + ugettext(
+            "user_info.is_present_in.msg") + ' ' + event.__unicode__()
+        # Return the object
+        return who

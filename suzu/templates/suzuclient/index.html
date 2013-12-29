@@ -1,15 +1,21 @@
+{% load angularjs %}{% load i18n %}
 <!doctype html>
-<html lang="en" ng-app="suzuClientApp">
+<html lang="pt" ng-app="suzuClientApp">
 <head>
     <meta charset="utf-8">
     <title><b>SUZU</b>2</title>
-    <!-- Le styles -->
+    <!-- =================================================================================  -->
+    <!-- ::: CSS ::: -->
+    <!-- =================================================================================  -->
     <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/datepicker.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/suzu.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/jquery.pnotify.default.css" rel="stylesheet">
 </head>
 <body>
+<!-- =================================================================================  -->
+<!-- ::: HEADER / NAVIGATION BAR ::: -->
+<!-- =================================================================================  -->
 <header class="navbar navbar-fixed-top navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -32,23 +38,35 @@
     <!-- /.container -->
 </header>
 <!-- /.navbar -->
+<!-- =================================================================================  -->
+<!-- ::: WORKSPACE ::: -->
+<!-- =================================================================================  -->
 <div class="container root-container">
     <div class="row">
-
-        <div class="affix suzu-sidebar" id="sidebar" role="navigation">
-
+        <!-- =================================================================================  -->
+        <!-- ::: SIDEBAR ::: -->
+        <!-- =================================================================================  -->
+        <div class="affix suzu-sidebar" id="sidebar" role="navigation" ng-controller="SidebarController">
+            <!--+++++ ::: EVENT INFO ::: +++++-->
             <div class="panel panel-default event-information">
-                <div class="panel-heading">Evento</div>
-                <div class="panel-body"><b>TODO: Nome do evento selecionado</b><br>regional</div>
-
+                <div class="panel-heading">
+                    Evento
+                    <button class="btn btn-default btn-sm suzu-select-event-btn" data-toggle="modal"
+                            data-target="#selectEventModal">
+                        <span class="glyphicon glyphicon-bell"></span> Escolher Evento
+                    </button>
+                </div>
+                <div class="panel-body ng-cloak" ng-show="currentEvent"><b>{% ng currentEvent.event_type.name %}</b><br><span class="glyphicon glyphicon-time"></span>  {% ng currentEvent.begin_date_time %} </div>
             </div>
+
+            <!--+++++ ::: MENU LATERAL ::: +++++-->
             <div class="list-group quicktoolbar">
                 <a href="#" class="list-group-item">Selecionar Evento</a>
                 <a href="#/edit_yokoshi" class="list-group-item">Cadastrar Pessoa</a>
                 <a href="#/checkin" class="list-group-item">CheckIn</a>
 
             </div>
-
+            <!--+++++ ::: NEWSFEED ::: +++++-->
             <div class="panel panel-default newsfeed">
                 <div class="panel-heading">Newsfeed</div>
                 <div class="panel-body"></div>
@@ -56,20 +74,68 @@
             </div>
         </div>
 
+        <!-- =================================================================================  -->
+        <!-- ::: DYNAMIC AREA ::: -->
+        <!-- =================================================================================  -->
         <div class="col-md-9 suzu-dynamic-content" ng-view>
-
-           <!-- Conteudo dinamico-->
+            <!-- Conteudo dinamico: carregado pelo router do AngularJS -->
         </div>
-        <!--/span-->
-
-
-        <!--/span-->
     </div>
     <!--/row-->
 
+    <!-- =================================================================================  -->
+    <!-- ::: MODAL DE SELECAO DE EVENTO ::: -->
+    <!-- =================================================================================  -->
+    <div class="modal fade" id="selectEventModal" tabindex="-1" role="dialog" aria-labelledby="selectEventModalLabel"
+         aria-hidden="true" ng-controller="EventController">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!--+++++ ::: HEADER ::: +++++-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="selectEventModalLabel"><span class="glyphicon glyphicon-bell"></span>
+                        Escolher Evento</h4>
+                </div>
+                <!--+++++ ::: BODY ::: +++++-->
+                <div class="modal-body">
+                    <!--+++++ ::: PAINEL DE BUSCA ::: +++++-->
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <form class="form-inline" role="form" ng-submit="searchEvent(eventType, eventDate)" novalidate>
+                                <div class="form-group">
+                                    <label class="sr-only" for="modalEventTypeInput">Tipo de Evento</label>
+                                    <select class="form-control" ng-model="eventType" name="eventType" placeholder="Selecione o tipo de evento">
+                                        <option ng-repeat="eventType in eventTypes"
+                                                value="{% ng eventType.id %}">{% ng eventType.name %}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="modalDateIntervalStart">De</label>
+                                    <input type="date" ng-model="eventDate" class="form-control input-sm" id="modalDateIntervalStart"
+                                           placeholder="De">
+                                </div>
+                                <button class="btn btn-primary btn-sm suzu-event-modal-search-btn" type="submit"><span
+                                        class="glyphicon glyphicon-search"></span> Buscar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <!--+++++ ::: RESULTADO DA BUSCA ::: +++++-->
+                    <div class="bs-callout bs-callout-info" ng-repeat="event in events">
+                        <h4>{% ng event.event_type.name %}</h4>
+
+                        <p><span class="glyphicon glyphicon-time"></span> <b>{% ng event.begin_date_time %}</b></p>
+                        <button class="btn btn-default suzu-event-modal-row-chkbtn" ng-click="selectEvent(event)"><span
+                                class="glyphicon glyphicon-ok"></span> Selecionar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; Suzu Team 2014</p>
     </footer>
 
     <!--/.container-->
@@ -77,14 +143,20 @@
 
 {#    <div ng-view></div>#}
 
+<!-- =================================================================================  -->
+<!-- ::: SCRIPTS ::: -->
+<!-- =================================================================================  -->
+
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 -->
 <script src="{{ STATIC_URL }}js/third/jquery.js"></script>
 <!-- o pnotify sem estar minimizado possui uma correcao para bootstrap 3-->
 <script src="{{ STATIC_URL }}js/third/jquery.pnotify.js"></script>
+<script src="{{ STATIC_URL }}js/third/moment.js"></script>
 <script src="{{ STATIC_URL }}js/third/bootstrap.js"></script>
 <script src="{{ STATIC_URL }}js/third/angular.js"></script>
+<script src="{{ STATIC_URL }}js/third/angular-cookies.js"></script>
 <script src="{{ STATIC_URL }}js/third/angular-mocks.js"></script>
 <script src="{{ STATIC_URL }}js/third/angularstrap.js"></script>
 <script src="{{ STATIC_URL }}js/third/date.js"></script>
@@ -98,8 +170,10 @@
 <script src="{{ STATIC_URL }}js/suzuclient/controllers/EventEditController.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/controllers/YokoshiController.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/controllers/YokoshiEditController.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/controllers/SidebarController.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/services/EventService.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/services/YokoshiService.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/services/HanService.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/services/NotificationService.js"></script>
 </body>
 </html>

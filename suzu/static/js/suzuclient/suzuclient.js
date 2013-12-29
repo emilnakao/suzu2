@@ -16,7 +16,7 @@
  */
 'use strict';
 
-var suzuClientApp = angular.module('suzuClientApp', []).config(['$routeProvider', function($routeProvider){
+var suzuClientApp = angular.module('suzuClientApp', ['ngCookies']).config(['$routeProvider', function($routeProvider){
    $routeProvider.when('/registration', {templateUrl:'templates/suzuclient/registration/home.html', controller:'DummyController'});
    $routeProvider.when('/edit_yokoshi', {templateUrl:'templates/suzuclient/registration/edit_yokoshi.html', controller:'YokoshiEditController'});
    $routeProvider.when('/checkin', {templateUrl:'templates/suzuclient/checkin/home.html', controller:'CheckInController'});

@@ -15,7 +15,7 @@
  *
  */
 
-var module = angular.module("suzu", ['$strap.directives']);
+var module = angular.module("suzu", ['$strap.directives', 'ngCookies']);
 
 /**
  * Definindo servico para comunicacao entre controllers

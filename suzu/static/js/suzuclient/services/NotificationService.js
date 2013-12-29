@@ -14,11 +14,33 @@
  * IN THE SOFTWARE
  *
  */
-suzuClientApp.controller('CheckInController', function($scope, yokoshiService, eventService){
+suzuClientApp.factory('notificationService', [function () {
+    return{
+        success: function (title, message) {
+            $.pnotify({
+                title: title,
+                text: message,
+                type: 'success',
+                styling: 'bootstrap'
+            });
+        },
 
-    $scope.search = function($event){
-      eventService.findYokoshiForCheckin($scope.searchText, function(data){
-          $scope.yokoshis = data;
-      });
-    };
-})
+        error: function (title, message) {
+            $.pnotify({
+                title: title,
+                text: message,
+                type: 'error',
+                styling: 'bootstrap'
+            });
+        },
+
+        info: function (title, message) {
+            $.pnotify({
+                title: title,
+                text: message,
+                type: 'info',
+                styling: 'bootstrap'
+            });
+        }
+    }
+}]);

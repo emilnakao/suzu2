@@ -22,11 +22,11 @@ suzuClientApp.controller('YokoshiEditController', function ($scope, $http, hanSe
 
     $scope.save = function () {
         var data = JSON.stringify({
-            "complete_name": $scope.yokoshi.completeName,
-            "is_mikumite": $scope.yokoshi.isMikumite,
-            "is_mtai": $scope.yokoshi.isMtai,
-            "is_ossuewanin": $scope.yokoshi.isOssuewanin,
-            "han":'/api/v1/han_read_only/' + $scope.yokoshi.hanId + '/'
+            "complete_name": $scope.completeName,
+            "is_mikumite": $scope.isMikumite,
+            "is_mtai": $scope.isMtai,
+            "is_ossuewanin": $scope.isOssuewanin,
+            "han":'/api/v1/han_read_only/' + $scope.hanId + '/'
         });
 
         $.ajax({
