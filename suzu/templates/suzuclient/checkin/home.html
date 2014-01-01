@@ -5,8 +5,8 @@
 <div class="yokoshi_list">
     <div class="media" ng-repeat="yokoshi in yokoshis">
         <div class="media-body suzu-checkin-row">
-            <h4 class="media-heading">{% ng yokoshi.complete_name %}</h4>
-            <button class="suzu-checkin-row-presencebtn btn">Confirmar Presença</button>
+            <h4 class="media-heading">{% ng yokoshi.complete_name %} <span ng-show="!yokoshi.is_mikumite" class="label label-primary">KUMITE</span> <span ng-show="yokoshi.is_mikumite" class="label label-success">MIKUMITE</span></h4>
+            <button class="suzu-checkin-row-presencebtn btn" ng-click="togglePresence(yokoshi)">{% ng getTogglePresenceBtnLabel(yokoshi) %}</button>
         </div>
 
     </div>

@@ -267,7 +267,7 @@ class Presence(models.Model):
         @return the new presence instance, retrieved from the db or saved in case it didn't exists
         """
         used_arrival = arrival or datetime.now()
-        presence = Presence.objects.get_or_create(event=event, person=who)[0]
+        presence = Presence.objects.get_or_create(event=event, yokoshi=who)[0]
         if presence.begin_date_time is None:
             presence.begin_date_time = used_arrival
 
@@ -280,7 +280,7 @@ class Presence(models.Model):
         Cancels the presence of a Person.
         """
 
-        presence = Presence.objects.get(event=event, person=who)
+        presence = Presence.objects.get(event=event, yokoshi=who)
         presence.delete()
 
     def __unicode__(self):

@@ -18,12 +18,13 @@ FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TOR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 DEALINGS IN THE SOFTWARE
 """
+from datetime import datetime
 from braces.views import LoginRequiredMixin, CsrfExemptMixin, PermissionRequiredMixin
-import datetime
+
 from django.utils.translation import ugettext
 from django.views.generic import CreateView, ListView, DetailView
 from django.views.generic.base import TemplateView
-from .models import Yokoshi, Presence
+from .models import Yokoshi, Presence, Event
 from .forms import YokoshiForm
 
 
@@ -59,13 +60,14 @@ class PresenceConfirmationView(DetailView):
     View for presence confirmation. Displays a notification message saying that the presence was successfully saved.
     """
     model = Yokoshi
-    template_name = 'check_in/widgets/alert_presence_successfully_saved.html'
+    template_name = 'dummy.html'
 
     def get_object(self):
         # Call the superclass
         whoId = self.request.GET["yokoshi"]
         who = Yokoshi.objects.get(pk=whoId)
-        event = self.request.session['current_event']
+        eventId = self.request.GET['current_event']
+        event = Event.objects.get(pk=eventId)
         when = datetime.now()
         object = Presence.confirmPresence(who=who, event=event, arrival=when)
         self.request.session['notification_message'] = who.complete_name + ' ' + ugettext(
@@ -79,13 +81,14 @@ class PresenceCancellationView(DetailView):
     View for presence cancellation. Displays a notification message saying that the presence was cancelled.
     """
     model = Yokoshi
-    template_name = 'check_in/widgets/alert_presence_successfully_cancelled.html'
+    template_name = 'dummy.html'
 
     def get_object(self):
         # Call the superclass
         whoId = self.request.GET["yokoshi"]
         who = Yokoshi.objects.get(pk=whoId)
-        event = self.request.session['current_event']
+        eventId = self.request.GET['current_event']
+        event = Event.objects.get(pk=eventId)
         object = Presence.cancelPresence(who=who, event=event)
         self.request.session['notification_message'] = who.complete_name + ' ' + ugettext(
             "user_info.is_present_in.msg") + ' ' + event.__unicode__()

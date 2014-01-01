@@ -14,11 +14,45 @@
  * IN THE SOFTWARE
  *
  */
-suzuClientApp.controller('CheckInController', function($scope, yokoshiService, eventService){
+suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieStore, yokoshiService, eventService, notificationService) {
 
-    $scope.search = function($event){
-      eventService.findYokoshiForCheckin($scope.searchText, function(data){
-          $scope.yokoshis = data;
-      });
+    $scope.search = function ($event) {
+        eventService.findYokoshiForCheckin($scope.searchText, function (data) {
+            $scope.yokoshis = data;
+        });
+    };
+
+    $scope.isYokoshiPresent = function (yokoshi) {
+        return yokoshi.presence_count > 0;
+    };
+
+    /**
+     * TODO: passar lógica para o eventService
+     * @param yokoshi
+     */
+    $scope.togglePresence = function (yokoshi) {
+        var eventId = $cookieStore.get('event').id;
+
+        if ($scope.isYokoshiPresent(yokoshi)) {
+            $http.get('/registration/cancel_presence/?current_event='+ eventId +'&yokoshi=' + yokoshi.id).success(function (data) {
+                notificationService.success("Presença cancelada", yokoshi.complete_name);
+                $scope.search(null);
+
+            });
+        } else {
+            $http.get('/registration/confirm_presence/?current_event='+eventId+'&yokoshi=' + yokoshi.id).success(function (data) {
+                notificationService.success("Presença confirmada", yokoshi.complete_name);
+                $scope.search(null);
+
+            });
+        }
+    };
+
+    $scope.getTogglePresenceBtnLabel = function(yokoshi){
+        if($scope.isYokoshiPresent(yokoshi)){
+            return "Cancelar Presença";
+        }
+
+        return "Confirmar Presença";
     };
 })
