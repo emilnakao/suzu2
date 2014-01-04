@@ -20,7 +20,7 @@ DEALINGS IN THE SOFTWARE
 """
 
 from django.conf.urls import patterns, url
-from .views import YokoshiCreateView, RegistrationHomeView, YokoshiListView, PresenceConfirmationView, PresenceCancellationView
+from .views import YokoshiCreateView, RegistrationHomeView, YokoshiListView, PresenceConfirmationView, PresenceCancellationView, generate_report
 
 urlpatterns = patterns('',
     url(r'^yokoshi/create$', YokoshiCreateView.as_view(), name="yokoshicreate"),
@@ -28,4 +28,5 @@ urlpatterns = patterns('',
     url(r'^home$', RegistrationHomeView.as_view(), name="registrationhome"),
     url(r'^confirm_presence/$', PresenceConfirmationView.as_view(), name="confirm_presence"),
     url(r'^cancel_presence/$', PresenceCancellationView.as_view(), name="cancel_presence"),
+    url(r'^presence_by_event/$', generate_report )
 )

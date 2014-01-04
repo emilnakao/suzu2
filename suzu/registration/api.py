@@ -23,7 +23,7 @@ from tastypie.authorization import Authorization, ReadOnlyAuthorization
 from tastypie.constants import ALL_WITH_RELATIONS, ALL
 from tastypie.resources import ModelResource
 from tastypie.validation import Validation
-from .models import Han, Yokoshi, EventType, Event
+from .models import Han, Yokoshi, EventType, Event, Presence
 
 
 class HanResource(ModelResource):
@@ -42,7 +42,7 @@ class ReadOnlyHanResource(ModelResource):
 
 
 class YokoshiResource(ModelResource):
-    han = fields.ForeignKey(ReadOnlyHanResource, 'han')
+    han = fields.ForeignKey(ReadOnlyHanResource, 'han', full=True)
 
     class Meta:
         queryset = Yokoshi.objects.all()
@@ -90,7 +90,27 @@ class PresenceCountResource(ModelResource):
         # override default implementation
         event_id = bundle.request.GET['event_id']
         self._meta.queryset = Yokoshi.objects.extra(select={
-        'presence_count': 'select count(p) from registration_presence p where p.yokoshi_id = registration_yokoshi.id and p.event_id=%s'},
+            'presence_count': 'select count(p) from registration_presence p where p.yokoshi_id = registration_yokoshi.id and p.event_id=%s'},
                                                     select_params=[event_id]).order_by('complete_name')
 
         return super(PresenceCountResource, self).obj_get_list(bundle, **kwargs)
+
+
+class PresenceByEventResource(ModelResource):
+    yokoshi = fields.ForeignKey(YokoshiResource, 'yokoshi', full=True)
+    event = fields.ForeignKey(EventResource, 'event', full=True)
+
+    class Meta:
+        resource_name = 'presence_by_event'
+        queryset = Presence.objects.all()
+        excludes = ['additional_information', 'begin_date_time', ]
+        authorization = ReadOnlyAuthorization()
+        allowed_methods = ['get']
+        filtering = {
+            "yokoshi": ALL_WITH_RELATIONS,
+            "event": ALL_WITH_RELATIONS
+        }
+
+    def dehydrate(self, bundle):
+        qs = Presence.objects.raw('SELECT p.id, y.complete_name as name, h.name as han from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by y.complete_name asc, h.name asc', [bundle.request.GET['event']])
+        return [row for row in qs]

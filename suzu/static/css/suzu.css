@@ -130,6 +130,19 @@ margin-bottom: 5px;
     margin-bottom: 0;
 }
 
+@media print {
+            body * {
+                visibility:hidden;
+            }
+            #printable, #printable * {
+                visibility:visible;
+            }
+            #printable { /* aligning the printable area */
+                position:absolute;
+                left:40;
+                top:40;
+            }
+        }
 /*#container{*/
     /*position: relative;*/
     /*min-height: 100%;*/

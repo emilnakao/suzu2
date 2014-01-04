@@ -20,12 +20,16 @@ DEALINGS IN THE SOFTWARE
 """
 from datetime import datetime
 from braces.views import LoginRequiredMixin, CsrfExemptMixin, PermissionRequiredMixin
+from django.core import serializers
+from django.db import connection
+from django.http import HttpResponse
 
 from django.utils.translation import ugettext
 from django.views.generic import CreateView, ListView, DetailView
 from django.views.generic.base import TemplateView
 from .models import Yokoshi, Presence, Event
 from .forms import YokoshiForm
+from .simplejson import json_response_from
 
 
 class RegistrationHomeView(LoginRequiredMixin, TemplateView):
@@ -94,3 +98,20 @@ class PresenceCancellationView(DetailView):
             "user_info.is_present_in.msg") + ' ' + event.__unicode__()
         # Return the object
         return who
+
+
+# TODO: passar para modulo reports
+def generate_report(request):
+    cursor = connection.cursor()
+    cursor.execute('SELECT p.id, y.complete_name as name, h.name as han from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by y.complete_name asc, h.name asc', [request.GET['event']])
+    comments = dictfetchall(cursor)
+    # comments = Presence.objects.raw('SELECT p.id, y.complete_name as name, h.name as han from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by y.complete_name asc, h.name asc', [request.GET['event']])
+    return json_response_from(comments)
+
+def dictfetchall(cursor):
+    "Returns all rows from a cursor as a dict"
+    desc = cursor.description
+    return [
+        dict(zip([col[0] for col in desc], row))
+        for row in cursor.fetchall()
+    ]
