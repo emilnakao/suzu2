@@ -35,7 +35,14 @@ suzuClientApp.controller('ReportController', function ($scope, $http, $cookieSto
             xAxis: {
                 categories: [
                     'evento'
-                ]
+                ],
+                labels: {
+                    rotation: -45,
+                    align: 'right',
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }}
             },
             yAxis: {
                 min: 0,
@@ -69,6 +76,22 @@ suzuClientApp.controller('ReportController', function ($scope, $http, $cookieSto
         _.each(pairs, function(elem){
            $scope.chartObj.series.push({name:elem[0], data:[elem[1]]});
         });
+
+        // refactoring
+        $scope.chartObj.xAxis.categories = _.keys(presenceByHan);
+        $scope.chartObj.series = [{data:_.values(presenceByHan), name:'Yokoshis',dataLabels: {
+                    enabled: true,
+                    rotation: -90,
+                    color: '#FFFFFF',
+                    align: 'right',
+                    x: 4,
+                    y: 1,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif',
+                        textShadow: '0 0 3px black'
+                    }
+                }}];
 
         $('#chart').highcharts($scope.chartObj);
     });
