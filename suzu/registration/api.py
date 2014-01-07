@@ -112,5 +112,5 @@ class PresenceByEventResource(ModelResource):
         }
 
     def dehydrate(self, bundle):
-        qs = Presence.objects.raw('SELECT p.id, y.complete_name as name, h.name as han from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by y.complete_name asc, h.name asc', [bundle.request.GET['event']])
+        qs = Presence.objects.raw('SELECT p.id, y.complete_name as name, h.name as han from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by h.name asc, y.complete_name asc', [bundle.request.GET['event']])
         return [row for row in qs]

@@ -130,6 +130,10 @@ margin-bottom: 5px;
     margin-bottom: 0;
 }
 
+.suzu-dynamic-report-table{
+    padding: 45px;
+}
+
 @media print {
             body * {
                 visibility:hidden;
@@ -141,6 +145,9 @@ margin-bottom: 5px;
                 position:absolute;
                 left:40;
                 top:40;
+            }
+            .suzu-sidebar{
+                width:0px;
             }
         }
 /*#container{*/
