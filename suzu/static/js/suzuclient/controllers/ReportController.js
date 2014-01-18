@@ -18,9 +18,26 @@ suzuClientApp.controller('ReportController', function ($scope, $http, $cookieSto
     $http.get('/registration/presence_by_event/?event=' + $cookieStore.get('event').id).success(function (data) {
         $scope.data = data;
         notificationService.success("Relatório gerado!", "Presenças por evento");
-        $scope.itemsPerPage = data.length
-        $scope.table_headers = _.keys(data[0])
+        $scope.itemsPerPage = data.length;
+        $scope.total = data.length;
+        $scope.table_headers = _.keys(data[0]);
         $scope.items = data;
+
+        $scope.sort = {
+            column: 'nome',
+            descending: false
+        };
+
+        $scope.sort_by = function(column){
+            var sort = $scope.sort;
+
+            if(sort.column == column){
+                sort.descending = !sort.descending;
+            }else{
+                sort.column = column;
+                sort.descending = false;
+            }
+        };
 
         $scope.chartObj = {
             chart: {
@@ -67,15 +84,58 @@ suzuClientApp.controller('ReportController', function ($scope, $http, $cookieSto
             series: []
         }
 
-        // recuperando nomes dos hans
-        var presenceByHan = _.countBy(data, function(presence){
-            return presence.han;
+        var allByHan = _.countBy(data, function(presence){
+           return presence.han;
         });
 
+        var allByStatus = _.countBy(data, function(presence){
+           if(presence.mikumite == true){
+               return 'mikumite';
+           }
+
+            return 'kumite';
+        });
+
+        $scope.kumiteTotal = allByStatus.kumite;
+        $scope.mikumiteTotal = allByStatus.mikumite;
+
+        // recuperando nomes dos hans
+        var kumiteByHan = _.countBy(data, function(presence){
+            if(presence.mikumite === false){
+                return presence.han;
+            }
+
+            return 'omitme';
+
+        });
+
+        var mikumiteByHan = _.countBy(data, function(presence){
+            if(presence.mikumite === true){
+                return presence.han;
+            }
+
+            return 'omitme';
+        });
+
+        mikumiteByHan = _.omit(mikumiteByHan, 'omitme');
+        kumiteByHan = _.omit(kumiteByHan, 'omitme');
 
         // refactoring
-        $scope.chartObj.xAxis.categories = _.keys(presenceByHan);
-        $scope.chartObj.series = [{data:_.values(presenceByHan), name:'Yokoshis',dataLabels: {
+        $scope.chartObj.xAxis.categories = _.keys(allByHan);
+        $scope.chartObj.series = [{data:_.values(kumiteByHan), color:'#07C', name:'Kumite',dataLabels: {
+                    enabled: true,
+                    rotation: -90,
+                    color: '#FFFFFF',
+                    align: 'right',
+                    x: 4,
+                    y: 1,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif',
+                        textShadow: '0 0 3px black'
+                    }
+                }},
+        {data:_.values(mikumiteByHan), name:'Mi-Kumite', color: '#0C7', dataLabels: {
                     enabled: true,
                     rotation: -90,
                     color: '#FFFFFF',

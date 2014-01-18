@@ -5,29 +5,43 @@
         <div class="hero-unit">
 
             <div class="row">
-                <!--                        <div class="span12" ng-style="table_row_style">-->
                 <div class="span9 suzu-dynamic-report-table" ng-style="{'overflow': 'auto', 'min-height': (92*{% ng itemsPerPage %}) + 'px'}">
-                    <h6>Total de presentes: <b>{% ng itemsPerPage %}</b></h6>
+                    <div class="row row-fluid">
+                        <div class="suzu-count-box presences-total col-xs-6 col-sm-3">
+                            <h6>Total de presentes: <b>{% ng total %}</b></h6>
+                        </div>
+                        <div class="suzu-count-box kumite-total col-xs-6 col-sm-3">
+                            <h6>Kumite: <b>{% ng kumiteTotal %}</b></h6>
+                        </div>
+                        <div class="suzu-count-box mikumite-total col-xs-6 col-sm-3">
+                            <h6>Mi-Kumite: <b>{% ng mikumiteTotal %}</b></h6>
+                        </div>
+                    </div>
 
 
                     <table class="table table-striped table-condensed table-hover" style="font-size: 12px;">
                         <thead>
                         <tr>
-                            <th ng-repeat="header in table_headers"
-                                ng-style="table_header_style(header)">{% ng header %}
-                                <a ng-click="sort_by(header)">
+                            <th></th>
+                            <th>Nome
+                                <a ng-click="sort_by('nome')">
                                     <!--<i ng-class="{'icon-sort':reverse == undefined, 'icon-chevron-up': reverse, 'icon-chevron-down': !reverse }"></i>-->
-                                    <i class="icon-sort"></i>
+                                    <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet':sort.descending == false, 'glyphicon-sort-by-alphabet-alt':sort.descending == true}"></i>
                                 </a>
                             </th>
+                            <th>N&uacute;cleo
+                                <a ng-click="sort_by('han')">
+                                    <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet':sort.descending == false, 'glyphicon-sort-by-alphabet-alt':sort.descending == true}"></i>
+                                </a>
+                            </th>
+
                         </tr>
                         </thead>
                         <tbody>
-                        <!--                                    <tr ng-repeat="item in pagedItems[currentPage-1] | orderBy:sortingOrder:reverse"-->
-                        <tr ng-repeat="item in items | orderBy:sortingOrder:reverse"
-
-                                >
-                            <td ng-repeat="val in item" ng-bind-html-unsafe="item[table_headers[$index]]"></td>
+                        <tr ng-repeat="item in items|orderBy:sort.column:sort.descending" >
+                            <td><span ng-show="!item.mikumite" class="label label-primary">KUMITE</span> <span ng-show="item.mikumite" class="label label-success">MIKUMITE</span></td>
+                            <td>{% ng item.nome %}</td>
+                            <td>{%  ng item.han %}</td>
                         </tr>
                         </tbody>
                     </table>

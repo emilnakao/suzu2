@@ -257,6 +257,7 @@ class Presence(models.Model):
     begin_date_time = models.DateTimeField(null=True, verbose_name=_('Presence|begin_date_time'))
     yokoshi = models.ForeignKey(Yokoshi, db_index=True, verbose_name=_('Presence|yokoshi'))
     additional_information = models.TextField(max_length=2000, verbose_name=_('Presence|additional_information'))
+    is_first_time = models.BooleanField(default=False, verbose_name=_('Presence|is_first_time'))
 
     @classmethod
     def confirmPresence(cls, who, event, arrival):
