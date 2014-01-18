@@ -8,14 +8,17 @@
             <div class="row">
                 <div class="span9 suzu-dynamic-report-table" ng-style="{'overflow': 'auto', 'min-height': (92*{% ng itemsPerPage %}) + 'px'}">
                     <div class="row row-fluid">
-                        <div class="suzu-count-box presences-total col-xs-6 col-sm-3">
-                            <h6>Total de presentes: <b>{% ng total %}</b></h6>
+                        <div class="suzu-count-box presences-total col-xs-5 col-sm-2">
+                            <h6>Total: <b>{% ng total %}</b></h6>
                         </div>
-                        <div class="suzu-count-box kumite-total col-xs-6 col-sm-3">
+                        <div class="suzu-count-box kumite-total col-xs-5 col-sm-2">
                             <h6>Kumite: <b>{% ng kumiteTotal %}</b></h6>
                         </div>
-                        <div class="suzu-count-box mikumite-total col-xs-6 col-sm-3">
+                        <div class="suzu-count-box mikumite-total col-xs-5 col-sm-2">
                             <h6>Mi-Kumite: <b>{% ng mikumiteTotal %}</b></h6>
+                        </div>
+                        <div class="suzu-count-box firsttime-total col-xs-5 col-sm-2">
+                            <h6>Primeira Vez: <b>{% ng firsttimeTotal %}</b></h6>
                         </div>
                     </div>
 
@@ -40,7 +43,7 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in items|orderBy:sort.column:sort.descending" >
-                            <td><span ng-show="!item.mikumite" class="label label-primary">KUMITE</span> <span ng-show="item.mikumite" class="label label-success">MIKUMITE</span></td>
+                            <td><span ng-show="!item.mikumite" class="label label-primary">KUMITE</span> <span ng-show="item.mikumite" class="label label-success">MIKUMITE</span> <span ng-show="item.firsttime" class="label label-danger">PRIMEIRA VEZ</span></td>
                             <td>{% ng item.nome %}</td>
                             <td>{%  ng item.han %}</td>
                         </tr>

@@ -38,18 +38,21 @@ suzuClientApp.controller('YokoshiEditController', function ($scope, $http, $cook
     });
 
     $scope.save = function () {
+        var formYokoshi = $scope.createYokoshiObject();
+
         var clbk = function (yokoshi) {
         };
 
         if ($scope.confirmPresence === true) {
             clbk = function (yokoshi) {
+                yokoshi.firsttime = formYokoshi.firsttime;
                 eventService.confirmPresence(yokoshi, function (yokoshi) {
                     notificationService.success('Presença confirmada!', yokoshi.complete_name);
                 })
             };
         }
 
-        yokoshiService.saveYokoshi($scope.createYokoshiObject(), clbk);
+        yokoshiService.saveYokoshi(formYokoshi, clbk);
         $scope.clear();
     };
 
@@ -65,14 +68,14 @@ suzuClientApp.controller('YokoshiEditController', function ($scope, $http, $cook
         if ($scope.kumiteStatus == 'kumite') {
             yokoshi.is_mikumite = false;
 
-            if ($scope.isMtai === true) {
+            if ($scope.isMtai == 'true') {
                 yokoshi.is_mtai = true;
             }
         } else {
             yokoshi.is_mikumite = true;
 
-            if ($scope.mikumiteFirstTime === true) {
-                yokoshi.first_presence = moment().format();
+            if ($scope.mikumiteFirstTime == 'true') {
+                yokoshi.firsttime = true;
             }
         }
 

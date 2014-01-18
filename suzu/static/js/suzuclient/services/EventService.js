@@ -108,7 +108,15 @@ suzuClientApp.factory('eventService', ['$http', '$cookieStore', 'notificationSer
          * @param clbk
          */
         confirmPresence: function (user, clbk) {
-            $http.get('/registration/confirm_presence/?current_event='+$cookieStore.get('event').id + '&yokoshi=' + user.id).success(function (data) {
+            var url = '/registration/confirm_presence/?current_event='+$cookieStore.get('event').id + '&yokoshi=' + user.id;
+
+            if(user.firsttime === true){
+                url = url + '&is_first_time=true';
+            }else{
+                url = url + '&is_first_time=false';
+            }
+
+            $http.get(url).success(function (data) {
                 clbk(user);
 
             });

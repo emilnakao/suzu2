@@ -71,9 +71,10 @@ class PresenceConfirmationView(DetailView):
         whoId = self.request.GET["yokoshi"]
         who = Yokoshi.objects.get(pk=whoId)
         eventId = self.request.GET['current_event']
+        firstTime = self.request.GET['is_first_time']
         event = Event.objects.get(pk=eventId)
         when = datetime.now()
-        object = Presence.confirmPresence(who=who, event=event, arrival=when)
+        object = Presence.confirmPresence(who=who, event=event, arrival=when, first_time=firstTime)
         self.request.session['notification_message'] = who.complete_name + ' ' + ugettext(
             "user_info.is_present_in.msg") + ' ' + event.__unicode__()
         # Return the object
@@ -103,7 +104,7 @@ class PresenceCancellationView(DetailView):
 # TODO: passar para modulo reports
 def generate_report(request):
     cursor = connection.cursor()
-    cursor.execute('SELECT y.complete_name as nome, h.name as han, y.is_mikumite as mikumite from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by h.name asc, y.complete_name asc', [request.GET['event']])
+    cursor.execute('SELECT y.complete_name as nome, h.name as han, y.is_mikumite as mikumite, p.is_first_time as firsttime from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by h.name asc, y.complete_name asc', [request.GET['event']])
     comments = dictfetchall(cursor)
     # comments = Presence.objects.raw('SELECT p.id, y.complete_name as name, h.name as han from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by y.complete_name asc, h.name asc', [request.GET['event']])
     return json_response_from(comments)

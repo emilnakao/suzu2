@@ -260,7 +260,7 @@ class Presence(models.Model):
     is_first_time = models.BooleanField(default=False, verbose_name=_('Presence|is_first_time'))
 
     @classmethod
-    def confirmPresence(cls, who, event, arrival):
+    def confirmPresence(cls, who, event, arrival, first_time=False):
         """
         Confirms the presence of a Person. The key arguments are who and event, which are considered unique in the db.
         @param who a Person object to be present at the event
@@ -268,7 +268,7 @@ class Presence(models.Model):
         @return the new presence instance, retrieved from the db or saved in case it didn't exists
         """
         used_arrival = arrival or datetime.now()
-        presence = Presence.objects.get_or_create(event=event, yokoshi=who)[0]
+        presence = Presence.objects.get_or_create(event=event, yokoshi=who, is_first_time=first_time)[0]
         if presence.begin_date_time is None:
             presence.begin_date_time = used_arrival
 

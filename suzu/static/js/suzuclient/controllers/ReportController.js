@@ -89,8 +89,10 @@ suzuClientApp.controller('ReportController', function ($scope, $http, $cookieSto
         });
 
         var allByStatus = _.countBy(data, function(presence){
-           if(presence.mikumite == true){
+           if(presence.mikumite == true && presence.firsttime == false){
                return 'mikumite';
+           }else if(presence.mikumite == true && presence.firsttime == true){
+               return 'firsttime';
            }
 
             return 'kumite';
@@ -98,6 +100,7 @@ suzuClientApp.controller('ReportController', function ($scope, $http, $cookieSto
 
         $scope.kumiteTotal = allByStatus.kumite;
         $scope.mikumiteTotal = allByStatus.mikumite;
+        $scope.firsttimeTotal = allByStatus.firsttime;
 
         // recuperando nomes dos hans
         var kumiteByHan = _.countBy(data, function(presence){
@@ -110,15 +113,24 @@ suzuClientApp.controller('ReportController', function ($scope, $http, $cookieSto
         });
 
         var mikumiteByHan = _.countBy(data, function(presence){
-            if(presence.mikumite === true){
+            if(presence.mikumite === true && presence.firsttime === false){
                 return presence.han;
             }
 
             return 'omitme';
         });
 
+        var firsttimeByHan = _.countBy(data, function(presence){
+           if(presence.mikumite === true && presence.firsttime === true){
+               return presence.han;
+           }
+
+            return 'omitme';
+        });
+
         mikumiteByHan = _.omit(mikumiteByHan, 'omitme');
         kumiteByHan = _.omit(kumiteByHan, 'omitme');
+        firsttimeByHan = _.omit(firsttimeByHan, 'omitme');
 
         // refactoring
         $scope.chartObj.xAxis.categories = _.keys(allByHan);
@@ -136,6 +148,19 @@ suzuClientApp.controller('ReportController', function ($scope, $http, $cookieSto
                     }
                 }},
         {data:_.values(mikumiteByHan), name:'Mi-Kumite', color: '#0C7', dataLabels: {
+                    enabled: true,
+                    rotation: -90,
+                    color: '#FFFFFF',
+                    align: 'right',
+                    x: 4,
+                    y: 1,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif',
+                        textShadow: '0 0 3px black'
+                    }
+                }},
+        {data:_.values(firsttimeByHan), name:'Primeira Vez', color: '#C07', dataLabels: {
                     enabled: true,
                     rotation: -90,
                     color: '#FFFFFF',

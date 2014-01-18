@@ -84,6 +84,11 @@ body{
     color: darkslategray;
 }
 
+.firsttime-total{
+    background-color: lightpink;
+    color: indianred;
+}
+
 div.suzu-checkin-row{
     background-color: #f4f8fa;
     border-color:  #bce8f1;
