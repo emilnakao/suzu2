@@ -1,5 +1,6 @@
 {% load angularjs %}{% load i18n %}
 <div id="printable">
+     <div class="panel-body ng-cloak" ng-show="currentEvent"><b>{% ng currentEvent.event_type.name %}</b><br><span class="glyphicon glyphicon-time"></span>  {% ng currentEvent.begin_date_time %} </div>
     <div id="chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
     <div class="row">
         <div class="hero-unit">

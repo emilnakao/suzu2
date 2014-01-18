@@ -31,7 +31,7 @@ suzuClientApp.factory('yokoshiService', ['$http', function ($http) {
          * @param yokoshiObj um objeto que representa um yokoshi
          *
          */
-        saveYokoshi: function (yokoshiObj) {
+        saveYokoshi: function (yokoshiObj, successClbk) {
             var data = JSON.stringify(yokoshiObj);
 
             $.ajax({
@@ -42,13 +42,14 @@ suzuClientApp.factory('yokoshiService', ['$http', function ($http) {
                 dataType: 'json',
                 processData: false
 
-            }).success(function () {
+            }).success(function (data) {
                     $.pnotify({
                         title: 'Parabéns!!',
                         text: _.template('<%=name%> cadastrado com sucesso!')({name: yokoshiObj.complete_name}),
                         type: 'success',
                         styling: 'bootstrap'
                     });
+                    successClbk(data);
                 }).fail(function () {
                     $.pnotify({
                         title: 'Oh nãoo!',

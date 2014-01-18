@@ -22,7 +22,7 @@ suzuClientApp.controller('ReportController', function ($scope, $http, $cookieSto
         $scope.total = data.length;
         $scope.table_headers = _.keys(data[0]);
         $scope.items = data;
-
+        $scope.currentEvent = $cookieStore.get('event');
         $scope.sort = {
             column: 'nome',
             descending: false

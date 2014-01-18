@@ -36,14 +36,15 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
         var eventId = $cookieStore.get('event').id;
 
         if ($scope.isYokoshiPresent(yokoshi)) {
-            $http.get('/registration/cancel_presence/?current_event='+ eventId +'&yokoshi=' + yokoshi.id).success(function (data) {
+
+            eventService.cancelPresence(yokoshi, function (data) {
                 notificationService.success("Presença cancelada", yokoshi.complete_name);
                 $scope.search(null);
                 focusService.focus('focusCheckinSearch');
 
             });
         } else {
-            $http.get('/registration/confirm_presence/?current_event='+eventId+'&yokoshi=' + yokoshi.id).success(function (data) {
+            eventService.confirmPresence(yokoshi, function (data) {
                 notificationService.success("Presença confirmada", yokoshi.complete_name);
                 $scope.search(null);
                 focusService.focus('focusCheckinSearch');

@@ -55,6 +55,6 @@
         </div>
         <!--+++++ ::: BOTÕES DE CANCELAR/CONFIRMAR . BOTÃO CONFIRMAR É PRIMARY (ACIONADO COM ENTER) ::: +++++-->
         <button type="button" class="btn btn-default" ng-click="clear()">Limpar Formulario</button>
-        <button type="submit" class="btn btn-primary" ng-disabled="yokoshi.$invalid">Salvar</button>
+        <button type="submit" class="btn btn-primary" ng-disabled="yokoshi.$invalid" ng-click="shouldConfirmPresence()">Salvar e Confirmar Presen&ccedil;a</button>
     </form>
 </div>

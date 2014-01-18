@@ -14,9 +14,13 @@
  * IN THE SOFTWARE
  *
  */
-suzuClientApp.controller('YokoshiEditController', function ($scope, $http, hanService, yokoshiService, focusService) {
+suzuClientApp.controller('YokoshiEditController', function ($scope, $http, $cookieStore, hanService, yokoshiService, focusService, eventService, notificationService) {
+
+    $scope.isEventSelected = $cookieStore.get('event') != undefined;
 
     $scope.resetYokoshiStatus = function () {
+        $scope.confirmPresence = $scope.isEventSelected;
+
         $scope.kumiteStatus = 'kumite';
 
         $scope.isMtai = false;
@@ -34,9 +38,21 @@ suzuClientApp.controller('YokoshiEditController', function ($scope, $http, hanSe
     });
 
     $scope.save = function () {
-        yokoshiService.saveYokoshi($scope.createYokoshiObject());
+        var clbk = function (yokoshi) {
+        };
+
+        if ($scope.confirmPresence === true) {
+            clbk = function (yokoshi) {
+                eventService.confirmPresence(yokoshi, function (yokoshi) {
+                    notificationService.success('Presença confirmada!', yokoshi.complete_name);
+                })
+            };
+        }
+
+        yokoshiService.saveYokoshi($scope.createYokoshiObject(), clbk);
         $scope.clear();
     };
+
 
     $scope.createYokoshiObject = function () {
         var yokoshi = {};
@@ -70,5 +86,12 @@ suzuClientApp.controller('YokoshiEditController', function ($scope, $http, hanSe
         focusService.focus('focusCompleteName');
     };
 
+    $scope.shouldConfirmPresence = function () {
+        $scope.confirmPresence = true;
+    }
+
+    $scope.shouldNotConfirmPresence = function () {
+        $scope.confirmPresence = false;
+    }
 
 })

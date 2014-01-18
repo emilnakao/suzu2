@@ -50,6 +50,7 @@ class YokoshiResource(ModelResource):
         authorization = Authorization()
         filtering = {'complete_name': ['iregex'], }
         validation = Validation()
+        always_return_data = True
 
 
 class EventTypeResource(ModelResource):

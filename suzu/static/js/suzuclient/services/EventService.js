@@ -108,7 +108,7 @@ suzuClientApp.factory('eventService', ['$http', '$cookieStore', 'notificationSer
          * @param clbk
          */
         confirmPresence: function (user, clbk) {
-            $http.get('/confirm_presence/?yokoshi=' + user.id).success(function (data) {
+            $http.get('/registration/confirm_presence/?current_event='+$cookieStore.get('event').id + '&yokoshi=' + user.id).success(function (data) {
                 clbk(user);
 
             });
@@ -120,7 +120,7 @@ suzuClientApp.factory('eventService', ['$http', '$cookieStore', 'notificationSer
          * @param clbk
          */
         cancelPresence: function (user, clbk) {
-            $http.get('/cancel_presence/?yokoshi=' + user.id).success(function (data) {
+            $http.get('/registration/cancel_presence/?current_event='+ $cookieStore.get('event').id +'&yokoshi=' + user.id).success(function (data) {
                 clbk(user);
 
             });
