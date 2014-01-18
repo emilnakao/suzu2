@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from registration import urls as registrationurls
 from .settings import commons
-from registration.api import HanResource, YokoshiResource, ReadOnlyHanResource, EventTypeResource, EventResource, PresenceCountResource, PresenceByEventResource
+from registration.api import HanResource, YokoshiResource, ReadOnlyHanResource, EventTypeResource, EventResource, PresenceCountResource
 from .views import HomeView, route_request
 
 admin.autodiscover()
@@ -16,7 +16,6 @@ v1_api.register(YokoshiResource())
 v1_api.register(EventTypeResource())
 v1_api.register(EventResource())
 v1_api.register(PresenceCountResource())
-v1_api.register(PresenceByEventResource())
 
 urlpatterns = patterns('',
                        url(r'^$', HomeView.as_view(), name='home'),

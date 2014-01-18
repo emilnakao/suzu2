@@ -1,29 +1,51 @@
 {% load angularjs %}{% load i18n %}
+<!-- =================================================================================  -->
+<!-- ::: TITLE ::: -->
+<!-- =================================================================================  -->
 <h3>Cadastro de Nova Pessoa</h3>
 <div class="well">
+    <!-- =================================================================================  -->
+    <!-- ::: FORM ::: -->
+    <!-- =================================================================================  -->
     <form name="yokoshi" novalidate ng-submit="save()">
+        <!--+++++ ::: NOME COMPLETO (OBRIGATÓRIO)::: +++++-->
         <div class="form-group" ng-class="{'has-error':yokoshi.completeName.$invalid}">
             <label for="completeNameInput">Nome Completo</label>
-            <input type="text" class="form-control" id="completeNameInput" name="completeName" ng-model="completeName" placeholder="Digite o nome completo" required>
+            <input type="text" class="form-control" id="completeNameInput" name="completeName" ng-model="completeName"
+                   placeholder="Digite o nome completo" required focus-on="focusCompleteName">
             <span ng-show="yokoshi.completeName.$error.required" class="help-inline">Campo Obrigat&oacute;rio</span>
         </div>
-        <label class="checkbox-inline">
-            <input type="checkbox" id="inlineCheckbox1" value="option1" ng-model="isKumite"> Kumite
-        </label>
-        <label class="checkbox-inline">
-            <input type="checkbox" id="inlineCheckbox2" value="option2" ng-model="isMtai"> Mahikari-tai
-        </label>
-        <label class="checkbox-inline">
-            <input type="checkbox" id="inlineCheckbox3" value="option3" ng-model="isOssuewanin"> Ossuewanin
-        </label>
-        <label class="checkbox-inline">
-            <input type="checkbox" id="inlineCheckbox4" value="option4" ng-model="isFirstTimer"> <b>Primeira vez</b>
-        </label>
-        <span class="help-block">Caso nenhuma opcao seja selecionada, a pessoa sera considerada mi-kumite (visitante).</span>
+        <!--+++++ ::: SE É KUMITE OU NÃO (OBRIGATÓRIO)::: +++++-->
+        <div class="form-group">
+            <label for="kumiteSelect">Status</label>
+            <select class="form-control" id="kumiteSelect" ng-model="kumiteStatus">
+                <option value="kumite">Kumite</option>
+                <option value="mikumite">MiKumite</option>
+            </select>
+        </div>
+        <!--+++++ ::: SE FOR MIKUMITE: PERGUNTA SE É PRIMEIRA VEZ ::: +++++-->
+        <div class="form-group" ng-show="kumiteStatus == 'mikumite'">
+            <label for="mikumiteFirstTimerSelect">&eacute; primeira vez?</label>
+            <select class="form-control" id="mikumiteFirstTimerSelect" ng-model="mikumiteFirstTime">
+                <option value="false">N&atilde;o</option>
+                <option value="true">Sim</option>
+            </select>
+        </div>
+        <!--+++++ ::: SE FOR MIKUMITE: PERGUNTA SE É MAHIKARI-TAI ::: +++++-->
+        <div class="form-group" ng-show="kumiteStatus == 'kumite'">
+            <label for="isMahikariTai">&eacute; mahikari-tai?</label>
+            <select class="form-control" id="isMahikariTai" ng-model="isMtai">
+                <option value="false">N&atilde;o</option>
+                <option value="true">Sim</option>
+            </select>
+        </div>
+        <!--+++++ ::: EMAIL ::: +++++-->
         <div class="form-group" ng-class="{'has-error':yokoshi.email.$invalid}">
             <label for="emailInput">Email</label>
-            <input type="email" class="form-control" name="email" id="emailInput" ng-model="email" placeholder="usuario@exemplo.com">
+            <input type="email" class="form-control" name="email" id="emailInput" ng-model="email"
+                   placeholder="usuario@exemplo.com">
         </div>
+        <!--+++++ ::: NÚCLEO (OBRIGATÓRIO)::: +++++-->
         <div class="form-group" ng-class="{'has-error':yokoshi.hanId.$invalid}">
             <label for="hanInput">N&uacute;cleo</label>
             <select class="form-control" ng-model="hanId" required name="hanId">
@@ -31,6 +53,7 @@
             </select>
             <span ng-show="yokoshi.hanId.$error.required" class="help-inline">Campo Obrigat&oacute;rio</span>
         </div>
+        <!--+++++ ::: BOTÕES DE CANCELAR/CONFIRMAR . BOTÃO CONFIRMAR É PRIMARY (ACIONADO COM ENTER) ::: +++++-->
         <button type="button" class="btn btn-default" ng-click="clear()">Limpar Formulario</button>
         <button type="submit" class="btn btn-primary" ng-disabled="yokoshi.$invalid">Salvar</button>
     </form>

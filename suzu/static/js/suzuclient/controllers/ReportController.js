@@ -14,7 +14,7 @@
  * IN THE SOFTWARE
  *
  */
-suzuClientApp.controller('ReportController', function ($scope, $http, $cookieStore, notificationService) {
+suzuClientApp.controller('ReportController', function ($scope, $http, $cookieStore, notificationService, reportService) {
     $http.get('/registration/presence_by_event/?event=' + $cookieStore.get('event').id).success(function (data) {
         $scope.data = data;
         notificationService.success("Relatório gerado!", "Presenças por evento");
@@ -72,10 +72,6 @@ suzuClientApp.controller('ReportController', function ($scope, $http, $cookieSto
             return presence.han;
         });
 
-        var pairs = _.pairs(presenceByHan);
-        _.each(pairs, function(elem){
-           $scope.chartObj.series.push({name:elem[0], data:[elem[1]]});
-        });
 
         // refactoring
         $scope.chartObj.xAxis.categories = _.keys(presenceByHan);

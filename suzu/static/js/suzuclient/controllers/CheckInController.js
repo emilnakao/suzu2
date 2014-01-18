@@ -14,7 +14,9 @@
  * IN THE SOFTWARE
  *
  */
-suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieStore, yokoshiService, eventService, notificationService) {
+suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieStore, yokoshiService, eventService, notificationService, focusService) {
+
+    focusService.focus('focusCheckinSearch');
 
     $scope.search = function ($event) {
         eventService.findYokoshiForCheckin($scope.searchText, function (data) {
@@ -37,12 +39,14 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
             $http.get('/registration/cancel_presence/?current_event='+ eventId +'&yokoshi=' + yokoshi.id).success(function (data) {
                 notificationService.success("Presença cancelada", yokoshi.complete_name);
                 $scope.search(null);
+                focusService.focus('focusCheckinSearch');
 
             });
         } else {
             $http.get('/registration/confirm_presence/?current_event='+eventId+'&yokoshi=' + yokoshi.id).success(function (data) {
                 notificationService.success("Presença confirmada", yokoshi.complete_name);
                 $scope.search(null);
+                focusService.focus('focusCheckinSearch');
 
             });
         }

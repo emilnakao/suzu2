@@ -1,6 +1,6 @@
 {% load angularjs %}{% load i18n %}
-<h3>Checkin</h3>
-<input class="form-control input-lg suzu-checkin-input" type="text" placeholder="Digite o nome" ng-model="searchText" ng-change="search()">
+<h3><span class="glyphicon glyphicon-ok"></span>  Checkin</h3>
+<input class="form-control input-lg suzu-checkin-input" type="text" placeholder="Digite o nome" ng-model="searchText" ng-change="search()" focus-on="focusCheckinSearch">
 
 <div class="yokoshi_list">
     <div class="media" ng-repeat="yokoshi in yokoshis">

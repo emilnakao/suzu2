@@ -94,23 +94,3 @@ class PresenceCountResource(ModelResource):
                                                     select_params=[event_id]).order_by('complete_name')
 
         return super(PresenceCountResource, self).obj_get_list(bundle, **kwargs)
-
-
-class PresenceByEventResource(ModelResource):
-    yokoshi = fields.ForeignKey(YokoshiResource, 'yokoshi', full=True)
-    event = fields.ForeignKey(EventResource, 'event', full=True)
-
-    class Meta:
-        resource_name = 'presence_by_event'
-        queryset = Presence.objects.all()
-        excludes = ['additional_information', 'begin_date_time', ]
-        authorization = ReadOnlyAuthorization()
-        allowed_methods = ['get']
-        filtering = {
-            "yokoshi": ALL_WITH_RELATIONS,
-            "event": ALL_WITH_RELATIONS
-        }
-
-    def dehydrate(self, bundle):
-        qs = Presence.objects.raw('SELECT p.id, y.complete_name as name, h.name as han from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by h.name asc, y.complete_name asc', [bundle.request.GET['event']])
-        return [row for row in qs]

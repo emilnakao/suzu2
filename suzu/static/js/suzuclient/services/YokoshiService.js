@@ -19,11 +19,44 @@ suzuClientApp.factory('yokoshiService', ['$http', function ($http) {
         findByName: function (searchToken, clbk) {
             var hans = [];
 
-            $http.get('/api/v1/yokoshi/?format=json&complete_name__iregex='+searchToken.replace(' ', '.*')).success(function (data) {
+            $http.get('/api/v1/yokoshi/?format=json&complete_name__iregex=' + searchToken.replace(' ', '.*')).success(function (data) {
                 clbk(data.objects);
 
             });
 
+        },
+
+        /**
+         * Envia uma solicitação para salvar um yokoshi no servidor
+         * @param yokoshiObj um objeto que representa um yokoshi
+         *
+         */
+        saveYokoshi: function (yokoshiObj) {
+            var data = JSON.stringify(yokoshiObj);
+
+            $.ajax({
+                url: 'http://localhost:8000/api/v1/yokoshi/',
+                type: 'POST',
+                contentType: 'application/json',
+                data: data,
+                dataType: 'json',
+                processData: false
+
+            }).success(function () {
+                    $.pnotify({
+                        title: 'Parabéns!!',
+                        text: _.template('<%=name%> cadastrado com sucesso!')({name: yokoshiObj.complete_name}),
+                        type: 'success',
+                        styling: 'bootstrap'
+                    });
+                }).fail(function () {
+                    $.pnotify({
+                        title: 'Oh nãoo!',
+                        text: 'Nos desculpe, não foi possível completar a solicitação.',
+                        type: 'error',
+                        styling: 'bootstrap'
+                    });
+                });
         }
 
     };

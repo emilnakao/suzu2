@@ -11,6 +11,11 @@
     /*box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4)*/
 /*}*/
 
+body{
+    padding: 0;
+    /*background-color: #222222;*/
+}
+
 .root-container{
     padding-top: 60px;
     padding-left: 10px;
@@ -31,6 +36,8 @@
 
 .suzu-dynamic-content{
     margin-left: 300px;
+    /*background-color: mintcream;*/
+    height: 100%;
 }
 
 .suzu-select-event-btn{

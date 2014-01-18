@@ -19,7 +19,16 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE
 """
 from django.contrib import admin
+from django.contrib.admin import ModelAdmin
 from .models import Country, State, Address, City, Neighborhood, Yokoshi, Han, Regional, EventType, Presence, Event
+
+class YokoshiAdmin(ModelAdmin):
+    """
+    Administration interface for yokoshi.
+    """
+    search_fields = ['complete_name', ]
+    list_display = ('complete_name', 'is_mtai', 'is_ossuewanin', 'is_mikumite', 'is_inactive')
+    list_filter = ('is_mtai', 'is_ossuewanin', 'is_mikumite', 'is_inactive')
 
 admin.site.register(Country)
 admin.site.register(State)

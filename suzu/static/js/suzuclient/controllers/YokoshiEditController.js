@@ -14,48 +14,61 @@
  * IN THE SOFTWARE
  *
  */
-suzuClientApp.controller('YokoshiEditController', function ($scope, $http, hanService) {
+suzuClientApp.controller('YokoshiEditController', function ($scope, $http, hanService, yokoshiService, focusService) {
+
+    $scope.resetYokoshiStatus = function () {
+        $scope.kumiteStatus = 'kumite';
+
+        $scope.isMtai = false;
+
+        $scope.mikumiteFirstTime = false;
+    };
+
+    /** Por padrão, cadastramos um kumite */
+    $scope.resetYokoshiStatus();
+    focusService.focus('focusCompleteName');
+
 
     hanService.findAll(function (data) {
         $scope.hans = data
     });
 
     $scope.save = function () {
-        var data = JSON.stringify({
-            "complete_name": $scope.completeName,
-            "is_mikumite": $scope.isMikumite,
-            "is_mtai": $scope.isMtai,
-            "is_ossuewanin": $scope.isOssuewanin,
-            "han":'/api/v1/han_read_only/' + $scope.hanId + '/'
-        });
+        yokoshiService.saveYokoshi($scope.createYokoshiObject());
+        $scope.clear();
+    };
 
-        $.ajax({
-            url: 'http://localhost:8000/api/v1/yokoshi/',
-            type: 'POST',
-            contentType: 'application/json',
-            data: data,
-            dataType: 'json',
-            processData: false
+    $scope.createYokoshiObject = function () {
+        var yokoshi = {};
 
-        }).success(function(){
-                $.pnotify({
-                    title: 'Parabéns!!',
-                    text: 'Yokoshi cadastrado com sucesso!',
-                    type: 'success',
-                    styling: 'bootstrap'
-                });
-            }).fail(function(){
-                $.pnotify({
-                    title: 'Oh nãoo!',
-                    text: 'Nos desculpe, não foi possível completar a solicitação.',
-                    type: 'error',
-                    styling: 'bootstrap'
-                });
-            });
+        yokoshi.complete_name = $scope.completeName;
+        yokoshi.han = _.template('/api/v1/han_read_only/<%=hanId%>/')({hanId: $scope.hanId});
+        yokoshi.email = $scope.email;
 
-    }
+
+        if ($scope.kumiteStatus == 'kumite') {
+            yokoshi.is_mikumite = false;
+
+            if ($scope.isMtai === true) {
+                yokoshi.is_mtai = true;
+            }
+        } else {
+            yokoshi.is_mikumite = true;
+
+            if ($scope.mikumiteFirstTime === true) {
+                yokoshi.first_presence = moment().format();
+            }
+        }
+
+        return yokoshi;
+    };
 
     $scope.clear = function () {
-        alert('clear');
-    }
+        $scope.completeName = '';
+        $scope.email = '';
+        $scope.resetYokoshiStatus();
+        focusService.focus('focusCompleteName');
+    };
+
+
 })
