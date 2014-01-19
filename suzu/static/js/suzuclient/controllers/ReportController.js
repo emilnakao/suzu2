@@ -128,13 +128,50 @@ suzuClientApp.controller('ReportController', function ($scope, $http, $cookieSto
             return 'omitme';
         });
 
+        // omitme é um artifício para informar que uma presença não pertence a uma categoria, e deve ser removida depois
         mikumiteByHan = _.omit(mikumiteByHan, 'omitme');
         kumiteByHan = _.omit(kumiteByHan, 'omitme');
         firsttimeByHan = _.omit(firsttimeByHan, 'omitme');
 
+        // tratando as séries: todas as séries precisam ter todas as categorias (hans), msm que a qtde. seja 0
+        var categories =  _.keys(allByHan);
+
+        var zeroSeries = {};
+
+        _.each(categories, function(elem){
+            zeroSeries[elem] = 0;
+        });
+
+
+        mikumiteByHan = _.defaults(mikumiteByHan, zeroSeries);
+        kumiteByHan = _.defaults(kumiteByHan, zeroSeries);
+        firsttimeByHan = _.defaults(firsttimeByHan, zeroSeries);
+
+        // transformando os objetos em mapas e dps listas, para manter a ordem:
+        mikumiteByHan = _.pairs(mikumiteByHan);
+        kumiteByHan = _.pairs(kumiteByHan);
+        firsttimeByHan = _.pairs(firsttimeByHan);
+
+        mikumiteByHan = _.sortBy(mikumiteByHan, function(arr){return arr[0];});
+        kumiteByHan = _.sortBy(kumiteByHan, function(arr){return arr[0];});
+        firsttimeByHan = _.sortBy(firsttimeByHan, function(arr){return arr[0];});
+
+        var mikumiteSeries = [];
+        _.each(mikumiteByHan, function(keyValueArray){
+            mikumiteSeries.push(keyValueArray[1]);
+        });
+        var kumiteSeries = [];
+        _.each(kumiteByHan, function(keyValueArray){
+            kumiteSeries.push(keyValueArray[1]);
+        });
+        var firsttimeSeries = [];
+        _.each(firsttimeByHan, function(keyValueArray){
+            firsttimeSeries.push(keyValueArray[1]);
+        });
+
         // refactoring
-        $scope.chartObj.xAxis.categories = _.keys(allByHan);
-        $scope.chartObj.series = [{data:_.values(kumiteByHan), color:'#07C', name:'Kumite',dataLabels: {
+        $scope.chartObj.xAxis.categories = categories;
+        $scope.chartObj.series = [{data:kumiteSeries, color:'#07C', name:'Kumite',dataLabels: {
                     enabled: true,
                     rotation: -90,
                     color: '#FFFFFF',
@@ -147,7 +184,7 @@ suzuClientApp.controller('ReportController', function ($scope, $http, $cookieSto
                         textShadow: '0 0 3px black'
                     }
                 }},
-        {data:_.values(mikumiteByHan), name:'Mi-Kumite', color: '#0C7', dataLabels: {
+        {data:mikumiteSeries, name:'Mi-Kumite', color: '#0C7', dataLabels: {
                     enabled: true,
                     rotation: -90,
                     color: '#FFFFFF',
@@ -160,7 +197,7 @@ suzuClientApp.controller('ReportController', function ($scope, $http, $cookieSto
                         textShadow: '0 0 3px black'
                     }
                 }},
-        {data:_.values(firsttimeByHan), name:'Primeira Vez', color: '#C07', dataLabels: {
+        {data:firsttimeSeries, name:'Primeira Vez', color: '#C07', dataLabels: {
                     enabled: true,
                     rotation: -90,
                     color: '#FFFFFF',
