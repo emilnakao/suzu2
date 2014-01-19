@@ -20,7 +20,7 @@ var suzuClientApp = angular.module('suzuClientApp', ['ngCookies']).config(['$rou
    $routeProvider.when('/registration', {templateUrl:'templates/suzuclient/registration/home.html', controller:'DummyController'});
    $routeProvider.when('/edit_yokoshi', {templateUrl:'templates/suzuclient/registration/edit_yokoshi.html', controller:'YokoshiEditController'});
    $routeProvider.when('/checkin', {templateUrl:'templates/suzuclient/checkin/home.html', controller:'CheckInController'});
-   $routeProvider.when('/reports', {templateUrl:'templates/suzuclient/reports/home.html', controller:'ReportController'});
+   $routeProvider.when('/reports', {templateUrl:'templates/suzuclient/reports/home.html', controller:'DummyController'});
    $routeProvider.when('/reports/singleevent', {templateUrl:'templates/suzuclient/reports/singleevent.html', controller:'ReportController'});
    $routeProvider.otherwise({redirectTo: '/view1', templateUrl: 'templates/suzuclient/home.html'});
 }

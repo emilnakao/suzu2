@@ -71,7 +71,7 @@ class PresenceConfirmationView(DetailView):
         whoId = self.request.GET["yokoshi"]
         who = Yokoshi.objects.get(pk=whoId)
         eventId = self.request.GET['current_event']
-        firstTime = self.request.GET['is_first_time']
+        firstTime = self.request.GET['is_first_time'] in ['true', 'True']
         event = Event.objects.get(pk=eventId)
         when = datetime.now()
         object = Presence.confirmPresence(who=who, event=event, arrival=when, first_time=firstTime)
