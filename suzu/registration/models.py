@@ -84,7 +84,7 @@ class Yokoshi(TimeStampedModel):
     address = models.ForeignKey("Address", null=True, blank=True, db_index=True, verbose_name=_('Yokoshi|address'))
     additional_information = models.TextField(max_length=30000, null=True, blank=True,
                                               verbose_name=_('Yokoshi|additional_information'))
-    birthday = models.DateField(null=True, verbose_name=_('Yokoshi|birthday'))
+    birthday = models.DateField(null=True,blank=True, verbose_name=_('Yokoshi|birthday'))
     is_inactive = models.BooleanField(default=False, verbose_name=_('Yokoshi|is_inactive'))
     seminary_number = models.CharField(max_length=30, null=True, blank=True, verbose_name=_('Yokoshi|seminary_number'))
     han = models.ForeignKey(Han, null=True, blank=True, db_index=True, verbose_name=_('Yokoshi|han'))

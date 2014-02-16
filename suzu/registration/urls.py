@@ -20,13 +20,14 @@ DEALINGS IN THE SOFTWARE
 """
 
 from django.conf.urls import patterns, url
-from .views import YokoshiCreateView, RegistrationHomeView, YokoshiListView, PresenceConfirmationView, PresenceCancellationView, generate_report
+from .views import YokoshiCreateView, RegistrationHomeView, YokoshiListView, PresenceConfirmationView, PresenceCancellationView, singleevent_report, yokoshihistory_report
 
 urlpatterns = patterns('',
-    url(r'^yokoshi/create$', YokoshiCreateView.as_view(), name="yokoshicreate"),
-    url(r'^yokoshi/list$', YokoshiListView.as_view(), name="yokoshilist"),
-    url(r'^home$', RegistrationHomeView.as_view(), name="registrationhome"),
-    url(r'^confirm_presence/$', PresenceConfirmationView.as_view(), name="confirm_presence"),
-    url(r'^cancel_presence/$', PresenceCancellationView.as_view(), name="cancel_presence"),
-    url(r'^presence_by_event/$', generate_report )
+                       url(r'^yokoshi/create$', YokoshiCreateView.as_view(), name="yokoshicreate"),
+                       url(r'^yokoshi/list$', YokoshiListView.as_view(), name="yokoshilist"),
+                       url(r'^home$', RegistrationHomeView.as_view(), name="registrationhome"),
+                       url(r'^confirm_presence/$', PresenceConfirmationView.as_view(), name="confirm_presence"),
+                       url(r'^cancel_presence/$', PresenceCancellationView.as_view(), name="cancel_presence"),
+                       url(r'^presence_by_event/$', singleevent_report),
+                       url(r'^yokoshi_history/$', yokoshihistory_report),
 )

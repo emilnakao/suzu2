@@ -26,7 +26,7 @@ class YokoshiAdmin(ModelAdmin):
     """
     Administration interface for yokoshi.
     """
-    search_fields = ['complete_name', ]
+    search_fields = ['complete_name', 'is_mikumite']
     list_display = ('complete_name', 'is_mtai', 'is_ossuewanin', 'is_mikumite', 'is_inactive')
     list_filter = ('is_mtai', 'is_ossuewanin', 'is_mikumite', 'is_inactive')
 

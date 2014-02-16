@@ -14,7 +14,7 @@
  * IN THE SOFTWARE
  *
  */
-suzuClientApp.controller('ReportController', function ($scope, $http, $cookieStore, notificationService, reportService) {
+suzuClientApp.controller('SingleEventReportController', function ($scope, $http, $cookieStore, notificationService, reportService) {
     $http.get('/registration/presence_by_event/?event=' + $cookieStore.get('event').id).success(function (data) {
         $scope.data = data;
         notificationService.success("Relatório gerado!", "Presenças por evento");
