@@ -77,7 +77,7 @@ class Yokoshi(TimeStampedModel):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, blank=True, db_index=True, verbose_name=_('Yokoshi|user'))
     complete_name = models.CharField(max_length=500, db_index=True, verbose_name=_('Yokoshi|complete_name'))
-    phonetic_name = models.CharField(max_length=500, null=True, blank=True, db_index=True,
+    phonetic_name = models.CharField(max_length=500, null=True, blank=True, db_index=True, editable=False,
                                      verbose_name=('Yokoshi|phonetic_name'))
     email = models.EmailField(null=True, blank=True, verbose_name=_('Yokoshi|email'))
     phone = models.CharField(max_length=40, null=True, blank=True, verbose_name=_('Yokoshi|phone'))

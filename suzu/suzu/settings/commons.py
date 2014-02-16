@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'suit',
     'django.contrib.admin',
     'floppyforms',
     'crispy_forms',
@@ -163,4 +164,15 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+
+# Django suit configuration. Customizes the appearance of admin pages
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'SUZU2 | Admin',
+    'MENU': (
+        'auth',
+        'sites',
+        'tastypie',
+        {'label': 'Voltar para SUZU2',  'url': '/'git}
+    )
 }

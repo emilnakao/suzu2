@@ -22,6 +22,7 @@ from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 from .models import Country, State, Address, City, Neighborhood, Yokoshi, Han, Regional, EventType, Presence, Event
 
+
 class YokoshiAdmin(ModelAdmin):
     """
     Administration interface for yokoshi.
@@ -35,7 +36,7 @@ admin.site.register(State)
 admin.site.register(City)
 admin.site.register(Address)
 admin.site.register(Neighborhood)
-admin.site.register(Yokoshi)
+admin.site.register(Yokoshi, YokoshiAdmin)
 admin.site.register(Han)
 admin.site.register(Regional)
 admin.site.register(EventType)
