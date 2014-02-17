@@ -2,28 +2,36 @@
 <div id="printable">
     <div class="row">
         <div class="hero-unit">
-            <div class="well-lg row">
-                <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" placeholder="Nome do Yokoshi" id="yokoshiTypeAheadInput">
-                </div>
+            <div class="form-group">
+                <span class="ng-cloak">{% ng yokoshi.complete_name | isempty: 'Selecione um yokoshi' %}</span>
+                <button class="btn btn-default btn-sm suzu-select-event-btn" data-toggle="modal"
+                        data-target="#yokoshiSelectModal">
+                    <span class="glyphicon glyphicon-user"></span> Escolher Yokoshi
+                </button>
             </div>
-            <div class="row">
-                <div class="span9 suzu-dynamic-report-table" ng-style="{'overflow': 'auto', 'min-height': (92*{% ng itemsPerPage %}) + 'px'}">
-
-
+            <div class="form-group">
+                <label for="beginSelect">Data de In&iacute;cio</label>
+                <input type="date" class="form-control" id="beginSelect" ng-model="start" placeholder="Selecione..."
+                       required/>
+            </div>
+            <div class="form-group">
+                <label for="endSelect">Data de T&eacute;rmino</label>
+                <input type="date" class="form-control" id="endSelect" ng-model="end" placeholder="Selecione..."
+                       required/>
+            </div>
+            <button class="btn btn-info" ng-click="generateReport()">Gerar Relat&oacuterio</button>
 
                     <table class="table table-striped table-condensed table-hover" style="font-size: 12px;">
                         <thead>
                         <tr>
-                            <th></th>
-                            <th>Evento
-                                <a ng-click="sort_by('nome')">
+                            <th>Tipo de Evento
+                                <a ng-click="sort_by('eventtype')">
                                     <!--<i ng-class="{'icon-sort':reverse == undefined, 'icon-chevron-up': reverse, 'icon-chevron-down': !reverse }"></i>-->
                                     <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet':sort.descending == false, 'glyphicon-sort-by-alphabet-alt':sort.descending == true}"></i>
                                 </a>
                             </th>
                             <th>Data
-                                <a ng-click="sort_by('han')">
+                                <a ng-click="sort_by('begindate')">
                                     <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet':sort.descending == false, 'glyphicon-sort-by-alphabet-alt':sort.descending == true}"></i>
                                 </a>
                             </th>
@@ -32,64 +40,56 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in items|orderBy:sort.column:sort.descending" >
-                            <td><span ng-show="!item.mikumite" class="label label-primary">KUMITE</span> <span ng-show="item.mikumite" class="label label-success">MIKUMITE</span> <span ng-show="item.firsttime" class="label label-danger">PRIMEIRA VEZ</span></td>
-                            <td>{% ng item.nome %}</td>
-                            <td>{%  ng item.han %}</td>
+                            <td>{% ng item.eventtype %}</td>
+                            <td>{%  ng item.begindate %}</td>
                         </tr>
                         </tbody>
                     </table>
+        </div>
+    </div>
+</div>
+<!-- =================================================================================  -->
+<!-- ::: MODAL DE SELECAO DE YOKOSHI ::: -->
+<!-- =================================================================================  -->
+<div class="modal fade" id="yokoshiSelectModal" tabindex="-1" role="dialog" aria-labelledby="selectYokoshiModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--+++++ ::: HEADER ::: +++++-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="selectYokoshiModalLabel"><span class="glyphicon glyphicon-user"></span>
+                    Escolher Yokoshi</h4>
+            </div>
+            <!--+++++ ::: BODY ::: +++++-->
+            <div class="modal-body">
+                <!--+++++ ::: PAINEL DE BUSCA ::: +++++-->
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form class="form-inline" role="form" ng-submit="searchYokoshi(eventType, eventDate)"
+                              novalidate>
+                            <input class="form-control input-lg suzu-checkin-input" type="text"
+                                   placeholder="Digite o nome" ng-model="searchText" ng-change="search()"
+                                   focus-on="focusCheckinSearch">
+                        </form>
+                    </div>
+                </div>
+                <!--+++++ ::: RESULTADO DA BUSCA ::: +++++-->
+                <div class="yokoshi_list">
+                    <div class="media" ng-repeat="yokoshi in yokoshis">
+                        <div class="media-body suzu-checkin-row">
+                            <h4 class="media-heading">{% ng yokoshi.complete_name %} <span
+                                    ng-show="!yokoshi.is_mikumite" class="label label-primary">KUMITE</span> <span
+                                    ng-show="yokoshi.is_mikumite" class="label label-success">MIKUMITE</span></h4>
+                            <button class="suzu-checkin-row-presencebtn btn"
+                                    ng-click="selectYokoshi(yokoshi)" data-dismiss="modal">Escolher
+                            </button>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- =================================================================================  -->
-    <!-- ::: MODAL DE SELECAO DE EVENTO ::: -->
-    <!-- =================================================================================  -->
-    <div class="modal fade" id="yokoshiSelectModal" tabindex="-1" role="dialog" aria-labelledby="selectEventModalLabel"
-         aria-hidden="true" ng-controller="EventController">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!--+++++ ::: HEADER ::: +++++-->
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="selectEventModalLabel"><span class="glyphicon glyphicon-bell"></span>
-                        Escolher Evento</h4>
-                </div>
-                <!--+++++ ::: BODY ::: +++++-->
-                <div class="modal-body">
-                    <!--+++++ ::: PAINEL DE BUSCA ::: +++++-->
-                    <div class="panel panel-primary">
-                        <div class="panel-body">
-                            <form class="form-inline" role="form" ng-submit="searchEvent(eventType, eventDate)" novalidate>
-                                <div class="form-group">
-                                    <label class="sr-only" for="modalEventTypeInput">Tipo de Evento</label>
-                                    <select class="form-control" ng-model="eventType" name="eventType" placeholder="Selecione o tipo de evento">
-                                        <option ng-repeat="eventType in eventTypes"
-                                                value="{% ng eventType.id %}">{% ng eventType.name %}</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="modalDateIntervalStart">De</label>
-                                    <input type="date" ng-model="eventDate" class="form-control input-sm" id="modalDateIntervalStart"
-                                           placeholder="De">
-                                </div>
-                                <button class="btn btn-primary btn-sm suzu-event-modal-search-btn" type="submit"><span
-                                        class="glyphicon glyphicon-search"></span> Buscar
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <!--+++++ ::: RESULTADO DA BUSCA ::: +++++-->
-                    <div class="bs-callout bs-callout-info" ng-repeat="event in events">
-                        <h4>{% ng event.event_type.name %}</h4>
-
-                        <p><span class="glyphicon glyphicon-time"></span> <b>{% ng event.begin_date_time %}</b></p>
-                        <button class="btn btn-default suzu-event-modal-row-chkbtn" ng-click="selectEvent(event)"><span
-                                class="glyphicon glyphicon-ok"></span> Selecionar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>

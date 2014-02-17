@@ -173,6 +173,6 @@ SUIT_CONFIG = {
         'auth',
         'sites',
         'tastypie',
-        {'label': 'Voltar para SUZU2',  'url': '/'git}
+        {'label': 'Voltar para SUZU2',  'url': '/'}
     )
 }

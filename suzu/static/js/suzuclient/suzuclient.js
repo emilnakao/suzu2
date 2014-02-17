@@ -37,3 +37,17 @@ suzuClientApp.run(function($httpBackend){
    $httpBackend.whenGET().passThrough();
    $httpBackend.whenJSONP().passThrough();
 });
+
+/**
+ * Filtros
+ */
+
+/**
+ * Exemplo de uso: <div>{% ng msg | isempty: 'Msg vazia' %}</div>
+ */
+suzuClientApp.filter('isempty', function(){
+    return function(input, replaceText){
+        if(input) return input;
+        return replaceText;
+    }
+});

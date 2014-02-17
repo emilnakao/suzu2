@@ -14,21 +14,13 @@
  * IN THE SOFTWARE
  *
  */
-suzuClientApp.controller('YokoshiHistoryReportController', function ($scope, $http, $cookieStore, notificationService, yokoshiService) {
+suzuClientApp.controller('YokoshiHistoryReportController', function ($scope, $http, $cookieStore, notificationService, yokoshiService,eventService) {
 
-    // inicialização
- // abortar typeahead; usar modal para seleção de yokoshi
-   /* yokoshiService.findByName('', function (data) {
-        $scope.everyone = [];
-        _.each(data, function(yokoshi){
-           $scope.everyone.push({value:yokoshi.id, tokens:[yokoshi.complete_name]});
-        });
-        $('#yokoshiTypeAheadInput').typeahead({
-            name: 'yokoshis',
-            local: $scope.everyone,
-            limit: 20
-        });
-    });*/
+    /**
+     * Texto de busca digitado pelo usuário no modal de seleção de yokoshi
+     * @type {string}
+     */
+    $scope.searchText = '';
 
     $scope.generateReport = function () {
         $http.get(_.template('/registration/yokoshi_history/?yokoshi=<%=yokoshiId%>&start=<%=start%>&end=<%=end%>')({yokoshiId: $scope.yokoshi.id, start: $scope.start, end: $scope.end})).success(function (data) {
@@ -42,7 +34,25 @@ suzuClientApp.controller('YokoshiHistoryReportController', function ($scope, $ht
 
         });
 
+
     };
+
+    /**
+     *
+     */
+    $scope.search = function () {
+        eventService.findYokoshiForCheckin($scope.searchText, function (data) {
+            $scope.yokoshis = data;
+        });
+    };
+
+    /**
+     * Marca um yokoshi como selecionado.
+     * @param yokoshi um objeto yokoshi que será selecionado
+     */
+    $scope.selectYokoshi = function(yokoshi){
+        $scope.yokoshi = yokoshi;
+    }
 
 
 });

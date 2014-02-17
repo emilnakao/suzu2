@@ -21,6 +21,7 @@ DEALINGS IN THE SOFTWARE
 From: http://web.archive.org/web/20120414135953/http://www.traddicts.org/webdevelopment/flexible-and-simple-json-serialization-for-django
 """
 from io import StringIO
+import datetime
 from django.db.models import Model
 from django.db.models.query import QuerySet
 from django.http import HttpResponse
@@ -102,6 +103,8 @@ class JSONSerializer():
             self.handle_simple(object)
         elif isinstance(object, basestring):
             self.handle_simple(object)
+        elif isinstance(object, datetime.datetime):
+            self.handle_datetime(object)
         else:
             raise UnableToSerializeError(type(object))
 
@@ -229,6 +232,9 @@ class JSONSerializer():
     def handle_simple(self, simple):
         """ Called to handle values that can be handled via simplejson """
         self.stream.write(unicode(dumps(simple)))
+
+    def handle_datetime(self, datetime):
+        self.stream.write(u'"'+unicode(datetime)+u'"')
 
     def getvalue(self):
         """Return the fully serialized object (or None if the output stream is  not seekable).sss """

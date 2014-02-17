@@ -101,6 +101,14 @@ div.suzu-checkin-row{
     color: #34789a;
 }
 
+.suzu-report-filter {
+    width: 300px;
+    border: 1px solid #269abc;
+    background-color: #f4f8fa;
+    margin-left: 10px;
+    padding: 2px 15px 5px 0px;
+}
+
 /** Do site do bootstrap: */
 .bs-callout-info {
     background-color: #f4f8fa;

@@ -116,7 +116,7 @@ def yokoshihistory_report(request):
     intervalEnd = request.GET['end']
 
     cursor = connection.cursor()
-    cursor.execute('select et.name as eventtype, e.begin_date_time as date from registration_presence p inner join registration_event e on p.event_id = e.id inner join registration_event_type et on et.id = e.event_type_id where p.yokoshi_id = %s and p.begin_date_time >= %s and p.begin_date_time <= %s',[yokoshiId, intervalStart, intervalEnd])
+    cursor.execute('select et.name as eventtype, e.begin_date_time as begindate from registration_presence p inner join registration_event e on p.event_id = e.id inner join registration_eventtype et on et.id = e.event_type_id where p.yokoshi_id = %s and p.begin_date_time >= %s and p.begin_date_time <= %s',[yokoshiId, intervalStart, intervalEnd])
     comments = dictfetchall(cursor)
     return json_response_from(comments)
 
