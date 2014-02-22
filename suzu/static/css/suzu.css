@@ -16,6 +16,14 @@ body {
     background-color: #222222;
 }
 
+.suzu-home h1{
+    font-family: helvetica, sans-serif;
+font-size: 5em;
+font-weight: bold;
+word-spacing: -0.8pt;
+
+}
+
 .navbar-inverse {
 background-color: #222222;
 border-color: #222222;
@@ -114,6 +122,15 @@ div.suzu-checkin-row:nth-child(even){
 
 div.suzu-checkin-row:nth-child(odd){
     background-color: #F2F8F5;
+}
+
+div.suzu-checkin-row.yokoshi_list_highlight{
+    background-color: #ffffff;
+    border: 2px dashed #5DA30C;
+}
+div.suzu-checkin-row.yokoshi_list_highlight .btn-success:after, div.suzu-checkin-row.yokoshi_list_highlight .btn-danger:after{
+   content:" \23CE"
+
 }
 .suzu-checkin-row h4 {
     color: #34789a;

@@ -12,7 +12,7 @@
     <link href="{{ STATIC_URL }}css/suzu.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/jquery.pnotify.default.css" rel="stylesheet">
 </head>
-<body>
+<body key-trap>
 <!-- =================================================================================  -->
 <!-- ::: HEADER / NAVIGATION BAR ::: -->
 <!-- =================================================================================  -->
@@ -29,9 +29,16 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="#/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                <li><a href="#/registration"><span class="glyphicon glyphicon-book"></span> Cadastros</a></li>
                 <li><a href="/admin">Admin</a></li>
             </ul>
+            <ul class="nav navbar-right navbar-nav pull-right">
+                   {% if user.is_authenticated %}
+                    <li class="navbar-text">{{ user.username }}</li>
+                    <li><a href="/rango/logout/">Logout</a></li>
+                   {% else %}
+                    <li><a href="/rango/login/">Login</a></li>
+                   {% endif %}
+               </ul>
         </div>
         <!-- /.nav-collapse -->
     </div>
@@ -61,7 +68,6 @@
 
             <!--+++++ ::: MENU LATERAL ::: +++++-->
             <div class="list-group quicktoolbar">
-                <a href="#" class="list-group-item"><span class="glyphicon glyphicon-bell"></span>  Selecionar Evento</a>
                 <a href="#/edit_yokoshi" class="list-group-item"><span class="glyphicon glyphicon-book"></span>  Cadastrar Pessoa</a>
                 <a href="#/checkin" class="list-group-item"><span class="glyphicon glyphicon-ok"></span>  CheckIn</a>
                 <a href="#/reports" class="list-group-item"><span class="glyphicon glyphicon-list-alt"></span>  Relat&oacute;rios</a>
@@ -183,5 +189,6 @@
 <script src="{{ STATIC_URL }}js/suzuclient/services/ReportService.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/services/NotificationService.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/directives/FocusDirective.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/directives/KeyTrapDirective.js"></script>
 </body>
 </html>

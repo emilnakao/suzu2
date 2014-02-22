@@ -21,6 +21,15 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
     $scope.search = function ($event) {
         eventService.findYokoshiForCheckin($scope.searchText, function (data) {
             $scope.yokoshis = data;
+
+            var index = 0;
+
+            $.each($scope.yokoshis, function(idx, yokoshi){
+                yokoshi.navIndex = index;
+                index++;
+            });
+
+            $scope.focusIndex = 0;
         });
     };
 
@@ -61,5 +70,17 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
         return "Confirmar Presença";
     };
 
+    $scope.keys = [];
+  $scope.keys.push({ code: 13, action: function() { $scope.togglePresence( $scope.yokoshis[$scope.focusIndex]);}});
+  $scope.keys.push({ code: 38, action: function() { $scope.focusIndex--; }});
+  $scope.keys.push({ code: 40, action: function() { $scope.focusIndex++; }});
+
+  $scope.$on('keydown', function( msg, code ) {
+    $scope.keys.forEach(function(o) {
+      if ( o.code !== code ) { return; }
+      o.action();
+      $scope.$apply();
+    });
+  });
 
 })
