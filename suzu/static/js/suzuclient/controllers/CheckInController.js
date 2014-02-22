@@ -60,4 +60,6 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
 
         return "Confirmar Presença";
     };
+
+
 })
