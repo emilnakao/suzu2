@@ -41,7 +41,8 @@ suzuClientApp.controller('SingleEventReportController', function ($scope, $http,
 
         $scope.chartObj = {
             chart: {
-                type: 'column'
+                type: 'column',
+                backgroundColor: '#F2F8F5'
             },
             title: {
                 text: 'Presença de Yokoshis'
@@ -173,41 +174,37 @@ suzuClientApp.controller('SingleEventReportController', function ($scope, $http,
         $scope.chartObj.xAxis.categories = categories;
         $scope.chartObj.series = [{data:kumiteSeries, color:'#07C', name:'Kumite',dataLabels: {
                     enabled: true,
-                    rotation: -90,
-                    color: '#FFFFFF',
-                    align: 'right',
-                    x: 4,
+
+                    color: '#222222',
+                    align: 'center',
+                    x: 0,
                     y: 1,
                     style: {
                         fontSize: '13px',
-                        fontFamily: 'Verdana, sans-serif',
-                        textShadow: '0 0 3px black'
+                        fontFamily: 'Verdana, sans-serif'
+
                     }
                 }},
         {data:mikumiteSeries, name:'Mi-Kumite', color: '#0C7', dataLabels: {
                     enabled: true,
-                    rotation: -90,
-                    color: '#FFFFFF',
-                    align: 'right',
-                    x: 4,
+                    color: '#222222',
+                    align: 'center',
+                    x: 0,
                     y: 1,
                     style: {
                         fontSize: '13px',
                         fontFamily: 'Verdana, sans-serif',
-                        textShadow: '0 0 3px black'
                     }
                 }},
         {data:firsttimeSeries, name:'Primeira Vez', color: '#C07', dataLabels: {
                     enabled: true,
-                    rotation: -90,
-                    color: '#FFFFFF',
-                    align: 'right',
-                    x: 4,
+                    color: '#222222',
+                    align: 'center',
+                    x: 0,
                     y: 1,
                     style: {
                         fontSize: '13px',
                         fontFamily: 'Verdana, sans-serif',
-                        textShadow: '0 0 3px black'
                     }
                 }}];
 

@@ -1,5 +1,5 @@
 {% load angularjs %}{% load i18n %}
-<h3><span class="glyphicon glyphicon-ok"></span>  Checkin</h3>
+<h3><span class="glyphicon glyphicon-ok"></span>  Check-in</h3>
 <input class="form-control input-lg suzu-checkin-input" type="text" placeholder="Digite o nome" ng-model="searchText" ng-change="search()" focus-on="focusCheckinSearch">
 
 <div class="yokoshi_list">
@@ -7,6 +7,10 @@
         <div class="media-body suzu-checkin-row" ng-repeat="yokoshi in yokoshis" ng-class="{'yokoshi_list_highlight': yokoshi.navIndex == focusIndex}">
             <h4 class="media-heading">{% ng yokoshi.complete_name %} <span ng-show="!yokoshi.is_mikumite" class="label label-primary">KUMITE</span> <span ng-show="yokoshi.is_mikumite" class="label label-success">MIKUMITE</span></h4>
             <button class="suzu-checkin-row-presencebtn btn" ng-class="{'btn-success': !isYokoshiPresent(yokoshi), 'btn-danger': isYokoshiPresent(yokoshi)}" ng-click="togglePresence(yokoshi)">{% ng getTogglePresenceBtnLabel(yokoshi) %}</button>
+        </div>
+        <div class="media-body suzu-checkin-row" ng-show="yokoshis.length == 0">
+            <h4>Não encontrou o seu nome? Você pode cadastrá-lo clicando no menu lateral "Cadastrar Pessoa"</h4>
+
         </div>
 
     </div>

@@ -16,6 +16,8 @@
  */
 suzuClientApp.controller('EventController', function ($scope, $rootScope, $http, $cookieStore, eventService, notificationService) {
 
+    $scope.eventDate = new Date().toDateInputValue();
+
     /**
      * Populando a lista de tipos de evento para busca
      */

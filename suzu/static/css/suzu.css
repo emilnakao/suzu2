@@ -229,6 +229,201 @@ div.suzu-checkin-row.yokoshi_list_highlight .btn-success:after, div.suzu-checkin
     .suzu-sidebar {
         width: 0px;
     }
+
+
+.suzu-home h1{
+    font-family: helvetica, sans-serif;
+font-size: 5em;
+font-weight: bold;
+word-spacing: -0.8pt;
+
+}
+
+.navbar-inverse {
+background-color: #222222;
+border-color: #222222;
+}
+
+.root-container {
+    padding-top: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+.suzu-sidebar {
+    background-color: #222222;
+    margin-top: -15px;
+    margin-left: -5px;
+    padding: 15px;
+    height: 100%;
+    width: 300px;
+}
+
+.suzu-dynamic-content {
+    height: 100%;
+    top: 55px;
+    bottom: 5px;
+    position: absolute;
+    left: 305px;
+    background-color: #F2F8F5;
+    right: 0;
+    border-radius: 15px;
+    moz-border-radius: 15px;
+    overflow: scroll;
+    padding-bottom: 20px;
+}
+
+.suzu-select-event-btn {
+    float: right;
+    margin-top: -5px;
+    margin-right: -10px;
+}
+
+.suzu-event-modal-search-btn {
+    right: 5px;
+}
+
+.suzu-event-modal-row-chkbtn {
+    float: right;
+    margin-top: -40px;
+}
+
+.suzu-checkin-input {
+    margin-bottom: 20px;
+}
+
+.suzu-checkin-row-presencebtn {
+    float: right;
+    margin-top: -25px;
+}
+
+.suzu-count-box {
+    border: solid 1px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 10px;
+}
+
+.mikumite-total {
+    background-color: lightgreen;
+    color: darkgreen;
+}
+
+.kumite-total {
+    background-color: lightblue;
+    color: darkslategray;
+}
+
+.firsttime-total {
+    background-color: lightpink;
+    color: indianred;
+}
+
+div.suzu-checkin-row {
+    border-color: #152820;
+    margin: 0;
+    padding: 10px;
+}
+
+div.suzu-checkin-row:nth-child(even){
+        background-color: #CAE3D9;
+}
+
+div.suzu-checkin-row:nth-child(odd){
+    background-color: #F2F8F5;
+}
+
+div.suzu-checkin-row.yokoshi_list_highlight{
+    background-color: #ffffff;
+    border: 2px dashed #5DA30C;
+}
+div.suzu-checkin-row.yokoshi_list_highlight .btn-success:after, div.suzu-checkin-row.yokoshi_list_highlight .btn-danger:after{
+   content:" \23CE"
+
+}
+.suzu-checkin-row h4 {
+    color: #34789a;
+}
+
+.suzu-report-filter {
+    width: 300px;
+    border: 1px solid #269abc;
+    background-color: #f4f8fa;
+    margin-left: 10px;
+    padding: 2px 15px 5px 0px;
+}
+
+/** Do site do bootstrap: */
+.bs-callout-info {
+    background-color: #f4f8fa;
+    border-color: #bce8f1;
+}
+
+.bs-callout {
+    margin: 0;
+    padding: 10px;
+    border-left: 3px solid #eee;
+}
+
+.bs-callout-info:nth-child(even) {
+    background-color: #ebebeb;
+}
+
+.bs-callout-info h4 {
+    color: #34789a;
+}
+
+.bs-callout h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar .container {
+
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.navbar-wrapper .navbar {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none;
+}
+
+.report-container {
+
+}
+
+.report {
+    margin-left: 0 !important;
+}
+
+.report select {
+    margin-bottom: 0;
+}
+
+.suzu-dynamic-report-table {
+    padding: 45px;
+}
 }
 
 /*#container{*/

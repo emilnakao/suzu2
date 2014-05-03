@@ -1,5 +1,5 @@
 """
-Copyright (c) 2013 The Suzu Team
+Copyright (c) 2014 The Suzu Team
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this
 software and associated documentation files (the "Software"), to deal in the Software
@@ -18,22 +18,28 @@ FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TOR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 DEALINGS IN THE SOFTWARE
 """
-from braces.views import LoginRequiredMixin
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
-from django.shortcuts import render_to_response, render
-from django.views.generic import TemplateView
-from .globalpermission import GlobalPermission
-
-GlobalPermission.objects.get_or_create(codename='suzu_admin', name='Can access admin screens')
-GlobalPermission.objects.get_or_create(codename='suzu_reports', name='Can access report screens')
-GlobalPermission.objects.get_or_create(codename='suzu_check_in', name='Can access check-in screens')
+from django.db import models
 
 
-class HomeView(LoginRequiredMixin, TemplateView):
-    template_name = 'suzuclient/index.html'
+class GlobalPermissionManager(models.Manager):
+    def get_query_set(self):
+        return super(GlobalPermissionManager, self).\
+            get_query_set().filter(content_type__name='global_permission')
 
 
-def route_request(request, path):
+class GlobalPermission(Permission):
+    """A global permission, not attached to a model"""
 
-    return render(request,path)
+    objects = GlobalPermissionManager()
+
+    class Meta:
+        proxy = True
+
+    def save(self, *args, **kwargs):
+        ct, created = ContentType.objects.get_or_create(
+            name="global_permission", app_label=self._meta.app_label
+        )
+        self.content_type = ct
+        super(GlobalPermission, self).save(*args, **kwargs)

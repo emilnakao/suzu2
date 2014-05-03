@@ -24,7 +24,7 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
 
             var index = 0;
 
-            $.each($scope.yokoshis, function(idx, yokoshi){
+            $.each($scope.yokoshis, function (idx, yokoshi) {
                 yokoshi.navIndex = index;
                 index++;
             });
@@ -62,8 +62,8 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
         }
     };
 
-    $scope.getTogglePresenceBtnLabel = function(yokoshi){
-        if($scope.isYokoshiPresent(yokoshi)){
+    $scope.getTogglePresenceBtnLabel = function (yokoshi) {
+        if ($scope.isYokoshiPresent(yokoshi)) {
             return "Cancelar Presença";
         }
 
@@ -71,16 +71,28 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
     };
 
     $scope.keys = [];
-  $scope.keys.push({ code: 13, action: function() { $scope.togglePresence( $scope.yokoshis[$scope.focusIndex]);}});
-  $scope.keys.push({ code: 38, action: function() { $scope.focusIndex--; }});
-  $scope.keys.push({ code: 40, action: function() { $scope.focusIndex++; }});
+    $scope.keys.push({ code: 13, action: function () {
+        $scope.togglePresence($scope.yokoshis[$scope.focusIndex]);
+    }});
+    $scope.keys.push({ code: 38, action: function () {
+        if($scope.focusIndex > 0){
+            $scope.focusIndex--;
+        }
+    }});
+    $scope.keys.push({ code: 40, action: function () {
+        if($scope.focusIndex < $scope.yokoshis.length - 1){
+            $scope.focusIndex++;
+        }
+    }});
 
-  $scope.$on('keydown', function( msg, code ) {
-    $scope.keys.forEach(function(o) {
-      if ( o.code !== code ) { return; }
-      o.action();
-      $scope.$apply();
+    $scope.$on('keydown', function (msg, code) {
+        $scope.keys.forEach(function (o) {
+            if (o.code !== code) {
+                return;
+            }
+            o.action();
+            $scope.$apply();
+        });
     });
-  });
 
 })
