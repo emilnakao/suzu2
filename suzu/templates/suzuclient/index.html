@@ -34,9 +34,9 @@
             <ul class="nav navbar-right navbar-nav pull-right">
                    {% if user.is_authenticated %}
                     <li class="navbar-text">{{ user.username }}</li>
-                    <li><a href="/rango/logout/">Logout</a></li>
+                    <li><a href="/accounts/logout/">Logout</a></li>
                    {% else %}
-                    <li><a href="/rango/login/">Login</a></li>
+                    <li><a href="/accounts/login/">Login</a></li>
                    {% endif %}
                </ul>
         </div>
