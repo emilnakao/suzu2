@@ -285,4 +285,4 @@ class Presence(models.Model):
         presence.delete()
 
     def __unicode__(self):
-        return u'%s em %s (%s a %s)' % (self.person, self.event, self.begin_date_time, self.end_date_time)
+        return u'%s em %s (%s a %s)' % (self.yokoshi, self.event, self.begin_date_time, self.end_date_time)
