@@ -35,7 +35,7 @@ suzuClientApp.factory('yokoshiService', ['$http', function ($http) {
             var data = JSON.stringify(yokoshiObj);
 
             $.ajax({
-                url: 'http://localhost:8000/api/v1/yokoshi/',
+                url: '/api/v1/yokoshi/',
                 type: 'POST',
                 contentType: 'application/json',
                 data: data,
