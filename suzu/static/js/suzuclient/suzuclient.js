@@ -23,6 +23,7 @@ var suzuClientApp = angular.module('suzuClientApp', ['ngCookies']).config(['$rou
    $routeProvider.when('/reports', {templateUrl:'templates/suzuclient/reports/home.html', controller:'DummyController'});
    $routeProvider.when('/reports/singleevent', {templateUrl:'templates/suzuclient/reports/singleevent.html', controller:'SingleEventReportController'});
    $routeProvider.when('/reports/yokoshihistory', {templateUrl:'templates/suzuclient/reports/yokoshihistory.html', controller:'YokoshiHistoryReportController'});
+   $routeProvider.when('/reports/mikumitereport', {templateUrl:'templates/suzuclient/reports/mikumitereport.html', controller:'MikumiteReportController'});
    $routeProvider.otherwise({redirectTo: '/view1', templateUrl: 'templates/suzuclient/home.html'});
 }
 ]);

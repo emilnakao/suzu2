@@ -195,8 +195,10 @@ div.suzu-checkin-row.yokoshi_list_highlight .btn-success:after, div.suzu-checkin
 }
 
 .report-container {
-
+    padding: 20px;
 }
+
+
 
 .report {
     margin-left: 0 !important;
