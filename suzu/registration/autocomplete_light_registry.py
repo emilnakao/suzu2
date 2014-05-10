@@ -1,5 +1,5 @@
 """
-Copyright (c) 2013 The Suzu Team
+Copyright (c) 2014 The Suzu Team
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this
 software and associated documentation files (the "Software"), to deal in the Software
@@ -18,29 +18,10 @@ FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TOR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 DEALINGS IN THE SOFTWARE
 """
+
 import autocomplete_light
-from django.contrib import admin
-from django.contrib.admin import ModelAdmin
-from .models import Country, State, Address, City, Neighborhood, Yokoshi, Han, Regional, EventType, Presence, Event
+from .models import Yokoshi
 
-
-class YokoshiAdmin(ModelAdmin):
-    """
-    Administration interface for yokoshi.
-    """
-    form = autocomplete_light.modelform_factory(Yokoshi)
-    search_fields = ['complete_name', 'is_mikumite']
-    list_display = ('complete_name', 'is_mtai', 'is_ossuewanin', 'is_mikumite', 'is_inactive')
-    list_filter = ('is_mtai', 'is_ossuewanin', 'is_mikumite', 'is_inactive')
-
-admin.site.register(Country)
-admin.site.register(State)
-admin.site.register(City)
-admin.site.register(Address)
-admin.site.register(Neighborhood)
-admin.site.register(Yokoshi, YokoshiAdmin)
-admin.site.register(Han)
-admin.site.register(Regional)
-admin.site.register(EventType)
-admin.site.register(Presence)
-admin.site.register(Event)
+autocomplete_light.register(Yokoshi,
+                            search_fields=['^complete_name'],
+                            autocomplete_js_attributes={'placeholder': 'Nome do Encaminhador',},)

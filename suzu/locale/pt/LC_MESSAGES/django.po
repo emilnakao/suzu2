@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-01 06:27-0200\n"
+"POT-Creation-Date: 2014-05-10 08:43-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,165 +121,173 @@ msgstr "É Ossuewanin"
 msgid "Yokoshi|is_mikumite"
 msgstr "É Mi-kumite"
 
-#: registration/models.py:97
+#: registration/models.py:95
+msgid "Yokoshi|indication"
+msgstr "Encaminhador"
+
+#: registration/models.py:98
 msgid "yokoshi"
 msgstr "Yokoshi"
 
-#: registration/models.py:98
+#: registration/models.py:99
 msgid "yokoshis"
 msgstr "Yokoshi"
 
-#: registration/models.py:117
+#: registration/models.py:118
 msgid "Country|name"
 msgstr "Nome"
 
-#: registration/models.py:120
+#: registration/models.py:121
 msgid "country"
 msgstr "País"
 
-#: registration/models.py:121
+#: registration/models.py:122
 msgid "countries"
 msgstr "Países"
 
-#: registration/models.py:135
+#: registration/models.py:136
 msgid "state"
 msgstr "Estado"
 
-#: registration/models.py:136
+#: registration/models.py:137
 msgid "states"
 msgstr "Estados"
 
-#: registration/models.py:138
+#: registration/models.py:139
 msgid "State|name"
 msgstr "Nome"
 
-#: registration/models.py:139
+#: registration/models.py:140
 msgid "State|country"
 msgstr "País"
 
-#: registration/models.py:152
+#: registration/models.py:153
 msgid "city"
 msgstr "Cidade"
 
-#: registration/models.py:153
+#: registration/models.py:154
 msgid "cities"
 msgstr "Cidades"
 
-#: registration/models.py:155
+#: registration/models.py:156
 msgid "City|name"
 msgstr "Nome"
 
-#: registration/models.py:156
+#: registration/models.py:157
 msgid "City|state"
 msgstr "Estado"
 
-#: registration/models.py:169
+#: registration/models.py:170
 msgid "neighborhood"
 msgstr "Bairro"
 
-#: registration/models.py:170
+#: registration/models.py:171
 msgid "neighborhoods"
 msgstr "Bairros"
 
-#: registration/models.py:172
+#: registration/models.py:173
 msgid "Neighborhood|name"
 msgstr "Nome"
 
-#: registration/models.py:173
+#: registration/models.py:174
 msgid "Neighborhood|city"
 msgstr "Cidade"
 
-#: registration/models.py:186
+#: registration/models.py:187
 msgid "address"
 msgstr "Endereços"
 
-#: registration/models.py:187
+#: registration/models.py:188
 msgid "addresses"
 msgstr "Endereços"
 
-#: registration/models.py:190
+#: registration/models.py:191
 msgid "Address|street_name"
 msgstr "Nome"
 
-#: registration/models.py:191
+#: registration/models.py:192
 msgid "Address|house_number"
 msgstr "Número"
 
-#: registration/models.py:192
+#: registration/models.py:193
 msgid "Address|zip_code"
 msgstr "CEP"
 
-#: registration/models.py:194
+#: registration/models.py:195
 msgid "Address|neighborhood"
 msgstr "Bairro"
 
-#: registration/models.py:196
+#: registration/models.py:197
 msgid "Address|additional_information"
 msgstr "Informações Adicionais"
 
-#: registration/models.py:223
+#: registration/models.py:224
 msgid "event_type"
 msgstr "Tipo de Evento"
 
-#: registration/models.py:224
+#: registration/models.py:225
 msgid "event_types"
 msgstr "Tipos de Eventos"
 
-#: registration/models.py:226
+#: registration/models.py:227
 msgid "EventType|name"
 msgstr "Nome"
 
-#: registration/models.py:239
+#: registration/models.py:240
 msgid "event"
 msgstr "Evento"
 
-#: registration/models.py:240
+#: registration/models.py:241
 msgid "events"
 msgstr "Eventos"
 
-#: registration/models.py:242
+#: registration/models.py:243
 msgid "Event|event_type"
 msgstr "Tipo de Evento"
 
-#: registration/models.py:243
+#: registration/models.py:244
 msgid "Event|begin_date_time"
 msgstr "Início"
 
-#: registration/models.py:244
+#: registration/models.py:245
 msgid "Event|details"
 msgstr "Detalhes"
 
-#: registration/models.py:253
+#: registration/models.py:254
 msgid "presence"
 msgstr "Presença"
 
-#: registration/models.py:254
+#: registration/models.py:255
 msgid "presences"
 msgstr "Presenças"
 
-#: registration/models.py:256
+#: registration/models.py:257
 msgid "Presence|event"
 msgstr "Evento"
 
-#: registration/models.py:257
+#: registration/models.py:258
 msgid "Presence|begin_date_time"
 msgstr "Início"
 
-#: registration/models.py:258
+#: registration/models.py:259
 msgid "Presence|yokoshi"
 msgstr "Yokoshi"
 
-#: registration/models.py:259
+#: registration/models.py:260
 msgid "Presence|additional_information"
 msgstr "Informações Adicionais"
 
-#: registration/models.py:260
+#: registration/models.py:261
 msgid "Presence|is_first_time"
 msgstr "Primeira Vez"
 
 #: registration/views.py:79 registration/views.py:99
 msgid "user_info.is_present_in.msg"
-msgstr ""
+msgstr "Está presente"
+
+#: suzu/settings/commons.py:35
+msgid "Portuguese"
+msgstr "Português"
 
 #: templates/base.html:128
 msgid "Powered by"

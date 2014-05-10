@@ -1,3 +1,4 @@
+import autocomplete_light
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from registration import urls as registrationurls
@@ -5,6 +6,7 @@ from .settings import commons
 from registration.api import HanResource, YokoshiResource, ReadOnlyHanResource, EventTypeResource, EventResource, PresenceCountResource
 from .views import HomeView, route_request
 
+autocomplete_light.autodiscover()
 admin.autodiscover()
 
 from tastypie.api import Api
@@ -46,4 +48,7 @@ urlpatterns = patterns('',
 
                         # urls do tastypie; api REST
                        url(r'^api/', include(v1_api.urls)),
+
+                        # componente autocomplete-light
+                       url(r'autocomplete/', include('autocomplete_light.urls')),
 )
