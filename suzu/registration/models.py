@@ -58,7 +58,7 @@ class Han(TimeStampedModel):
 
     name = models.CharField(max_length=100, null=True, blank=True, unique=True, db_index=True,
                             verbose_name=_('Han|name'))
-    regional = models.ForeignKey(Regional, verbose_name=_('Han|regional'))
+    regional = models.ForeignKey(Regional, verbose_name=_('Han|regional'), null=True, blank=True, db_index=True)
     additional_information = models.TextField(max_length=20000, null=True, blank=True,
                                               verbose_name=_('Han|additional_information'))
 
@@ -108,6 +108,9 @@ class Yokoshi(TimeStampedModel):
         """
         Before saving, updates the phonetic representation of complete_name
         """
+        if self.han is None:
+            self.han = Han.objects.get_or_create(name='Desconhecido')
+
         super(Yokoshi, self).save(force_insert, force_update, using)
 
 
@@ -286,4 +289,4 @@ class Presence(models.Model):
         presence.delete()
 
     def __unicode__(self):
-        return u'%s em %s (%s a %s)' % (self.yokoshi, self.event, self.begin_date_time, self.end_date_time)
+        return u'%s em %s (%s)' % (self.yokoshi, self.event, self.begin_date_time)

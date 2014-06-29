@@ -29,7 +29,9 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="#/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                {% if perms.suzu.suzu_admin %}
                 <li><a href="/admin">Admin</a></li>
+                {% endif %}
             </ul>
             <ul class="nav navbar-right navbar-nav pull-right">
                    {% if user.is_authenticated %}
@@ -69,13 +71,13 @@
 
             <!--+++++ ::: MENU LATERAL ::: +++++-->
             <div class="list-group quicktoolbar">
-                {% if perms.add_yokoshi %}
+                {% if perms.suzu.add_yokoshi %}
                 <a href="admin/registration/yokoshi/" class="list-group-item"><span class="glyphicon glyphicon-book"></span>  Cadastrar Pessoa</a>
                 {% endif %}
-                {% if perms.suzu_check_in %}
+                {% if perms.suzu.suzu_check_in %}
                 <a href="#/checkin" class="list-group-item"><span class="glyphicon glyphicon-ok"></span>  Check-in</a>
                 {% endif %}
-                {% if perms.suzu_reports %}
+                {% if perms.suzu.suzu_reports %}
                 <a href="#/reports" class="list-group-item"><span class="glyphicon glyphicon-list-alt"></span>  Relat&oacute;rios</a>
                 {% endif %}
 
