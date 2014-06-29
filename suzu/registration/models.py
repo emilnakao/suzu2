@@ -58,7 +58,7 @@ class Han(TimeStampedModel):
 
     name = models.CharField(max_length=100, null=True, blank=True, unique=True, db_index=True,
                             verbose_name=_('Han|name'))
-    regional = models.ForeignKey(Regional, verbose_name=_('Han|regional'), null=True, blank=True, db_index=True)
+    regional = models.ForeignKey(Regional, verbose_name=_('Han|regional'), null=True, blank=True, default=None, db_index=True)
     additional_information = models.TextField(max_length=20000, null=True, blank=True,
                                               verbose_name=_('Han|additional_information'))
 
@@ -84,7 +84,7 @@ class Yokoshi(TimeStampedModel):
     address = models.ForeignKey("Address", null=True, blank=True, db_index=True, verbose_name=_('Yokoshi|address'))
     additional_information = models.TextField(max_length=30000, null=True, blank=True,
                                               verbose_name=_('Yokoshi|additional_information'))
-    birthday = models.DateField(null=True,blank=True, verbose_name=_('Yokoshi|birthday'))
+    birthday = models.DateField(null=True, blank=True, verbose_name=_('Yokoshi|birthday'))
     is_inactive = models.BooleanField(default=False, verbose_name=_('Yokoshi|is_inactive'))
     seminary_number = models.CharField(max_length=30, null=True, blank=True, verbose_name=_('Yokoshi|seminary_number'))
     han = models.ForeignKey(Han, null=True, blank=True, db_index=True, verbose_name=_('Yokoshi|han'))
@@ -109,7 +109,7 @@ class Yokoshi(TimeStampedModel):
         Before saving, updates the phonetic representation of complete_name
         """
         if self.han is None:
-            self.han = Han.objects.get_or_create(name='Desconhecido')
+            self.han = Han.objects.get_or_create(name='Desconhecido')[0]
 
         super(Yokoshi, self).save(force_insert, force_update, using)
 
