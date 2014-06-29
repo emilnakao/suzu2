@@ -53,6 +53,7 @@
         <!-- =================================================================================  -->
         <!-- ::: SIDEBAR ::: -->
         <!-- =================================================================================  -->
+        {% if user.is_authenticated %}
         <div class="affix suzu-sidebar" id="sidebar" role="navigation" ng-controller="SidebarController">
             <!--+++++ ::: EVENT INFO ::: +++++-->
             <div class="panel panel-default event-information">
@@ -86,13 +87,15 @@
 
             </div>{% endcomment %}
         </div>
-
+        {% endif %}
         <!-- =================================================================================  -->
         <!-- ::: DYNAMIC AREA ::: -->
         <!-- =================================================================================  -->
         <div class="col-md-9 suzu-dynamic-content" ng-view>
             <!-- Conteudo dinamico: carregado pelo router do AngularJS -->
+
         </div>
+
     </div>
     <!--/row-->
 
@@ -147,9 +150,7 @@
         </div>
     </div>
 
-    <footer>
-        <p>&copy; Suzu Team 2014</p>
-    </footer>
+
 
     <!--/.container-->
 </div>

@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block page %}
-    <div data-role="page" class="django-mahikari-page" {% if request %} data-url="{{ request.path }}" {% endif %}
+    <div data-role="page" class="django-mahikari-page logout" {% if request %} data-url="{{ request.path }}" {% endif %}
          id="login">
         <h1>Logout</h1>
         <p>{% blocktrans %}auth.root.logged_out.msg{% endblocktrans %}</p>

@@ -428,6 +428,20 @@ div.suzu-checkin-row.yokoshi_list_highlight .btn-success:after, div.suzu-checkin
 }
 }
 
+/* Telas de logout e login*/
+.django-mahikari-page.logout{
+    background-color: #f4f8fa;
+    border-radius: 15px;
+    moz-border-radius: 15px;
+    padding: 20px;
+}
+
+.django-mahikari-page.login [data-role=content]{
+    background-color: #f4f8fa;
+    border-radius: 15px;
+    moz-border-radius: 15px;
+}
+
 /*#container{*/
 /*position: relative;*/
 /*min-height: 100%;*/
