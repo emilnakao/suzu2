@@ -92,7 +92,7 @@ class Yokoshi(TimeStampedModel):
     is_ossuewanin = models.BooleanField(default=False, verbose_name=_('Yokoshi|is_ossuewanin'))
     is_mikumite = models.BooleanField(default=False, verbose_name=_('Yokoshi|is_mikumite'))
     omitama_level = models.CharField(choices=OMITAMA_LEVEL, default=OMITAMA_LEVEL.none, max_length=50)
-    indication = models.OneToOneField("Yokoshi", null=True, blank=True, db_index=True, verbose_name=_('Yokoshi|indication'))
+    indication = models.ManyToManyField("Yokoshi", null=True, blank=True, db_index=True, verbose_name=_('Yokoshi|indication'))
 
     class Meta:
         verbose_name = _('yokoshi')

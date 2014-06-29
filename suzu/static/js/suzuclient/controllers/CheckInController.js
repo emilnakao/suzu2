@@ -71,16 +71,31 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
     };
 
     $scope.keys = [];
+
+    /**
+     * Lógica ativada quando Enter é pressionado.
+     * Se houver yokoshis retornados pela busca,
+     * marca presença para aquele que estiver com foco.
+     * Caso a busca não tenha retornado nenhum resultado,
+     * salva o novo yokoshi.
+     */
     $scope.keys.push({ code: 13, action: function () {
-        $scope.togglePresence($scope.yokoshis[$scope.focusIndex]);
+        if($scope.yokoshis.length > 0){
+             $scope.togglePresence($scope.yokoshis[$scope.focusIndex]);
+        }else{
+            yokoshiService.saveYokoshi({complete_name:$scope.searchText}, function(data){
+                $scope.togglePresence(data);
+            });
+        }
+
     }});
     $scope.keys.push({ code: 38, action: function () {
-        if($scope.focusIndex > 0){
+        if ($scope.focusIndex > 0) {
             $scope.focusIndex--;
         }
     }});
     $scope.keys.push({ code: 40, action: function () {
-        if($scope.focusIndex < $scope.yokoshis.length - 1){
+        if ($scope.focusIndex < $scope.yokoshis.length - 1) {
             $scope.focusIndex++;
         }
     }});

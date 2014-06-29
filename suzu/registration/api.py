@@ -42,7 +42,7 @@ class ReadOnlyHanResource(ModelResource):
 
 
 class YokoshiResource(ModelResource):
-    han = fields.ForeignKey(ReadOnlyHanResource, 'han', full=True)
+    han = fields.ManyToManyField(ReadOnlyHanResource, 'han', full=True, null=True)
 
     class Meta:
         queryset = Yokoshi.objects.all()
