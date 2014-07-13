@@ -83,7 +83,16 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
         if($scope.yokoshis.length > 0){
              $scope.togglePresence($scope.yokoshis[$scope.focusIndex]);
         }else{
-            yokoshiService.saveYokoshi({complete_name:$scope.searchText}, function(data){
+            var yokoshi = {complete_name:$scope.searchText};
+            if(confirm('Marcar como convidado?')){
+                yokoshi.is_mikumite = true;
+
+                if(confirm('Marcar como primeira vez?')){
+                    yokoshi.firsttime = true;
+                }
+            }
+
+            yokoshiService.saveYokoshi(yokoshi, function(data){
                 $scope.togglePresence(data);
             });
         }
