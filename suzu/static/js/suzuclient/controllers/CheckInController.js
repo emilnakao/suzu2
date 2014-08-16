@@ -80,21 +80,29 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
      * salva o novo yokoshi.
      */
     $scope.keys.push({ code: 13, action: function () {
-        if($scope.yokoshis.length > 0){
-             $scope.togglePresence($scope.yokoshis[$scope.focusIndex]);
-        }else{
-            var yokoshi = {complete_name:$scope.searchText};
-            if(confirm('Marcar como convidado?')){
-                yokoshi.is_mikumite = true;
+        if ($scope.yokoshis.length > 0) {
+            $scope.togglePresence($scope.yokoshis[$scope.focusIndex]);
+        } else {
+            var yokoshi = {complete_name: $scope.searchText};
 
-                if(confirm('Marcar como primeira vez?')){
-                    yokoshi.firsttime = true;
+            if ($scope.searchText.length == 0) {
+                alert("Por favor, digite o nome de quem deseja confirmar presença.");
+            } else {
+
+
+                if (confirm('Marcar como convidado?')) {
+                    yokoshi.is_mikumite = true;
+
+                    if (confirm('Marcar como primeira vez?')) {
+                        yokoshi.firsttime = true;
+                    }
                 }
-            }
 
-            yokoshiService.saveYokoshi(yokoshi, function(data){
-                $scope.togglePresence(data);
-            });
+                yokoshiService.saveYokoshi(yokoshi, function (data) {
+                    $scope.togglePresence(data);
+                });
+
+            }
         }
 
     }});
