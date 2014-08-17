@@ -248,7 +248,7 @@ class Event(models.Model):
     details = models.CharField(max_length=20000, null=True, blank=True, verbose_name=_('Event|details'))
 
     def __unicode__(self):
-        return self.event_type.name
+        return self.event_type.name + ' - ' + self.begin_date_time.strftime("%Y-%m-%d %H:%M:%S")
 
 
 class Presence(models.Model):

@@ -50,6 +50,7 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
                 notificationService.success("Presença cancelada", yokoshi.complete_name);
                 $scope.search(null);
                 focusService.focus('focusCheckinSearch');
+                $scope.searchText = '';
 
             });
         } else {
@@ -57,7 +58,7 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
                 notificationService.success("Presença confirmada", yokoshi.complete_name);
                 $scope.search(null);
                 focusService.focus('focusCheckinSearch');
-
+                $scope.searchText = '';
             });
         }
     };
