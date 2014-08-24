@@ -86,8 +86,8 @@ suzuClientApp.factory('eventService', ['$http', '$cookieStore', 'notificationSer
                 } else {
                     // TODO: refatorar isso daqui; solucao paleativa!!
                     usedSearchTerm = usedSearchTerm.replace(' ', '.*');
-                    usedSearchTerm = usedSearchTerm.replace('e', '[eéê]');
-                    usedSearchTerm = usedSearchTerm.replace('a', '[aãáä]');
+                    usedSearchTerm = usedSearchTerm.replace('e', '[eéêè]');
+                    usedSearchTerm = usedSearchTerm.replace('a', '[aãáäâ]');
                     usedSearchTerm = usedSearchTerm.replace('i', '[ií]');
                     usedSearchTerm = usedSearchTerm.replace('u', '[uúü]');
                     usedSearchTerm = usedSearchTerm.replace('o', '[oôö]');

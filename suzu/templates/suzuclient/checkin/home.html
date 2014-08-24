@@ -6,7 +6,7 @@
     <div class="media" >
         <div class="media-body suzu-checkin-row" ng-repeat="yokoshi in yokoshis" ng-class="{'yokoshi_list_highlight': yokoshi.navIndex == focusIndex}">
             <h4 class="media-heading">{% ng yokoshi.complete_name %} <span ng-show="!yokoshi.is_mikumite" class="label label-primary">KUMITE</span> <span ng-show="yokoshi.is_mikumite" class="label label-success">MIKUMITE</span></h4>
-            <button class="suzu-checkin-row-presencebtn btn" ng-class="{'btn-success': !isYokoshiPresent(yokoshi), 'btn-danger': isYokoshiPresent(yokoshi)}" ng-click="togglePresence(yokoshi)">{% ng getTogglePresenceBtnLabel(yokoshi) %}</button>
+            <button class="suzu-checkin-row-presencebtn btn" ng-class="{'btn-success': !isYokoshiPresent(yokoshi), 'btn-danger': isYokoshiPresent(yokoshi)}" ng-disabled="isYokoshiPresent(yokoshi)" ng-click="togglePresence(yokoshi)">{% ng getTogglePresenceBtnLabel(yokoshi) %}</button>
         </div>
         <div class="media-body suzu-checkin-row" ng-show="yokoshis.length == 0">
             <h4>Não encontrou o seu nome? Aperte Enter para cadastr&aacute;-lo!</h4>

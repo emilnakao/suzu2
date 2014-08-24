@@ -19,6 +19,7 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
     focusService.focus('focusCheckinSearch');
 
     $scope.search = function ($event) {
+        console.log("buscou");
         eventService.findYokoshiForCheckin($scope.searchText, function (data) {
             $scope.yokoshis = data;
 
@@ -46,21 +47,24 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
 
         if ($scope.isYokoshiPresent(yokoshi)) {
 
-            eventService.cancelPresence(yokoshi, function (data) {
-                notificationService.success("Presença cancelada", yokoshi.complete_name);
-                $scope.search(null);
-                focusService.focus('focusCheckinSearch');
-                $scope.searchText = '';
-
-            });
+//            eventService.cancelPresence(yokoshi, function (data) {
+//                notificationService.success("Presença cancelada", yokoshi.complete_name);
+//                $scope.search(null);
+//                focusService.focus('focusCheckinSearch');
+//                $scope.searchText = '';
+//
+//            });
         } else {
             eventService.confirmPresence(yokoshi, function (data) {
                 notificationService.success("Presença confirmada", yokoshi.complete_name);
-                $scope.search(null);
+               // $scope.search(null);
                 focusService.focus('focusCheckinSearch');
                 $scope.searchText = '';
             });
         }
+
+        $scope.yokoshis = [];
+        console.log("limpou");
     };
 
     $scope.getTogglePresenceBtnLabel = function (yokoshi) {
