@@ -30,6 +30,7 @@ from django.views.generic.base import TemplateView
 from .models import Yokoshi, Presence, Event
 from .forms import YokoshiForm
 from .simplejson import json_response_from
+import json
 
 
 class RegistrationHomeView(LoginRequiredMixin, TemplateView):
@@ -161,3 +162,13 @@ def dictfetchall(cursor):
         dict(zip([col[0] for col in desc], row))
         for row in cursor.fetchall()
     ]
+
+
+def inform_yokoshi_update(request):
+    received_json = json.loads(request.body)
+    yokoshi_list = json.loads(received_json['selectedYokoshis'])
+
+    for yokoshi_id in yokoshi_list:
+        Yokoshi.objects.filter(pk=yokoshi_id).update(last_registration_update=datetime.now())
+
+    return HttpResponse('')

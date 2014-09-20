@@ -1,0 +1,33 @@
+{% load angularjs %}{% load i18n %}
+
+<div>
+    <h2>Informar Atualiza&ccedil;&atilde;o de Cadastro</h2>
+
+    <p class="text-info">Utilize esta tela para marcar quais kumite fizeram a atualiza&ccedil;&atilde;o do cadastro.</p>
+
+    <p class="text-info">A notifica&ccedil;&atilde;o "Recadastramento pendente" n&atilde;o ser&aacute; mais mostrada
+        para eles.</p>
+
+
+    <form class="form-inline row" role="form">
+        <div class="form-group col-md-12"><label class="sr-only" for="yokoshiInput">Nome do Yokoshi</label>
+            <ui-select id="yokoshiSelect" ng-model="yokoshi.selected"
+                       theme="bootstrap"
+                       on-select="addYokoshi($item, $select)"
+                       reset-search-input="false"
+                  style="width: 500px;">
+                <ui-select-match placeholder="Digite o nome do yokoshi">
+                    {%  ng $select.selected.complete_name %}</ui-select-match>
+                <ui-select-choices repeat="yokoshi in yokoshis"
+                                   refresh="refreshYokoshi($select.search)"
+                                   refresh-delay="0">
+                    <div ng-bind-html="yokoshi.complete_name | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </form>
+    <div class="selected-yokoshi-container col-md-12" role="form" ng-repeat="yokoshi in selectedYokoshis">
+        <p class="selected-yokoshi">{% ng yokoshi.complete_name %} <span class="glyphicon glyphicon-trash pull-right clickable" ng-click="removeYokoshi(yokoshi)"></span></p>
+    </div>
+<button class="btn btn-primary" ng-click="confirmUpdates()">Confirmar</button>
+</div>

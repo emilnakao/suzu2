@@ -16,9 +16,10 @@
  */
 'use strict';
 
-var suzuClientApp = angular.module('suzuClientApp', ['ngCookies']).config(['$routeProvider', function($routeProvider){
+var suzuClientApp = angular.module('suzuClientApp', ['ngCookies', 'ui.select', 'ngRoute', 'ngSanitize']).config(['$routeProvider', function($routeProvider){
    $routeProvider.when('/registration', {templateUrl:'templates/suzuclient/registration/home.html', controller:'DummyController'});
    $routeProvider.when('/edit_yokoshi', {templateUrl:'templates/suzuclient/registration/edit_yokoshi.html', controller:'YokoshiEditController'});
+   $routeProvider.when('/inform_yokoshi_update', {templateUrl:'templates/suzuclient/registration/inform_yokoshi_update.html', controller:'InformYokoshiUpdateController'});
    $routeProvider.when('/checkin', {templateUrl:'templates/suzuclient/checkin/home.html', controller:'CheckInController'});
    $routeProvider.when('/reports', {templateUrl:'templates/suzuclient/reports/home.html', controller:'DummyController'});
    $routeProvider.when('/reports/singleevent', {templateUrl:'templates/suzuclient/reports/singleevent.html', controller:'SingleEventReportController'});
@@ -29,16 +30,24 @@ var suzuClientApp = angular.module('suzuClientApp', ['ngCookies']).config(['$rou
 }
 ]);
 
-/* Para testes: definindo fake backend */
-suzuClientApp.config(function($provide){
-   $provide.decorator('$httpBackend', angular.mock.e2e.$httpBackendDecorator);
-});
+/**
+ * Configuração necessária para fazer POSTs. Inclui o token CSRF em toda request, para evitar erros 403 (unauthorized)
+ */
+suzuClientApp.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+}]);
 
-suzuClientApp.run(function($httpBackend){
-   //$httpBackend.whenGET('template1.html').respond('content');
-   $httpBackend.whenGET().passThrough();
-   $httpBackend.whenJSONP().passThrough();
-});
+/* Para testes: definindo fake backend */
+//suzuClientApp.config(function($provide){
+//   $provide.decorator('$httpBackend', angular.mock.e2e.$httpBackendDecorator);
+//});
+
+//suzuClientApp.run(function($httpBackend){
+//   //$httpBackend.whenGET('template1.html').respond('content');
+//   $httpBackend.whenGET().passThrough();
+//   $httpBackend.whenJSONP().passThrough();
+//});
 
 /**
  * Filtros

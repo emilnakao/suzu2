@@ -49,6 +49,7 @@ class YokoshiResource(ModelResource):
         resource_name = 'yokoshi'
         authorization = Authorization()
         filtering = {'complete_name': ['iregex'], }
+        ordering = ['complete_name']
         validation = Validation()
         always_return_data = True
 

@@ -442,6 +442,21 @@ div.suzu-checkin-row.yokoshi_list_highlight .btn-success:after, div.suzu-checkin
     moz-border-radius: 15px;
 }
 
+.selected-yokoshi-container{
+    border: solid 1px darkgray;
+    background-color: #ffffff;
+    padding: 5px 3px 0px 10px;
+    margin: 5px 0px;
+}
+
+.selected-yokoshi{
+    font-weight: bold;
+}
+
+.clickable{
+    cursor: pointer;
+}
+
 /*#container{*/
 /*position: relative;*/
 /*min-height: 100%;*/

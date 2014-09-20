@@ -11,6 +11,8 @@
     <link href="{{ STATIC_URL }}css/datepicker.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/suzu.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/jquery.pnotify.default.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/select2.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/select.css" rel="stylesheet">
 </head>
 <body key-trap>
 <!-- =================================================================================  -->
@@ -74,8 +76,11 @@
                 {% if perms.suzu.add_yokoshi %}
                 <a href="admin/registration/yokoshi/" class="list-group-item"><span class="glyphicon glyphicon-book"></span>  Cadastrar Pessoa</a>
                 {% endif %}
+                {% if perms.suzu.add_yokoshi %}
+                <a href="#/inform_yokoshi_update" class="list-group-item"><span class="glyphicon glyphicon-book"></span>  Informar Atualiza&ccedil;&atilde;o de Cadastro</a>
+                {% endif %}
                 {% if perms.suzu.suzu_check_in %}
-                <a href="#/checkin" class="list-group-item"><span class="glyphicon glyphicon-ok"></span>  Check-in</a>
+                <a href="#/checkin" class="list-group-item"><span class="glyphicon glyphicon-ok"></span>  Marcar presen&ccedil;as</a>
                 {% endif %}
                 {% if perms.suzu.suzu_reports %}
                 <a href="#/reports" class="list-group-item"><span class="glyphicon glyphicon-list-alt"></span>  Relat&oacute;rios</a>
@@ -125,7 +130,9 @@
 <script src="{{ STATIC_URL }}js/third/bootstrap.js"></script>
 <script src="{{ STATIC_URL }}js/third/angular.js"></script>
 <script src="{{ STATIC_URL }}js/third/angular-cookies.js"></script>
-<script src="{{ STATIC_URL }}js/third/angular-mocks.js"></script>
+{#<script src="{{ STATIC_URL }}js/third/angular-mocks.js"></script>#}
+<script src="{{ STATIC_URL }}js/third/angular-route.js"></script>
+<script src="{{ STATIC_URL }}js/third/angular-sanitize.js"></script>
 <script src="{{ STATIC_URL }}js/third/angularstrap.js"></script>
 <script src="{{ STATIC_URL }}js/third/date.js"></script>
 <script src="{{ STATIC_URL }}js/third/bootstrap-datepicker.js"></script>
@@ -133,6 +140,9 @@
 <script src="{{ STATIC_URL }}js/third/highcharts.js"></script>
 <script src="{{ STATIC_URL }}js/third/underscore.js"></script>
 <script src="{{ STATIC_URL }}js/third/typeahead.min.js"></script>
+<script src="{{ STATIC_URL }}js/third/select2.js"></script>
+<script src="{{ STATIC_URL }}js/third/select2_locale_pt-BR.js"></script>
+<script src="{{ STATIC_URL }}js/third/select.js"></script>
 <script src="{{ STATIC_URL }}js/keyevents.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/suzuclient.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/controllers/CheckInController.js"></script>
@@ -146,6 +156,7 @@
 <script src="{{ STATIC_URL }}js/suzuclient/controllers/YokoshiHistoryReportController.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/controllers/MikumiteReportController.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/controllers/ExportReportController.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/controllers/InformYokoshiUpdateController.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/services/EventService.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/services/YokoshiService.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/services/HanService.js"></script>
