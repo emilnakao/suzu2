@@ -2,62 +2,21 @@
 <div id="printable" class="report-container">
     <div class="row">
         <div class="hero-unit">
-            <div class="form-group">
-                <label for="beginSelect">Data de In&iacute;cio</label>
-                <input type="date" class="form-control" id="beginSelect" ng-model="start" placeholder="Selecione..."
-                       required/>
-            </div>
-            <div class="form-group">
-                <label for="endSelect">Data de T&eacute;rmino</label>
-                <input type="date" class="form-control" id="endSelect" ng-model="end" placeholder="Selecione..."
-                       required/>
-            </div>
-            <button class="btn btn-info" ng-click="generateReport()">Gerar Relat&oacuterio</button>
-
-                    <table class="table table-striped table-condensed table-hover" style="font-size: 12px;">
-                        <thead>
-                        <tr>
-                            <th>Contagem
-                                <a ng-click="sort_by('resultnumber')">
-                                    <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet':sort.descending == false, 'glyphicon-sort-by-alphabet-alt':sort.descending == true}"></i>
-                                </a>
-                            </th>
-                            <th>Nome
-                                <a ng-click="sort_by('mikumite_name')">
-                                    <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet':sort.descending == false, 'glyphicon-sort-by-alphabet-alt':sort.descending == true}"></i>
-                                </a>
-                            </th>
-                            <th>Email</th>
-                            <th>Telefone</th>
-                            <th>Encaminhador
-                                <a ng-click="sort_by('indication_name')">
-                                    <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet':sort.descending == false, 'glyphicon-sort-by-alphabet-alt':sort.descending == true}"></i>
-                                </a>
-                            </th>
-                            <th>Han do Encaminhador
-                                <a ng-click="sort_by('indication_han_name')">
-                                    <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet':sort.descending == false, 'glyphicon-sort-by-alphabet-alt':sort.descending == true}"></i>
-                                </a>
-                            </th>
-                            <th>N&uacute;mero de Presen&ccedil;as
-                                <a ng-click="sort_by('number_presences')">
-                                    <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet':sort.descending == false, 'glyphicon-sort-by-alphabet-alt':sort.descending == true}"></i>
-                                </a>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="item in items|orderBy:sort.column:sort.descending" >
-                            <td>{% ng item.resultnumber %}</td>
-                            <td>{%  ng item.mikumite_name %}</td>
-                            <td>{%  ng item.email %}</td>
-                            <td>{%  ng item.phone %}</td>
-                            <td>{%  ng item.indication_name %}</td>
-                            <td>{%  ng item.indication_han_name %}</td>
-                            <td>{%  ng item.number_presences %}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+            <form  class="form" role="form" name="reportForm">
+                <div class="form-group">
+                    <label for="beginSelect">Data de In&iacute;cio</label>
+                    <input type="date" class="form-control" id="beginSelect" ng-model="start" placeholder="Selecione..."
+                           required/>
+                </div>
+                <div class="form-group">
+                    <label for="endSelect">Data de T&eacute;rmino</label>
+                    <input type="date" class="form-control" id="endSelect" ng-model="end" placeholder="Selecione..."
+                           required/>
+                </div>
+                <a href="/registration/mikumite_excel/?start={% ng start %}&end={% ng end %}" class="btn btn-info"
+                   role="button" ng-disabled="reportForm.$invalid">Gerar Relat&oacuterio</a>
+            </form>
+            <p>O relat&oacute;rio ser&aacute; gerado em formato excel.</p>
         </div>
     </div>
 </div>

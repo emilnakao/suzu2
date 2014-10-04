@@ -104,6 +104,11 @@ class PresenceCancellationView(DetailView):
 
 # TODO: passar para modulo reports
 def singleevent_report(request):
+    """
+    will be deprecated soon
+    :param request:
+    :return:
+    """
     cursor = connection.cursor()
     cursor.execute(
         'SELECT y.complete_name as nome, h.name as han, y.is_mikumite as mikumite, p.is_first_time as firsttime from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by h.name asc, y.complete_name asc',
@@ -127,6 +132,11 @@ def single_event_excel(request):
 
 
 def yokoshihistory_report(request):
+    """
+    will be deprecated soon
+    :param request:
+    :return:
+    """
     yokoshiId = request.GET['yokoshi']
     intervalStart = request.GET['start']
     intervalEnd = request.GET['end']
@@ -140,6 +150,11 @@ def yokoshihistory_report(request):
 
 
 def mikumite_report(request):
+    """
+    will be deprecated soon
+    :param request:
+    :return:
+    """
     intervalStart = request.GET['start']
     intervalEnd = request.GET['end']
 
@@ -167,6 +182,22 @@ def mikumite_report(request):
 
     results = dictfetchall(cursor)
     return json_response_from(results)
+
+
+def mikumite_excel(request):
+    """
+
+    :param request:
+    :return:
+    """
+    intervalStart = request.GET['start']
+    intervalEnd = request.GET['end']
+
+    response = HttpResponse(mimetype="application/ms-excel")
+    response['Content-Disposition'] = 'attachment; filename=relatorio_evento.xls'
+    workbook = xlsreports.mikumite_report(intervalStart, intervalEnd)
+    workbook.save(response)
+    return response
 
 
 def dictfetchall(cursor):
