@@ -16,9 +16,7 @@
  */
 suzuClientApp.controller('ExportReportController', function ($scope, $http, $cookieStore, notificationService, yokoshiService, eventService) {
 
-    $scope.updateLink = function(){
-        var currentEvent = $cookieStore.get('event');
-        $scope.link = 'http://'+window.location.hostname+':8080/jasperserver/rest_v2/reports/reports/presencas_por_evento.xls?event_id='+currentEvent.id+'&j_username=emilnakao&j_password=Verwalter&callback=?';
-    }
+    $scope.currentEventId = $cookieStore.get('event').id
+
 
 });

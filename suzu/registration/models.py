@@ -25,7 +25,7 @@ from django.db import models
 from model_utils import Choices
 from model_utils.managers import PassThroughManager
 from model_utils.models import TimeStampedModel
-from .querysets import YokoshiQuerySet
+from querysets import YokoshiQuerySet
 
 
 class Regional(TimeStampedModel):

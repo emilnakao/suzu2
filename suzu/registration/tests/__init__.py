@@ -18,3 +18,21 @@ FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TOR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 DEALINGS IN THE SOFTWARE
 """
+
+# starts the test suite
+from suzu import settings
+from tests import *
+from tests import test_querysets, test_models, test_views
+from test_models import *
+from test_querysets import *
+from test_views import *
+from test_xlsreports import *
+
+
+# every test file should be declared here, otherwise will not run!
+__test__={
+    'test_models': test_models,
+    'test_querysets': test_querysets,
+    'test_views': test_views
+
+}

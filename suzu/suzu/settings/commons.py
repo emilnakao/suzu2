@@ -134,7 +134,8 @@ INSTALLED_APPS = (
     'south',
     'registration',
     'tastypie',
-    'autocomplete_light'
+    'autocomplete_light',
+    'xlwt'
 
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',

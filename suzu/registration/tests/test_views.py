@@ -20,7 +20,7 @@ DEALINGS IN THE SOFTWARE
 """
 from django.core.urlresolvers import resolve
 from django.test import TestCase
-from ..views import YokoshiCreateView
+from registration.views import YokoshiCreateView
 
 YOKOSHI_CREATE = '/registration/yokoshi/create'
 

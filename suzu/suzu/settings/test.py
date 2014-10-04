@@ -21,16 +21,22 @@ DEALINGS IN THE SOFTWARE
 from .commons import *
 
 TEST_RUNNER = 'discover_runner.DiscoverRunner'
-
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+DEBUG=True
+SOUTH_TESTS_MIGRATE = True
+TASTYPIE_FULL_DEBUG = True
+# We are not going to use timezones in tests
+USE_TZ=False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(PROJECT_DIR, 'suzutest.db'),                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
         'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',                      # Set to empty string for default.
+        'TEST_NAME': os.path.join(os.path.dirname(__file__), 'suzutest.db'),
     }
 }
 
@@ -38,3 +44,5 @@ INSTALLED_APPS += (
     'model_mommy',
     'discover_runner',
 )
+
+INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'south']

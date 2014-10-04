@@ -21,7 +21,7 @@ DEALINGS IN THE SOFTWARE
 from django.test import TestCase
 
 from model_mommy.recipe import Recipe, seq
-from ..models import Yokoshi
+from registration.models import Yokoshi
 
 
 class YokoshiQuerySetTest(TestCase):

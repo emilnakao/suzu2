@@ -1,5 +1,10 @@
 {% load angularjs %}{% load i18n %}
 <div>
-    <a href="{% ng link %}" ng-click="updateLink()" class="btn btn-confirm">Exportar</a>
+    <div class="well">
+        <h5>Relat&oacute;rio de presen&ccedil;as por evento (evento selecionado)</h5>
+
+        <a href="/registration/presence_by_event_excel/?event={% ng currentEventId %}"
+           class="btn btn-primary btn-md active" role="button">Download Excel</a>
+    </div>
 
 </div>

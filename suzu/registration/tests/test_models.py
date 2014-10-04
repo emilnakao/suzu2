@@ -19,11 +19,24 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE
 """
 from unittest import TestCase
-from ..models import Yokoshi
+import unittest
+from django.test import TransactionTestCase
+from django.test.simple import DjangoTestSuiteRunner
+from django.utils.unittest.suite import TestSuite
+from registration.models import Yokoshi
 
 
-class YokoshiTest(TestCase):
+class YokoshiTest(TransactionTestCase):
 
     def test_create_minimal_data(self):
+        """
+
+
+        """
         newYokoshi = Yokoshi(complete_name="John Galt")
         newYokoshi.save()
+
+if __name__ == "__main__":
+    suite = TestSuite
+    suite.addTest(YokoshiTest())
+    DjangoTestSuiteRunner.run_suite(suite)

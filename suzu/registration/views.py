@@ -31,6 +31,7 @@ from .models import Yokoshi, Presence, Event
 from .forms import YokoshiForm
 from .simplejson import json_response_from
 import json
+import xlsreports
 
 
 class RegistrationHomeView(LoginRequiredMixin, TemplateView):
@@ -110,6 +111,19 @@ def singleevent_report(request):
     comments = dictfetchall(cursor)
     # comments = Presence.objects.raw('SELECT p.id, y.complete_name as name, h.name as han from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by y.complete_name asc, h.name asc', [request.GET['event']])
     return json_response_from(comments)
+
+
+def single_event_excel(request):
+    """
+
+    :param request:
+    :return:
+    """
+    response = HttpResponse(mimetype="application/ms-excel")
+    response['Content-Disposition'] = 'attachment; filename=relatorio_evento.xls'
+    workbook = xlsreports.single_event_report(long(request.GET['event']))
+    workbook.save(response)
+    return response
 
 
 def yokoshihistory_report(request):

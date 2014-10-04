@@ -21,7 +21,7 @@ DEALINGS IN THE SOFTWARE
 
 from django.conf.urls import patterns, url
 from .views import YokoshiCreateView, RegistrationHomeView, YokoshiListView, PresenceConfirmationView, PresenceCancellationView, singleevent_report, yokoshihistory_report, mikumite_report, \
-    inform_yokoshi_update
+    inform_yokoshi_update, single_event_excel
 
 urlpatterns = patterns('',
                        url(r'^yokoshi/create$', YokoshiCreateView.as_view(), name="yokoshicreate"),
@@ -30,6 +30,7 @@ urlpatterns = patterns('',
                        url(r'^confirm_presence/$', PresenceConfirmationView.as_view(), name="confirm_presence"),
                        url(r'^cancel_presence/$', PresenceCancellationView.as_view(), name="cancel_presence"),
                        url(r'^presence_by_event/$', singleevent_report),
+                       url(r'^presence_by_event_excel/$', single_event_excel),
                        url(r'^yokoshi_history/$', yokoshihistory_report),
                        url(r'^mikumite_report/$', mikumite_report),
                        url(r'^inform_yokoshi_update/$', inform_yokoshi_update),
