@@ -17,3 +17,25 @@
     </div>
 
 </div>
+
+    <!-- ====================================================== -->
+	<!-- Modal de criacao  -->
+	<!-- ====================================================== -->
+	<script type="text/ng-template" id="confirmCreationModal.html">
+		<div class="modal-header">
+			<h3 class="modal-title">Confirma&ccedil;&atilde;o de Cadastro</h3>
+		</div>
+		<div class="modal-body">
+			<h4 ng-show="isConfirmRegistration()">Deseja confirmar o cadastro de <b>{% ng yokoshi.complete_name %}</b> ?</h4>
+			<h4 ng-show="isConfirmIsGuest()">Marcar como convidado?</h4>
+			<h4 ng-show="isConfirmIsFirstTime()">Marcar como primeira visita?</h4>
+		</div>
+		<div class="modal-footer">
+			<button ng-show="isConfirmRegistration()" class="btn btn-success" ng-click="proceedRegistration()">Sim</button>
+			<button ng-show="isConfirmRegistration()" class="btn btn-danger" ng-click="cancelRegistration()">N&atilde;o</button>
+            <button ng-show="isConfirmIsGuest()" class="btn btn-success" ng-click="setAsGuest()">Sim</button>
+			<button ng-show="isConfirmIsGuest()" class="btn btn-danger" ng-click="setAsNotGuest()">N&atilde;o</button>
+            <button ng-show="isConfirmIsFirstTime()" class="btn btn-success" ng-click="setAsFirstTime()">Sim</button>
+			<button ng-show="isConfirmIsFirstTime()" class="btn btn-danger" ng-click="setAsNotFirstTime()">N&atilde;o</button>
+		</div>
+    </script>

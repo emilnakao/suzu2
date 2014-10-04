@@ -14,9 +14,15 @@
  * IN THE SOFTWARE
  *
  */
-suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieStore, yokoshiService, eventService, notificationService, focusService) {
+suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieStore, $modal, yokoshiService, eventService, notificationService, focusService) {
 
     focusService.focus('focusCheckinSearch');
+
+    /**
+     * Usado no modal de criação de yokoshi para coordenar as perguntas (é convidado? é primeira vez?)
+     * @type {string}
+     */
+    $scope.checkInPhase = 'confirmRegistration';
 
     $scope.search = function ($event) {
         console.log("buscou");
@@ -57,7 +63,7 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
         } else {
             eventService.confirmPresence(yokoshi, function (data) {
                 notificationService.success("Presença confirmada", yokoshi.complete_name);
-               // $scope.search(null);
+                // $scope.search(null);
                 focusService.focus('focusCheckinSearch');
                 $scope.searchText = '';
             });
@@ -94,26 +100,31 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
                 alert("Por favor, digite o nome de quem deseja confirmar presença.");
             } else {
 
+                // abre um modal confirmando:
+                var modalInstance = $modal.open({
+                    templateUrl: 'confirmCreationModal.html',
+                    controller: "ModalCreateYokoshiController",
+                    resolve: {
+                        newYokoshiName: function () {
+                            return $scope.searchText;
+                        },
 
-                if (confirm('Marcar como convidado?')) {
-                    yokoshi.is_mikumite = true;
+                        callbackFunction: function(){
+                            return $scope.togglePresence;
+                        }
 
-                    if (confirm('Marcar como primeira vez?')) {
-                        yokoshi.firsttime = true;
                     }
-                }
-
-                yokoshiService.saveYokoshi(yokoshi, function (data) {
-                    $scope.togglePresence(data);
                 });
-
             }
         }
 
     }});
+
+
     $scope.keys.push({ code: 38, action: function () {
         if ($scope.focusIndex > 0) {
             $scope.focusIndex--;
+
         }
     }});
     $scope.keys.push({ code: 40, action: function () {
