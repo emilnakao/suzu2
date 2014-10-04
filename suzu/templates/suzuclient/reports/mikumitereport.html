@@ -2,7 +2,7 @@
 <div id="printable" class="report-container">
     <div class="row">
         <div class="hero-unit">
-            <form  class="form" role="form" name="reportForm">
+            <form  class="form-inline" role="form" name="reportForm">
                 <div class="form-group">
                     <label for="beginSelect">Data de In&iacute;cio</label>
                     <input type="date" class="form-control" id="beginSelect" ng-model="start" placeholder="Selecione..."
@@ -13,10 +13,11 @@
                     <input type="date" class="form-control" id="endSelect" ng-model="end" placeholder="Selecione..."
                            required/>
                 </div>
-                <a href="/registration/mikumite_excel/?start={% ng start %}&end={% ng end %}" class="btn btn-info"
+                <a href="/registration/mikumite_excel/?start={% ng start %}&end={% ng end %}" class="btn btn-info align-a-bottom"
                    role="button" ng-disabled="reportForm.$invalid">Gerar Relat&oacuterio</a>
             </form>
-            <p>O relat&oacute;rio ser&aacute; gerado em formato excel.</p>
         </div>
     </div>
+            <p>
+                O relat&oacute;rio ser&aacute; gerado em formato excel.</p>
 </div>

@@ -361,6 +361,10 @@ div.suzu-checkin-row.yokoshi_list_highlight .btn-success:after, div.suzu-checkin
     padding: 2px 15px 5px 0px;
 }
 
+/* Joga um <a href.../> para baixo, quando usado em um form-inline*/
+.align-a-bottom{
+    margin-bottom: -25px!important;
+}
 /** Do site do bootstrap: */
 .bs-callout-info {
     background-color: #f4f8fa;
