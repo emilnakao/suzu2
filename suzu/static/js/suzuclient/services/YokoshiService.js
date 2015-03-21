@@ -42,15 +42,19 @@ suzuClientApp.factory('yokoshiService', ['$http', function ($http) {
                 dataType: 'json',
                 processData: false
 
-            }).success(function (data) {
-                    $.pnotify({
-                        title: 'Parabéns!!',
-                        text: _.template('<%=name%> cadastrado com sucesso!')({name: yokoshiObj.complete_name}),
-                        type: 'success',
-                        styling: 'bootstrap'
-                    });
-                    successClbk(data);
-                }).fail(function () {
+            }).success(function(successClbck){
+                var clbk = successClbk;
+                    return function(data) {
+                        $.pnotify({
+                            title: 'Parabéns!!',
+                            text: _.template('<%=name%> cadastrado com sucesso!')({name: yokoshiObj.complete_name}),
+                            type: 'success',
+                            styling: 'bootstrap'
+                        });
+                        clbk(data);
+                    }
+                }(successClbk)
+             ).fail(function () {
                     $.pnotify({
                         title: 'Oh nãoo!',
                         text: 'Nos desculpe, não foi possível completar a solicitação.',

@@ -6,8 +6,10 @@
     <div class="media" >
         <div class="media-body suzu-checkin-row" ng-repeat="yokoshi in yokoshis" ng-class="{'yokoshi_list_highlight': yokoshi.navIndex == focusIndex}">
             <h4 class="media-heading">{% ng yokoshi.complete_name %} <span ng-show="!yokoshi.is_mikumite" class="label label-primary">KUMITE</span> <span ng-show="yokoshi.is_mikumite" class="label label-success">MIKUMITE</span></h4>
+            <button class="btn btn-default btn-sm" ng-click="editYokoshi(yokoshi)"><span class="fa fa-pencil text-warning"></span> Corrigir Cadastro</button>
+            <button class="btn btn-default btn-sm" ng-click="cancelPresence(yokoshi)" ng-disabled="!isYokoshiPresent(yokoshi)"><span class="fa fa-minus-square text-danger"></span> Cancelar Presen&ccedil;a</button>
             <span ng-show="yokoshi.last_registration_update == undefined" class="label label-warning">Recadastramento Pendente</span>
-            <button class="suzu-checkin-row-presencebtn btn" ng-class="{'btn-success': !isYokoshiPresent(yokoshi), 'btn-danger': isYokoshiPresent(yokoshi)}" ng-disabled="isYokoshiPresent(yokoshi)" ng-click="togglePresence(yokoshi)">{% ng getTogglePresenceBtnLabel(yokoshi) %}</button>
+            <button class="suzu-checkin-row-presencebtn btn btn-success" ng-disabled="isYokoshiPresent(yokoshi)" ng-click="togglePresence(yokoshi)"><span class="fa fa-check"></span> {% ng getTogglePresenceBtnLabel(yokoshi) %}</button>
         </div>
         <div class="media-body suzu-checkin-row" ng-show="yokoshis.length == 0">
             <h4>Não encontrou o seu nome? Aperte Enter para cadastr&aacute;-lo!</h4>
@@ -37,5 +39,35 @@
 			<button ng-show="isConfirmIsGuest()" class="btn btn-danger" ng-click="setAsNotGuest()">N&atilde;o</button>
             <button ng-show="isConfirmIsFirstTime()" class="btn btn-success" ng-click="setAsFirstTime()">Sim</button>
 			<button ng-show="isConfirmIsFirstTime()" class="btn btn-danger" ng-click="setAsNotFirstTime()">N&atilde;o</button>
+		</div>
+    </script>
+
+<!-- ====================================================== -->
+	<!-- Modal de correcao  -->
+	<!-- ====================================================== -->
+	<script type="text/ng-template" id="editYokoshiModal.html">
+		<div class="modal-header">
+			<h3 class="modal-title">Corre&ccedil;&atilde;o de Cadastro</h3>
+		</div>
+		<div class="modal-body">
+            <form name="yokoshiEditForm">
+                <div class="form-group">
+                    <label for="nameInput">Nome Completo</label>
+                    <input class="form-control" id="nameInput" type="text" required ng-model="selectedYokoshi.complete_name"/>
+                </div>
+                <div class="form-group">
+                    <label for="isKumiteInput">É Convidado (Mi-Kumite)?</label>
+                    <input  ng-model="selectedYokoshi.is_mikumite" type="checkbox"/>
+                </div>
+                <div class="form-group" ng-show="selectedYokoshi.is_mikumite == false">
+                    <label for="mahikariTaiInput">É do grupo de Jovens (Mahikari-tai)?</label>
+                    <input ng-model="selectedYokoshi.is_mtai" type="checkbox"/>
+                </div>
+            </form>
+
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-default" ng-click="cancel()">Cancelar</button>
+			<button class="btn btn-primary" ng-click="submit()" ng-disabled="yokoshiEditForm.$invalid"><i class="fa fa-check"></i> Corrigir</button>
 		</div>
     </script>

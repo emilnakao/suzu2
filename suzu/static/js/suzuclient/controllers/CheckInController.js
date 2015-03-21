@@ -51,16 +51,7 @@ suzuClientApp.controller('CheckInController', function ($scope, $rootScope, $htt
     $scope.togglePresence = function (yokoshi) {
         var eventId = $cookieStore.get('event').id;
 
-        if ($scope.isYokoshiPresent(yokoshi)) {
-
-//            eventService.cancelPresence(yokoshi, function (data) {
-//                notificationService.success("Presença cancelada", yokoshi.complete_name);
-//                $scope.search(null);
-//                focusService.focus('focusCheckinSearch');
-//                $scope.searchText = '';
-//
-//            });
-        } else {
+        if (!$scope.isYokoshiPresent(yokoshi)) {
             eventService.confirmPresence(yokoshi, function (data) {
                 notificationService.success("Presença confirmada", yokoshi.complete_name);
                 // $scope.search(null);
@@ -75,9 +66,22 @@ suzuClientApp.controller('CheckInController', function ($scope, $rootScope, $htt
         console.log("limpou");
     };
 
+    $scope.cancelPresence = function(yokoshi){
+        if ($scope.isYokoshiPresent(yokoshi)) {
+            eventService.cancelPresence(yokoshi, function (data) {
+                notificationService.success("Presença cancelada", yokoshi.complete_name);
+                $scope.search(null);
+                focusService.focus('focusCheckinSearch');
+                $scope.searchText = '';
+                $rootScope.$broadcast('refreshCounters', {});
+
+            });
+        }
+    };
+
     $scope.getTogglePresenceBtnLabel = function (yokoshi) {
         if ($scope.isYokoshiPresent(yokoshi)) {
-            return "Cancelar Presença";
+            return "Presença Confirmada";
         }
 
         return "Confirmar Presença";
@@ -144,5 +148,28 @@ suzuClientApp.controller('CheckInController', function ($scope, $rootScope, $htt
             $scope.$apply();
         });
     });
+
+    $scope.editYokoshi = function(yokoshi){
+        $scope.selectedYokoshi = yokoshi;
+
+        // abre um modal:
+        var modalInstance = $modal.open({
+            templateUrl: 'editYokoshiModal.html',
+            controller: "ModalYokoshiEditController",
+            resolve: {
+                selectedYokoshi: function () {
+                    return $scope.selectedYokoshi;
+                },
+
+                callbackFunction: function() {
+                    return function(yokoshi){
+                        $rootScope.$broadcast('refreshCounters', {});
+
+                    }
+                }
+
+            }
+        });
+    }
 
 })
