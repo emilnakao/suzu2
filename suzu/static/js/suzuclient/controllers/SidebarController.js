@@ -31,6 +31,7 @@ suzuClientApp.controller('SidebarController', function($scope, $rootScope, $http
 
     $scope.$on('eventSelected', function(eventMsg, event){
         $scope.currentEvent = event;
+        $scope.refreshPresences();
     });
 
     $rootScope.$on('refreshCounters', function(eventMsg, event){

@@ -80,12 +80,12 @@
                         <span class="glyphicon glyphicon-bell"></span> Escolher Evento
                     </button>
                 </div>
-                <div class="panel-body ng-cloak" ng-show="currentEvent"><b>{% ng currentEvent.event_type.name %}</b><br><span class="glyphicon glyphicon-time"></span>  {% ng currentEvent.begin_date_time %} </div>
+                <div class="panel-body ng-cloak" ng-show="currentEvent"><b>{% ng currentEvent.event_type.name %}</b><br><span class="fa fa-calendar"></span>  {% ng currentEvent.begin_date_time | date: 'dd/MM/yyyy'%} </div>
             </div>
 
             <!--+++++ ::: NEWSFEED ::: +++++-->
             <div class="panel panel-default newsfeed" ng-cloak>
-                <div class="panel-heading">Presen&ccedil;as de Hoje <span class="fa fa-refresh" ng-click="refreshPresences()"></span></div>
+                <div class="panel-heading">Presen&ccedil;as <span class="fa fa-refresh" ng-click="refreshPresences()"></span></div>
                 <div class="panel-body">
                     <div class="counters">
                         <div class="counter kumite"><span class="value">{% ng kumiteCount %}</span><span class="label">KUMITE</span></div>
@@ -104,7 +104,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="presence in presences">
-                                <td>{% ng $index %}</td>
+                                <td>{% ng presences.length - $index %}</td>
                                 <td>
                                     <i class="fa fa-circle" style="color: #428bca" title="Kumite" ng-show="presence.yokoshi.is_mikumite==false"></i>
                                     <i class="fa fa-circle" style="color: #2b542c" title="Mahikari-tai" ng-show="presence.yokoshi.is_mtai==true"></i>
