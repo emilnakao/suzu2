@@ -80,12 +80,17 @@
                         <span class="glyphicon glyphicon-bell"></span> Escolher Evento
                     </button>
                 </div>
-                <div class="panel-body ng-cloak" ng-show="currentEvent"><b>{% ng currentEvent.event_type.name %}</b><br><span class="fa fa-calendar"></span>  {% ng currentEvent.begin_date_time | date: 'dd/MM/yyyy'%} </div>
+                <div class="panel-body ng-cloak" ng-show="currentEvent"><b>{% ng currentEvent.event_type.name %}</b> <h3 style="margin-top: 5px;"><span class="fa fa-calendar"></span> {% ng currentEvent.begin_date_time | date: 'dd/MM/yyyy'%}</h3> </div>
             </div>
 
             <!--+++++ ::: NEWSFEED ::: +++++-->
             <div class="panel panel-default newsfeed" ng-cloak>
-                <div class="panel-heading">Presen&ccedil;as <span class="fa fa-refresh" ng-click="refreshPresences()"></span></div>
+                <div class="panel-heading">
+                    <b>Presen&ccedil;as (Total: {% ng presences.length | isempty: '0' %})</b><span class="fa fa-spinner fa-spin" ng-show="loading" ></span>
+                <button class="btn btn-default btn-sm suzu-select-event-btn" ng-click="refreshPresences()">
+                        <span class="fa fa-refresh"></span> Atualizar
+                    </button>
+                </div>
                 <div class="panel-body">
                     <div class="counters">
                         <div class="counter kumite"><span class="value">{% ng kumiteCount %}</span><span class="label">KUMITE</span></div>

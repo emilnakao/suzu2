@@ -448,7 +448,7 @@ div.suzu-checkin-row.yokoshi_list_highlight .btn-success:after, div.suzu-checkin
 }
 
 .counter{
-    width: 70px;
+    width: 75px;
     height: 80px;
     border-radius: 3px;
     margin: 5px;
@@ -459,16 +459,19 @@ div.suzu-checkin-row.yokoshi_list_highlight .btn-success:after, div.suzu-checkin
     float: none;
     font-size: 3em;
     color: whitesmoke;
-    width: 60px;
+    width: 65px;
     margin: 0 auto;
     display: block;
+    text-align: right;
 
 }
 
 .counter .label{
     bottom:0;
-    width:65px;
+    width:75px;
     margin:0 auto;
+    display: block;
+    text-align: right;
 }
 
 .counter:after{
@@ -492,7 +495,7 @@ div.suzu-checkin-row.yokoshi_list_highlight .btn-success:after, div.suzu-checkin
 }
 
 .newsfeed{
-    height: Calc(100% - 180px);
+    height: Calc(100% - 190px);
 }
 
 .newsfeed .presence-list{
