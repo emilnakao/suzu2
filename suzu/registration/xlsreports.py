@@ -52,7 +52,7 @@ def single_event_report(event_id):
     cursor = connection.cursor()
     cursor.execute(
         'SELECT y.complete_name as nome, h.name as han, y.is_mikumite as mikumite, p.is_first_time as firsttime from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by h.name asc, y.complete_name asc',
-        event_id.__str__())
+        (event_id,))
 
     presences = cursor.fetchall()
 
@@ -92,7 +92,7 @@ def single_event_report(event_id):
         yokoshi_count+=1
         line+=1
 
-    book.save("teste.xls")
+    # book.save("teste.xls")
     return book
 
 

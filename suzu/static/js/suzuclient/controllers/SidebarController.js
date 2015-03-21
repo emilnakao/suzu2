@@ -15,7 +15,14 @@
  *
  */
 
-suzuClientApp.controller('SidebarController', function($scope, $cookieStore, eventService){
+suzuClientApp.controller('SidebarController', function($scope, $rootScope, $http, $cookieStore, eventService){
+
+    $scope.presences = [];
+    $scope.kumiteCount = 0;
+    $scope.mikumiteCount = 0;
+    $scope.mtaiCount = 0;
+    $scope.firstTimeCount = 0;
+    $scope.loading = false;
 
     // inicializacao
     if($cookieStore.get('event') != undefined){
@@ -26,5 +33,44 @@ suzuClientApp.controller('SidebarController', function($scope, $cookieStore, eve
         $scope.currentEvent = event;
     });
 
+    $rootScope.$on('refreshCounters', function(eventMsg, event){
+        $scope.refreshPresences();
+    });
+
+    $scope.refreshPresences = function(){
+        if($scope.currentEvent != undefined){
+            $scope.loading = true;
+            $http.get('api/v1/presence/?format=json&event__id=' + $scope.currentEvent.id).success(function(data){
+                $scope.presences = data.objects;
+
+                var kumite = 0, mikumite = 0, mtai = 0, ftime = 0;
+
+                $.each($scope.presences, function(idx, elem){
+                    if(elem.is_first_time == true){
+                        ftime++;
+                    }
+                    if(elem.yokoshi.is_mtai == true){
+                        mtai++;
+                    }
+                    if(elem.yokoshi.is_mikumite == true){
+                        mikumite++;
+                    }else{
+                        kumite++;
+                    }
+
+                    $scope.kumiteCount = kumite;
+                    $scope.mikumiteCount = mikumite;
+                    $scope.mtaiCount = mtai;
+                    $scope.firstTimeCount = ftime;
+                });
+            }).finally(function(){
+                $scope.loading = false;
+            });
+        }
+
+
+    };
+
+    $scope.refreshPresences();
 
 });

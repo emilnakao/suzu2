@@ -14,8 +14,12 @@
 body {
     padding: 0;
     background-color: #222222;
+    height: 100%;
 }
 
+html{
+    height: 100%;
+}
 .suzu-home h1{
     font-family: helvetica, sans-serif;
 font-size: 5em;
@@ -33,8 +37,11 @@ border-color: #222222;
     padding-top: 60px;
     padding-left: 10px;
     padding-right: 10px;
+    padding-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
+    min-height: 100%;
+    height: auto;
 
 }
 
@@ -44,15 +51,14 @@ border-color: #222222;
     margin-left: -5px;
     padding: 15px;
     height: 100%;
-    width: 300px;
+    min-height: 100%;
+    width: 400px;
 }
 
 .suzu-dynamic-content {
     height: 100%;
-    top: 55px;
     bottom: 5px;
-    position: absolute;
-    left: 305px;
+    left: 405px;
     background-color: #F2F8F5;
     right: 0;
     border-radius: 15px;
@@ -246,37 +252,6 @@ background-color: #222222;
 border-color: #222222;
 }
 
-.root-container {
-    padding-top: 60px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-
-}
-
-.suzu-sidebar {
-    background-color: #222222;
-    margin-top: -15px;
-    margin-left: -5px;
-    padding: 15px;
-    height: 100%;
-    width: 300px;
-}
-
-.suzu-dynamic-content {
-    height: 100%;
-    top: 55px;
-    bottom: 5px;
-    position: absolute;
-    left: 305px;
-    background-color: #F2F8F5;
-    right: 0;
-    border-radius: 15px;
-    moz-border-radius: 15px;
-    overflow: scroll;
-    padding-bottom: 20px;
-}
 
 .suzu-select-event-btn {
     float: right;
@@ -462,108 +437,74 @@ div.suzu-checkin-row.yokoshi_list_highlight .btn-success:after, div.suzu-checkin
     cursor: pointer;
 }
 
-/*#container{*/
-/*position: relative;*/
-/*min-height: 100%;*/
-/*background-color: #ffffff;*/
-/*padding: 1em 1em;*/
-/*border-color: #eee8aa;*/
-/*border-width: 1px;*/
-/*box-shadow: 0 0 5px 2px rgba(0,0,0,.35);*/
-/*border-radius: 5px;*/
-/*}*/
-
-/*Estilos para pagina inicial
+/*
+    centralizar div: margin auto & width definido
 */
+.counters{
+    overflow: hidden;
+    margin: auto;
+    width: 350px;
+    height: 90px;
+}
 
-/*.masthead img{*/
-/*max-width: 100%;*/
-/*height: auto;*/
-/*width: auto\9; *//* ie8 */
-/*}*/
+.counter{
+    width: 70px;
+    height: 80px;
+    border-radius: 3px;
+    margin: 5px;
+    float: left;
+}
 
-/*.masthead {*/
-/*padding: 70px 0 80px;*/
-/*margin-bottom: 0;*/
-/*color: #fff;*/
-/*}*/
+.counter .value{
+    float: none;
+    font-size: 3em;
+    color: whitesmoke;
+    width: 60px;
+    margin: 0 auto;
+    display: block;
 
-/*.jumbotron {*/
-/*position: relative;*/
-/*padding: 40px 0;*/
-/*text-align: center;*/
-/*min-height: 600px;*/
-/*text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);*/
-/*background: url(/static/img/bola_5_cores.jpg) center center no-repeat;*/
-/*background-size: cover;*/
-/*}*/
+}
 
-/*.jumbotron::before {*/
-/*content: '';*/
-/*display: block;*/
-/*position: absolute;*/
-/*top: 0;*/
-/*right: 0;*/
-/*bottom: 0;*/
-/*left: 0;*/
+.counter .label{
+    bottom:0;
+    width:65px;
+    margin:0 auto;
+}
 
-/*opacity: .8;*/
-/*}*/
+.counter:after{
 
-/* Estilos para footer*/
+}
 
-/*footer {*/
-/*bottom: 0px;*/
-/*margin: 0;*/
-/*padding: 0;*/
-/*border: 0;*/
-/*height: 4em;*/
-/*}*/
+.kumite{
+    background-color: #428bca;
+}
 
-/*footer p {*/
-/*margin: 2em 2em;*/
-/*}*/
+.mikumite{
+    background-color: #5cb85c;
+}
 
-/*Widget Current Event*/
+.mtai{
+    background-color: #2b542c;
+}
 
-/*.current_event_widget{*/
-/*padding: 8px;*/
-/*border: 3px solid #add8e6;*/
-/*border-radius: 6px;*/
-/*box-shadow:*/
-/*0 2px 1px rgba(0, 0, 0, 0.2),*/
-/*inset 0 2px 1px rgba(0, 0, 0, 0.2);*/
-/* Font styles */
-/*text-decoration: none;*/
-/*font-size: 14px;*/
-/*color: #222;*/
-/*}*/
+.firsttime{
+    background-color: #d9534f;
+}
 
-/*.select_event_link{*/
-/*display: block;*/
-/*color: #add8e6;*/
-/*}*/
+.newsfeed{
+    height: Calc(100% - 180px);
+}
 
-/*General*/
-/*.suzu-loading{*/
-/*background: url(/static/img/linear_loading.gif) center center;*/
-/*}*/
+.newsfeed .presence-list{
+    overflow-y: scroll;
+    height: 100%;
+}
 
-/*check-in*/
-/*.person_list li{*/
-/*background-color: #ffffff;*/
-/*color: #2f4f4f;*/
-/*margin: 4px;*/
-/*padding-left: 10px;*/
-/*padding-bottom: 5px;*/
-/*}*/
+.newsfeed table{
+    height: Calc(100% - 310px);
+}
 
-/*.person_list li:hover, .person_list li:focus, .person_list li:selection{*/
-/*background-color: #fffaf0;*/
-/*}*/
+.newsfeed .panel-body{
+    height: Calc(100% - 150px);
+}
 
-/*.confirmation-alert {*/
-/*position: relative;*/
-/*background: #88b7d5;*/
-/*border: 2px solid #c2e1f5;*/
-/*}*/

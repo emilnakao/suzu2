@@ -21,6 +21,7 @@ DEALINGS IN THE SOFTWARE
 from tastypie import fields, authorization
 from tastypie.authorization import Authorization, ReadOnlyAuthorization
 from tastypie.constants import ALL_WITH_RELATIONS, ALL
+from tastypie.fields import ForeignKey
 from tastypie.resources import ModelResource
 from tastypie.validation import Validation
 from .models import Han, Yokoshi, EventType, Event, Presence
@@ -68,7 +69,19 @@ class EventResource(ModelResource):
         queryset = Event.objects.all()
         resource_name = 'event'
         authorization = Authorization()
-        filtering = {'begin_date_time': ALL, 'event_type': ALL_WITH_RELATIONS}
+        filtering = {'begin_date_time': ALL, 'event_type': ALL_WITH_RELATIONS, "id":ALL}
+
+
+class PresenceResource(ModelResource):
+    yokoshi = fields.ToOneField(YokoshiResource, 'yokoshi', full=True, null=True, readonly=True)
+    event = ForeignKey(EventResource, "event")
+
+    class Meta:
+        queryset = Presence.objects.order_by('-begin_date_time')
+        resource_name = 'presence'
+        authorization = Authorization()
+        filtering = {'event': ALL_WITH_RELATIONS}
+        limit = 0
 
 
 class PresenceCountResource(ModelResource):

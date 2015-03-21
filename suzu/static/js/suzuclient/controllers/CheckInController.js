@@ -14,7 +14,7 @@
  * IN THE SOFTWARE
  *
  */
-suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieStore, $modal, yokoshiService, eventService, notificationService, focusService) {
+suzuClientApp.controller('CheckInController', function ($scope, $rootScope, $http, $cookieStore, $modal, yokoshiService, eventService, notificationService, focusService) {
 
     focusService.focus('focusCheckinSearch');
 
@@ -66,10 +66,12 @@ suzuClientApp.controller('CheckInController', function ($scope, $http, $cookieSt
                 // $scope.search(null);
                 focusService.focus('focusCheckinSearch');
                 $scope.searchText = '';
+                $rootScope.$broadcast('refreshCounters', {});
             });
         }
 
         $scope.yokoshis = [];
+
         console.log("limpou");
     };
 

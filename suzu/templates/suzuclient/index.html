@@ -8,6 +8,7 @@
     <!-- ::: CSS ::: -->
     <!-- =================================================================================  -->
     <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/font-awesome.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/datepicker.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/suzu.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/jquery.pnotify.default.css" rel="stylesheet">
@@ -34,6 +35,18 @@
                 {% if perms.suzu.suzu_admin %}
                 <li><a href="/admin">Admin</a></li>
                 {% endif %}
+{#            {% if perms.suzu.add_yokoshi %}#}
+{#                <li><a href="admin/registration/yokoshi/"><span class="glyphicon glyphicon-book"></span>  Cadastrar Pessoa</a></li>#}
+{#                {% endif %}#}
+                {% if perms.suzu.add_yokoshi %}
+                <li><a href="#/inform_yokoshi_update"><span class="glyphicon glyphicon-book"></span>  Informar Atualiza&ccedil;&atilde;o de Cadastro</a></li>
+                {% endif %}
+                {% if perms.suzu.suzu_check_in %}
+                <li><a href="#/checkin"><span class="glyphicon glyphicon-ok"></span>  Marcar presen&ccedil;as</a></li>
+                {% endif %}
+                {% if perms.suzu.suzu_reports %}
+                <li><a href="#/reports"><span class="glyphicon glyphicon-list-alt"></span>  Relat&oacute;rios</a></li>
+                {% endif %}
             </ul>
             <ul class="nav navbar-right navbar-nav pull-right">
                    {% if user.is_authenticated %}
@@ -53,7 +66,6 @@
 <!-- ::: WORKSPACE ::: -->
 <!-- =================================================================================  -->
 <div class="container root-container">
-    <div class="row">
         <!-- =================================================================================  -->
         <!-- ::: SIDEBAR ::: -->
         <!-- =================================================================================  -->
@@ -71,28 +83,42 @@
                 <div class="panel-body ng-cloak" ng-show="currentEvent"><b>{% ng currentEvent.event_type.name %}</b><br><span class="glyphicon glyphicon-time"></span>  {% ng currentEvent.begin_date_time %} </div>
             </div>
 
-            <!--+++++ ::: MENU LATERAL ::: +++++-->
-            <div class="list-group quicktoolbar">
-                {% if perms.suzu.add_yokoshi %}
-                <a href="admin/registration/yokoshi/" class="list-group-item"><span class="glyphicon glyphicon-book"></span>  Cadastrar Pessoa</a>
-                {% endif %}
-                {% if perms.suzu.add_yokoshi %}
-                <a href="#/inform_yokoshi_update" class="list-group-item"><span class="glyphicon glyphicon-book"></span>  Informar Atualiza&ccedil;&atilde;o de Cadastro</a>
-                {% endif %}
-                {% if perms.suzu.suzu_check_in %}
-                <a href="#/checkin" class="list-group-item"><span class="glyphicon glyphicon-ok"></span>  Marcar presen&ccedil;as</a>
-                {% endif %}
-                {% if perms.suzu.suzu_reports %}
-                <a href="#/reports" class="list-group-item"><span class="glyphicon glyphicon-list-alt"></span>  Relat&oacute;rios</a>
-                {% endif %}
+            <!--+++++ ::: NEWSFEED ::: +++++-->
+            <div class="panel panel-default newsfeed" ng-cloak>
+                <div class="panel-heading">Presen&ccedil;as de Hoje <span class="fa fa-refresh" ng-click="refreshPresences()"></span></div>
+                <div class="panel-body">
+                    <div class="counters">
+                        <div class="counter kumite"><span class="value">{% ng kumiteCount %}</span><span class="label">KUMITE</span></div>
+                        <div class="counter mtai"><span class="value">{% ng mtaiCount %}</span><span class="label">MTAI</span></div>
+                        <div class="counter mikumite"><span class="value">{% ng mikumiteCount %}</span><span class="label">MIKUMITE</span></div>
+                        <div class="counter firsttime"><span class="value">{% ng firstTimeCount %}</span><span class="label">1&ordf; VEZ</span></div>
+                    </div>
+
+                    <div class="presence-list">
+                    <table class="table table-striped table-condensed ng-cloak">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="presence in presences">
+                                <td>{% ng $index %}</td>
+                                <td>
+                                    <i class="fa fa-circle" style="color: #428bca" title="Kumite" ng-show="presence.yokoshi.is_mikumite==false"></i>
+                                    <i class="fa fa-circle" style="color: #2b542c" title="Mahikari-tai" ng-show="presence.yokoshi.is_mtai==true"></i>
+                                    <i class="fa fa-circle" style="color: #5cb85c" title="Mi-Kumite" ng-show="presence.yokoshi.is_mikumite==true"></i>
+                                    <i class="fa fa-circle" style="color: #d9534f" title="1&ordf; Vez" ng-show="presence.is_first_time==true"></i>
+                                    {% ng presence.yokoshi.complete_name %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
 
             </div>
-            <!--+++++ ::: NEWSFEED ::: +++++-->
-            {% comment %}<div class="panel panel-default newsfeed">
-                <div class="panel-heading">Newsfeed</div>
-                <div class="panel-body"></div>
-
-            </div>{% endcomment %}
         </div>
         {% endif %}
         <!-- =================================================================================  -->
@@ -102,9 +128,6 @@
             <!-- Conteudo dinamico: carregado pelo router do AngularJS -->
 
         </div>
-
-    </div>
-    <!--/row-->
 
     <!-- =================================================================================  -->
     <!-- ::: MODAL DE SELECAO DE EVENTO ::: -->
