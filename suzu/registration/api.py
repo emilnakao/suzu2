@@ -85,6 +85,9 @@ class PresenceResource(ModelResource):
 
 
 class PresenceCountResource(ModelResource):
+    # Precisamos mostrar na tela a qual nucleo pertence a pessoa
+    han = fields.ToOneField(ReadOnlyHanResource, 'han', full=True, null=True, readonly=True)
+
     """
     Returns an additional column in person rows, telling how many presences the user has in the event whose id is passed
     """

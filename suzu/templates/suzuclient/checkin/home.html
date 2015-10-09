@@ -8,7 +8,9 @@
             <h4 class="media-heading">{% ng yokoshi.complete_name %} <span ng-show="!yokoshi.is_mikumite" class="label label-primary">KUMITE</span> <span ng-show="yokoshi.is_mikumite" class="label label-success">MIKUMITE</span></h4>
             <button class="btn btn-default btn-sm" ng-click="editYokoshi(yokoshi)"><span class="fa fa-pencil text-warning"></span> Corrigir Cadastro</button>
             <button class="btn btn-default btn-sm" ng-click="cancelPresence(yokoshi)" ng-disabled="!isYokoshiPresent(yokoshi)"><span class="fa fa-minus-square text-danger"></span> Cancelar Presen&ccedil;a</button>
-            <span ng-show="yokoshi.last_registration_update == undefined" class="label label-warning">Recadastramento Pendente</span>
+            <span class="label label-default">{% ng yokoshi.han.name %}</span>
+{#            habilitar novamente quando for solicitada feature de recadastramento: #}
+{#            <span ng-show="yokoshi.last_registration_update == undefined" class="label label-warning">Recadastramento Pendente</span>#}
             <button class="suzu-checkin-row-presencebtn btn btn-success" ng-disabled="isYokoshiPresent(yokoshi)" ng-click="togglePresence(yokoshi)"><span class="fa fa-check"></span> {% ng getTogglePresenceBtnLabel(yokoshi) %}</button>
         </div>
         <div class="media-body suzu-checkin-row" ng-show="yokoshis.length == 0">
