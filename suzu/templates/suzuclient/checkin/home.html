@@ -5,7 +5,10 @@
 <div class="yokoshi_list">
     <div class="media" >
         <div class="media-body suzu-checkin-row" ng-repeat="yokoshi in yokoshis" ng-class="{'yokoshi_list_highlight': yokoshi.navIndex == focusIndex}">
-            <h4 class="media-heading">{% ng yokoshi.complete_name %} <span ng-show="!yokoshi.is_mikumite" class="label label-primary">KUMITE</span> <span ng-show="yokoshi.is_mikumite" class="label label-success">MIKUMITE</span></h4>
+            <h4 class="media-heading">
+            <i class="fa fa-circle" style="color: #428bca" title="Kumite" ng-show="yokoshi.is_mikumite==false" title="kumite"></i>
+            <i class="fa fa-circle" style="color: #5cb85c" title="Mi-Kumite" ng-show="yokoshi.is_mikumite==true" title="mikumite"></i>
+            {% ng yokoshi.complete_name %}</h4>
             <button class="btn btn-default btn-sm" ng-click="editYokoshi(yokoshi)"><span class="fa fa-pencil text-warning"></span> Corrigir Cadastro</button>
             <button class="btn btn-default btn-sm" ng-click="cancelPresence(yokoshi)" ng-disabled="!isYokoshiPresent(yokoshi)"><span class="fa fa-minus-square text-danger"></span> Cancelar Presen&ccedil;a</button>
             <span class="label label-default">{% ng yokoshi.han.name %}</span>

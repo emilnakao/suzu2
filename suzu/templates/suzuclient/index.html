@@ -40,6 +40,7 @@
 {#                {% endif %}#}
                 {% if perms.suzu.add_yokoshi %}
                 <li><a href="#/inform_yokoshi_update"><span class="glyphicon glyphicon-book"></span>  Informar Atualiza&ccedil;&atilde;o de Cadastro</a></li>
+                <li><a href="#/update_han"><span class="glyphicon glyphicon-book"></span>  Atualizar N&uacute;cleo</a></li>
                 {% endif %}
                 {% if perms.suzu.suzu_check_in %}
                 <li><a href="#/checkin"><span class="glyphicon glyphicon-ok"></span>  Marcar presen&ccedil;as</a></li>
@@ -116,6 +117,7 @@
                                     <i class="fa fa-circle" style="color: #5cb85c" title="Mi-Kumite" ng-show="presence.yokoshi.is_mikumite==true"></i>
                                     <i class="fa fa-circle" style="color: #d9534f" title="1&ordf; Vez" ng-show="presence.is_first_time==true"></i>
                                     {% ng presence.yokoshi.complete_name %}
+                                    <span class="label label-light">{% ng presence.yokoshi.han.name %}</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -188,6 +190,7 @@
 <script src="{{ STATIC_URL }}js/suzuclient/controllers/InformYokoshiUpdateController.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/controllers/ModalCreateYokoshiController.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/controllers/ModalYokoshiEditController.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/controllers/UpdateHanController.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/services/EventService.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/services/YokoshiService.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/services/HanService.js"></script>

@@ -511,3 +511,8 @@ div.suzu-checkin-row.yokoshi_list_highlight .btn-success:after, div.suzu-checkin
     height: Calc(100% - 150px);
 }
 
+/* Estilo para labels mais claros do que os do bootstrap */
+[class*='-light'] {
+	background-color:#f9f9f9;
+    color:#999;
+}
