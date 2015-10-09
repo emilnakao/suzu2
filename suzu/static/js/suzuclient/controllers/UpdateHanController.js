@@ -16,11 +16,21 @@
  */
 suzuClientApp.controller('UpdateHanController', function ($scope, $http, $cookieStore, hanService, yokoshiService, focusService, notificationService) {
 
-    $scope.selectedHan = {};
+    $scope.selectedHan = undefined;
 
     $scope.hans = [];
 
     $scope.selectedYokoshis = [];
+    $scope.yokoshiList = [];
+
+    $scope.loading = true;
+
+    $scope.pageSize = 100;
+    $scope.nextPageUrl = undefined;
+    $scope.previousPageUrl = undefined;
+    $scope.totalCount = undefined;
+    $scope.currentPage = 1;
+    $scope.numPages = 1;
 
     $scope.initHans = function () {
 
@@ -31,38 +41,42 @@ suzuClientApp.controller('UpdateHanController', function ($scope, $http, $cookie
             });
     };
 
-    $scope.addYokoshi = function(item, select){
-        $scope.selectedYokoshis.push(item);
-        select.focus = true;
+    $scope.updateHan = function(yokoshi){
+        yokoshi.loading = true;
+
+        $http.post('/registration/update_han/?yokoshi_id=' + yokoshi.id + '&han_id=' + yokoshi.han.id
+            ).success(function(clbk){
+                yokoshi.loading = false;
+                yokoshi.done = true;
+
+            })
     };
 
-    $scope.removeYokoshi = function(yokoshi){
-        var index = $scope.selectedYokoshis.indexOf(yokoshi);
-        if(index > -1){
-            $scope.selectedYokoshis.splice(index, 1);
-        }
+    $scope.searchYokoshi = function(page){
+        $scope.loading = true;
+        var offset = (page - 1) * $scope.pageSize;
+        $http.get('/api/v1/yokoshi/?format=json&order_by=complete_name&limit=' + $scope.pageSize + '&offset=' +offset)
+            .success(function(data){
+                // inicializando metadados da busca
+                $scope.nextPageUrl = data.meta.next;
+                $scope.previousPageUrl = data.meta.previous;
+                $scope.totalCount = data.meta.total_count;
+                $scope.numPages = Math.ceil($scope.totalCount / $scope.pageSize);
+
+                // para cada yokoshi, cria um atributo 'selected' dizendo se ele esta no han selecionado ou nao
+                $scope.yokoshiList = data.objects;
+                $scope.loading = false;
+
+        });
+
+
     };
 
-    $scope.confirmUpdates = function(){
-        if($scope.selectedYokoshis.length > 0){
-            // mandar para o servidor um post
-            var ids = [];
-
-            $($scope.selectedYokoshis).each(function(idx, elem){
-               ids.push(elem.id);
-            });
-
-            $http.post('/registration/inform_yokoshi_update/',
-                {
-                    selectedYokoshis : angular.toJson(ids)
-                }).success(function(data){
-               notificationService.success('Atualização registrada!');
-               $scope.selectedYokoshis = [];
-               $scope.yokoshi = {};
-            });
-        }
+    $scope.pageChanged = function(page) {
+        $scope.searchYokoshi(page);
     };
 
     $scope.initHans();
+    $scope.searchYokoshi(1);
 
 });

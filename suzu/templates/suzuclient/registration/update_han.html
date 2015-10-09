@@ -14,14 +14,37 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     <p class="text-info">Utilize esta tela para atualizar o n&uacute;cleo dos kumite.</p>
 
-    <form class="form-inline row" role="form">
-        <div class="form-group">
-            <label class="sr-only" for="yokoshiInput">Nome do Yokoshi</label>
-            <select class="form-control" name="hanSelect" id="hanSelect" ng-options="han as han.name for han in hans track by han.id" ng-model="selectedHan"></select>
-        </div>
-        <button class="btn btn-primary" ng-click="confirmUpdates()">Confirmar N&uacute;cleo</button>
-    </form>
-    <div class="selected-yokoshi-container col-md-12" role="form" ng-repeat="yokoshi in selectedYokoshis">
-        <p class="selected-yokoshi">{% ng yokoshi.complete_name %} <span class="glyphicon glyphicon-trash pull-right clickable" ng-click="removeYokoshi(yokoshi)"></span></p>
-    </div>
+    <div><span class="fa fa-spinner fa-spin fa-2x" ng-hide="loading == false"></span></div>
+    <table ng-hide="loading == true" class="table table-striped table-condensed update-han-table ng-cloak">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>N&uacute;cleo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="yokoshi in yokoshiList track by yokoshi.id" class="update-han-table-row">
+                                <td>{% ng (currentPage - 1)*pageSize + $index + 1 %}</td>
+                                <td>
+                                    <i class="fa fa-circle" style="color: #428bca" title="Kumite" ng-show="yokoshi.is_mikumite==false"></i>
+                                    <i class="fa fa-circle" style="color: #2b542c" title="Mahikari-tai" ng-show="yokoshi.is_mtai==true"></i>
+                                    <i class="fa fa-circle" style="color: #5cb85c" title="Mi-Kumite" ng-show="yokoshi.is_mikumite==true"></i>
+                                    {% ng yokoshi.complete_name %}
+                                </td>
+                                <td>
+                                    <form class="form-inline" name="yokoshi_{% ng $index %}">
+                                        <div class="form-group">
+                                            <select class="form-control input-sm" ng-disabled="yokoshi.done == true" name="hanSelect" id="hanSelect" ng-options="han as han.name for han in hans track by han.id" ng-model="yokoshi.han">
+                                         </select>
+                                        </div>
+                                        <button class="btn btn-sm btn-primary" ng-click="updateHan(yokoshi)" ng-disabled="yokoshi_{% ng $index %}.$pristine || yokoshi.done == true || yokoshi.loading == true"><span class="glyphicon glyphicon-floppy-disk" ng-hide="yokoshi.loading == true || yokoshi.done == true"></span><span class="fa fa-spinner fa-spin" ng-show="yokoshi.loading==true"></span><span class="glyphicon glyphicon-ok" ng-show="yokoshi.done == true"></span></button></td>
+
+                                    </form>
+                            </tr>
+                        </tbody>
+                    </table>
+
+    <pagination total-items="totalCount" page="currentPage" ng-model="currentPage" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="pageSize" on-select-page="pageChanged(page)"></pagination>
+    <pre>Page: {% ng currentPage %} / {% ng numPages %}</pre>
 </div>

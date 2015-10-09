@@ -27,7 +27,7 @@ from django.http import HttpResponse
 from django.utils.translation import ugettext
 from django.views.generic import CreateView, ListView, DetailView
 from django.views.generic.base import TemplateView
-from .models import Yokoshi, Presence, Event
+from .models import Yokoshi, Presence, Event, Han
 from .forms import YokoshiForm
 from .simplejson import json_response_from
 import json
@@ -217,3 +217,15 @@ def inform_yokoshi_update(request):
         Yokoshi.objects.filter(pk=yokoshi_id).update(last_registration_update=datetime.now())
 
     return HttpResponse('')
+
+def update_han(request):
+    yokoshi_id = request.GET['yokoshi_id']
+    han_id = request.GET['han_id']
+
+    new_han = Han.objects.get(pk=han_id)
+    yokoshi = Yokoshi.objects.filter(pk=yokoshi_id).update(han = new_han)
+
+    return HttpResponse('')
+
+
+

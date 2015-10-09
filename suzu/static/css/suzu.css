@@ -516,3 +516,7 @@ div.suzu-checkin-row.yokoshi_list_highlight .btn-success:after, div.suzu-checkin
 	background-color:#f9f9f9;
     color:#999;
 }
+
+.update-han-table-row:hover td{
+    background-color: lightgoldenrodyellow!important;
+}
