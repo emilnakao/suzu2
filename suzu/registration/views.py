@@ -18,7 +18,7 @@ FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TOR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 DEALINGS IN THE SOFTWARE
 """
-from datetime import datetime
+from datetime import datetime, timedelta, time
 from braces.views import LoginRequiredMixin, CsrfExemptMixin, PermissionRequiredMixin
 from django.core import serializers
 from django.db import connection
@@ -27,7 +27,9 @@ from django.http import HttpResponse
 from django.utils.translation import ugettext
 from django.views.generic import CreateView, ListView, DetailView
 from django.views.generic.base import TemplateView
-from .models import Yokoshi, Presence, Event, Han
+from tastypie.serializers import Serializer
+from api import EventResource
+from .models import Yokoshi, Presence, Event, Han, EventType
 from .forms import YokoshiForm
 from .simplejson import json_response_from
 import json
@@ -228,5 +230,16 @@ def update_han(request):
     return HttpResponse('')
 
 
+def find_or_create_event_for_today(request):
+    event_type = EventType.objects.get(pk=request.GET['event_type_id'])
+    today = datetime.now().date()
+    event_for_today = Event.objects.get_or_create(begin_date_time=today, event_type=event_type)
+
+    res = EventResource()
+
+    event_bundle = res.build_bundle(request=request, obj=event_for_today[0])
+    data = res.serialize(None, res.full_dehydrate(event_bundle), "application/json")
+
+    return HttpResponse(data, mimetype='application/json')
 
 

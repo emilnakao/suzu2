@@ -68,9 +68,9 @@ border-color: #222222;
 }
 
 .suzu-select-event-btn {
-    float: right;
+    /*float: right;*/
     margin-top: -5px;
-    margin-right: -10px;
+    /*margin-right: -10px;*/
 }
 
 .suzu-event-modal-search-btn {
@@ -250,13 +250,6 @@ word-spacing: -0.8pt;
 .navbar-inverse {
 background-color: #222222;
 border-color: #222222;
-}
-
-
-.suzu-select-event-btn {
-    float: right;
-    margin-top: -5px;
-    margin-right: -10px;
 }
 
 .suzu-event-modal-search-btn {

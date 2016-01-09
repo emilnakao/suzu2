@@ -9,12 +9,14 @@
             <i class="fa fa-circle" style="color: #428bca" title="Kumite" ng-show="yokoshi.is_mikumite==false" title="kumite"></i>
             <i class="fa fa-circle" style="color: #5cb85c" title="Mi-Kumite" ng-show="yokoshi.is_mikumite==true" title="mikumite"></i>
             {% ng yokoshi.complete_name %}</h4>
+            <div style="width: 100%; padding-bottom: 3px"><span class="label label-default">{% ng yokoshi.han.name %}</span></div>
+
             <button class="btn btn-default btn-sm" ng-click="editYokoshi(yokoshi)"><span class="fa fa-pencil text-warning"></span> Corrigir Cadastro</button>
             <button class="btn btn-default btn-sm" ng-click="cancelPresence(yokoshi)" ng-disabled="!isYokoshiPresent(yokoshi)"><span class="fa fa-minus-square text-danger"></span> Cancelar Presen&ccedil;a</button>
-            <span class="label label-default">{% ng yokoshi.han.name %}</span>
 {#            habilitar novamente quando for solicitada feature de recadastramento: #}
 {#            <span ng-show="yokoshi.last_registration_update == undefined" class="label label-warning">Recadastramento Pendente</span>#}
             <button class="suzu-checkin-row-presencebtn btn btn-success" ng-disabled="isYokoshiPresent(yokoshi)" ng-click="togglePresence(yokoshi)"><span class="fa fa-check"></span> {% ng getTogglePresenceBtnLabel(yokoshi) %}</button>
+
         </div>
         <div class="media-body suzu-checkin-row" ng-show="yokoshis.length == 0">
             <h4>Não encontrou o seu nome? Aperte Enter para cadastr&aacute;-lo!</h4>

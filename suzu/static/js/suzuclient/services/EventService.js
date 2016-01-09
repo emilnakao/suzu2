@@ -132,6 +132,12 @@ suzuClientApp.factory('eventService', ['$http', '$cookieStore', 'notificationSer
                 clbk(user);
 
             });
+        },
+
+        findOrCreateToday: function(eventType, clbk){
+            $http.post('/registration/find_or_create_event_for_today/?event_type_id='+ eventType).success(function(data){
+                clbk(data);
+            });
         }
     }
 }]);

@@ -35,10 +35,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                                 <td>
                                     <form class="form-inline" name="yokoshi_{% ng $index %}">
                                         <div class="form-group">
-                                            <select class="form-control input-sm" ng-disabled="yokoshi.done == true" name="hanSelect" id="hanSelect" ng-options="han as han.name for han in hans track by han.id" ng-model="yokoshi.han">
+                                            <select class="form-control input-sm" ng-disabled="yokoshi.done == true" tabindex="$index" name="hanSelect" id="hanSelect" ng-options="han as han.name for han in hans track by han.id" ng-model="yokoshi.han">
                                          </select>
                                         </div>
-                                        <button class="btn btn-sm btn-primary" ng-click="updateHan(yokoshi)" ng-disabled="yokoshi_{% ng $index %}.$pristine || yokoshi.done == true || yokoshi.loading == true"><span class="glyphicon glyphicon-floppy-disk" ng-hide="yokoshi.loading == true || yokoshi.done == true"></span><span class="fa fa-spinner fa-spin" ng-show="yokoshi.loading==true"></span><span class="glyphicon glyphicon-ok" ng-show="yokoshi.done == true"></span></button></td>
+                                        <button class="btn btn-sm btn-primary" ng-click="updateHan(yokoshi)" tabindex="$index" ng-disabled="yokoshi_{% ng $index %}.$pristine || yokoshi.done == true || yokoshi.loading == true"><span class="glyphicon glyphicon-floppy-disk" ng-hide="yokoshi.loading == true || yokoshi.done == true"></span><span class="fa fa-spinner fa-spin" ng-show="yokoshi.loading==true"></span><span class="glyphicon glyphicon-ok" ng-show="yokoshi.done == true"></span></button></td>
 
                                     </form>
                             </tr>

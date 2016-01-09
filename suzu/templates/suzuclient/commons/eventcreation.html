@@ -1,0 +1,33 @@
+ <div class="modal fade" id="createEventModal" tabindex="-1" role="dialog" aria-labelledby="createEventModalLabel"
+         aria-hidden="true" ng-controller="EventController">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!--+++++ ::: HEADER ::: +++++-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="createEventModalLabel"><span class="glyphicon glyphicon-plus"></span>
+                        Criar Evento</h4>
+                </div>
+                <!--+++++ ::: BODY ::: +++++-->
+                <div class="modal-body">
+                    <!--+++++ ::: PAINEL DE BUSCA ::: +++++-->
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <form class="form-inline" role="form" ng-submit="searchEvent(eventType, eventDate)" novalidate>
+                                <div class="form-group col-sm-7">
+                                    <label class="sr-only" for="modalEventTypeInput">Tipo de Evento</label>
+                                    <select class="form-control" ng-model="eventType" name="eventType" placeholder="Selecione o tipo de evento">
+                                        <option ng-repeat="eventType in eventTypes"
+                                                value="{% ng eventType.id %}">{% ng eventType.name %}</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary btn-sm suzu-event-modal-search-btn" type="submit" ng-click="findOrCreateEvent(eventType)" ng-disabled="eventType == undefined"><span
+                                        class="glyphicon glyphicon-floppy-disk"></span> Criar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

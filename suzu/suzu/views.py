@@ -28,6 +28,7 @@ from .globalpermission import GlobalPermission
 GlobalPermission.objects.get_or_create(codename='suzu_admin', name='Can access admin screens')
 GlobalPermission.objects.get_or_create(codename='suzu_reports', name='Can access report screens')
 GlobalPermission.objects.get_or_create(codename='suzu_check_in', name='Can access check-in screens')
+GlobalPermission.objects.get_or_create(codename='suzu_past_events', name='Can access past events')
 
 
 class HomeView(LoginRequiredMixin, TemplateView):

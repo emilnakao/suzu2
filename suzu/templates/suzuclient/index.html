@@ -76,10 +76,16 @@
             <div class="panel panel-default event-information">
                 <div class="panel-heading">
                     Evento
-                    <button class="btn btn-default btn-sm suzu-select-event-btn" data-toggle="modal"
-                            data-target="#selectEventModal">
-                        <span class="glyphicon glyphicon-bell"></span> Escolher Evento
+                    <button class="btn btn-default btn-sm suzu-select-event-btn pull-right" data-toggle="modal"
+                            data-target="#createEventModal">
+                        <span class="glyphicon glyphicon-plus"></span> Evento de Hoje
                     </button>
+                    {% if perms.suzu.suzu_past_events %}
+                    <button class="btn btn-default btn-sm suzu-select-event-btn pull-right" data-toggle="modal"
+                            data-target="#selectEventModal">
+                        <span class="glyphicon glyphicon-bell"></span> Eventos Passados
+                    </button>
+                    {% endif %}
                 </div>
                 <div class="panel-body ng-cloak" ng-show="currentEvent"><b>{% ng currentEvent.event_type.name %}</b> <h3 style="margin-top: 5px;"><span class="fa fa-calendar"></span> {% ng currentEvent.begin_date_time | date: 'dd/MM/yyyy'%}</h3> </div>
             </div>
@@ -88,7 +94,7 @@
             <div class="panel panel-default newsfeed" ng-cloak>
                 <div class="panel-heading">
                     <b>Presen&ccedil;as (Total: {% ng presences.length | isempty: '0' %})</b><span class="fa fa-spinner fa-spin" ng-show="loading" ></span>
-                <button class="btn btn-default btn-sm suzu-select-event-btn" ng-click="refreshPresences()">
+                <button class="btn btn-default btn-sm suzu-select-event-btn pull-right" ng-click="refreshPresences()">
                         <span class="fa fa-refresh"></span> Atualizar
                     </button>
                 </div>
@@ -139,7 +145,8 @@
     <!-- =================================================================================  -->
     <!-- ::: MODAL DE SELECAO DE EVENTO ::: -->
     <!-- =================================================================================  -->
-    <event-selection/>
+    <event-selection></event-selection>
+    <event-creation></event-creation>
 
     <!--/.container-->
 </div>
@@ -199,5 +206,6 @@
 <script src="{{ STATIC_URL }}js/suzuclient/directives/FocusDirective.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/directives/KeyTrapDirective.js"></script>
 <script src="{{ STATIC_URL }}js/suzuclient/directives/EventSelectionDirective.js"></script>
+<script src="{{ STATIC_URL }}js/suzuclient/directives/EventCreationDirective.js"></script>
 </body>
 </html>

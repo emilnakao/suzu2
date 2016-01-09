@@ -21,7 +21,8 @@ DEALINGS IN THE SOFTWARE
 
 from django.conf.urls import patterns, url
 from .views import YokoshiCreateView, RegistrationHomeView, YokoshiListView, PresenceConfirmationView, PresenceCancellationView, singleevent_report, yokoshihistory_report, mikumite_report, \
-    inform_yokoshi_update, single_event_excel, mikumite_excel, update_han
+    inform_yokoshi_update, single_event_excel, mikumite_excel, update_han, \
+    find_or_create_event_for_today
 
 urlpatterns = patterns('',
                        url(r'^yokoshi/create$', YokoshiCreateView.as_view(), name="yokoshicreate"),
@@ -36,4 +37,5 @@ urlpatterns = patterns('',
                        url(r'^mikumite_excel/$', mikumite_excel),
                        url(r'^inform_yokoshi_update/$', inform_yokoshi_update),
                        url(r'^update_han/$', update_han),
+                       url(r'^find_or_create_event_for_today/$', find_or_create_event_for_today),
 )
