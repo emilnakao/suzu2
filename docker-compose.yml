@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+  web:
+    build: .
+    entrypoint: ./prod_run.sh
+#    command: uwsgi --ini uwsgi.ini
+#    command: python suzu/manage.py runserver 0.0.0.0:8000 --settings=suzu.settings.docker
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

@@ -41,6 +41,7 @@ LOCALE_PATHS = (
     os.path.join(os.path.dirname(__file__), "../../locale"),
 )
 
+# Definido por causa do django sites framework. A tabela django-site deve ter uma linha com o id abaixo.
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -122,7 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
+    # 'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'suit',
