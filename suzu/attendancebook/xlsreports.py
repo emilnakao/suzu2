@@ -51,7 +51,7 @@ def single_event_report(event_id):
     """
     cursor = connection.cursor()
     cursor.execute(
-        'SELECT y.complete_name as nome, h.name as han, y.is_mikumite as mikumite, p.is_first_time as firsttime from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by h.name asc, y.complete_name asc',
+        'SELECT y.complete_name as nome, h.name as han, y.is_mikumite as mikumite, p.is_first_time as firsttime from attendancebook_presence p inner join attendancebook_yokoshi y on y.id = p.yokoshi_id inner join attendancebook_han h on h.id = y.han_id where p.event_id = %s order by h.name asc, y.complete_name asc',
         (event_id,))
 
     presences = cursor.fetchall()
@@ -112,10 +112,10 @@ def mikumite_report(start_date, end_date):
         "coalesce(indication.complete_name, ' ') as indication_name, "
         "coalesce(indicationhan.name, ' ') as indication_han_name, "
         "count(p.id) as number_presences "
-        "from registration_presence p "
-        "inner join registration_yokoshi y on y.id = p.yokoshi_id "
-        "left outer join registration_yokoshi indication on indication.id = y.indication_id "
-        "left outer join registration_han indicationhan on indicationhan.id = indication.han_id "
+        "from attendancebook_presence p "
+        "inner join attendancebook_yokoshi y on y.id = p.yokoshi_id "
+        "left outer join attendancebook_yokoshi indication on indication.id = y.indication_id "
+        "left outer join attendancebook_han indicationhan on indicationhan.id = indication.han_id "
         "where y.is_mikumite = true "
         "and p.begin_date_time >= %s "
         "and p.begin_date_time <= %s"

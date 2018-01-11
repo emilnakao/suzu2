@@ -18,13 +18,13 @@ FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TOR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 DEALINGS IN THE SOFTWARE
 """
-from tastypie import fields, authorization
+from tastypie import fields
 from tastypie.authorization import Authorization, ReadOnlyAuthorization
 from tastypie.constants import ALL_WITH_RELATIONS, ALL
 from tastypie.fields import ForeignKey
 from tastypie.resources import ModelResource
 from tastypie.validation import Validation
-from .models import Han, Yokoshi, EventType, Event, Presence
+from ..models import Han, Yokoshi, EventType, Event, Presence
 
 
 class HanResource(ModelResource):

@@ -1,38 +1,18 @@
-"""
-Copyright (c) 2013 The Suzu Team
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this
-software and associated documentation files (the "Software"), to deal in the Software
-without restriction, including without limitation the rights to use, copy, modify, 
-merge, publish, distribute, sublicense, and/or sell copies of the Software, and to 
-permit persons to whom the Software is furnished to do so, subject to the following 
-conditions:
-
-The above copyright notice and this permission notice shall be included in all copies
-or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
-FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
-DEALINGS IN THE SOFTWARE
-"""
 import datetime
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from model_utils import Choices
-from model_utils.managers import PassThroughManager
 from model_utils.models import TimeStampedModel
 from querysets import YokoshiQuerySet
 
 
 class Regional(TimeStampedModel):
     """
-    Represents a physical mahikari dojo. It can be associated to a bigger dojo;
-    in this case, it will indicate the relationship with parent_regional
-    @since 1.0
+    Represents an establishment where mahikari art is practiced. Distinct regionals implies in different addresses.
     """
 
     class Meta:
@@ -45,7 +25,6 @@ class Regional(TimeStampedModel):
 
     def __unicode__(self):
         return u'%s' % self.name
-
 
 class Han(TimeStampedModel):
     """
@@ -103,7 +82,8 @@ class Yokoshi(TimeStampedModel):
         return u'%s' % self.complete_name
 
     # Allows more friendly query set filters (see django-model-utils docs):
-    objects = PassThroughManager.for_queryset_class(YokoshiQuerySet)()
+    # http://django-model-utils.readthedocs.io/en/2.6.1/managers.html#passthroughmanager
+    objects = models.Manager.from_queryset(YokoshiQuerySet)()
 
     def save(self, force_insert=False, force_update=False, using=None):
         """

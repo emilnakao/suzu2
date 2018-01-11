@@ -1,29 +1,14 @@
-"""
-Copyright (c) 2013 The Suzu Team
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this
-software and associated documentation files (the "Software"), to deal in the Software
-without restriction, including without limitation the rights to use, copy, modify, 
-merge, publish, distribute, sublicense, and/or sell copies of the Software, and to 
-permit persons to whom the Software is furnished to do so, subject to the following 
-conditions:
-
-The above copyright notice and this permission notice shall be included in all copies
-or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
-FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
-DEALINGS IN THE SOFTWARE
-"""
-import autocomplete_light
+from dal import autocomplete
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
-from django.contrib.contenttypes.models import ContentType
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from .models import Country, State, Address, City, Neighborhood, Yokoshi, Han, Regional, EventType, Presence, Event
+
+# Register your models here.
+
 
 def export_yokoshi_csv(modeladmin, request, queryset):
     import csv
@@ -43,6 +28,7 @@ def export_yokoshi_csv(modeladmin, request, queryset):
         ])
     return response
 
+
 export_yokoshi_csv.short_description = u"Exportar CSV"
 
 # def merge_selected_objects(modeladmin, request, queryset):
@@ -52,15 +38,17 @@ export_yokoshi_csv.short_description = u"Exportar CSV"
 #
 # merge_selected_objects.short_description = u"Unificar registros"
 
+
 class YokoshiAdmin(ModelAdmin):
     """
     Administration interface for yokoshi.
     """
-    form = autocomplete_light.modelform_factory(Yokoshi)
+    # form = autocomplete.modelform_factory(Yokoshi)
     search_fields = ['complete_name', 'is_mikumite']
     list_display = ('complete_name', 'is_mtai', 'is_ossuewanin', 'is_mikumite', 'is_inactive')
     list_filter = ('han', 'is_mtai', 'is_ossuewanin', 'is_mikumite', 'is_inactive')
     actions = [export_yokoshi_csv]
+
 
 class PresenceAdmin(ModelAdmin):
     search_fields = ['yokoshi__complete_name']
@@ -73,10 +61,12 @@ class EventAdmin(ModelAdmin):
     list_display = ('event_type', 'begin_date_time')
     list_filter = ('event_type', 'begin_date_time')
 
+
 class HanAdmin(ModelAdmin):
     search_fields = ['name']
     list_display = ('name', 'regional', 'additional_information')
     list_filter = ['regional']
+
 
 admin.site.register(Country)
 admin.site.register(State)
@@ -89,4 +79,3 @@ admin.site.register(Regional)
 admin.site.register(EventType)
 admin.site.register(Presence, PresenceAdmin)
 admin.site.register(Event, EventAdmin)
-

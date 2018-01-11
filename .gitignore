@@ -5,3 +5,4 @@ venv*
 .pydevproject
 *.log
 *.xls
+django11*
