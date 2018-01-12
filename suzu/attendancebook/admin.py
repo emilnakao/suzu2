@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from dal import autocomplete
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 from django.http import HttpResponse
-from .models import Country, State, Address, City, Neighborhood, Yokoshi, Han, Regional, EventType, Presence, Event
+from .models import Country, State, City, Yokoshi, Han, Regional, EventType, Presence, Event
 
 # Register your models here.
 
@@ -71,8 +70,6 @@ class HanAdmin(ModelAdmin):
 admin.site.register(Country)
 admin.site.register(State)
 admin.site.register(City)
-admin.site.register(Address)
-admin.site.register(Neighborhood)
 admin.site.register(Yokoshi, YokoshiAdmin)
 admin.site.register(Han, HanAdmin)
 admin.site.register(Regional)

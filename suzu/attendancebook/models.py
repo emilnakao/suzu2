@@ -60,7 +60,6 @@ class Yokoshi(TimeStampedModel):
                                      verbose_name=('Yokoshi|phonetic_name'))
     email = models.EmailField(null=True, blank=True, verbose_name=_('Yokoshi|email'))
     phone = models.CharField(max_length=40, null=True, blank=True, verbose_name=_('Yokoshi|phone'))
-    address = models.ForeignKey("Address", null=True, blank=True, db_index=True, verbose_name=_('Yokoshi|address'))
     additional_information = models.TextField(max_length=30000, null=True, blank=True,
                                               verbose_name=_('Yokoshi|additional_information'))
     birthday = models.DateField(null=True, blank=True, verbose_name=_('Yokoshi|birthday'))
@@ -143,45 +142,6 @@ class City(TimeStampedModel):
     def __unicode__(self):
         return u'%s' % (self.name)
 
-
-class Neighborhood(TimeStampedModel):
-    """
-    Simple entity to represent neighborhoods. Should be completed according to necessity.
-    """
-
-    class Meta:
-        unique_together = ('name', 'city',)
-        verbose_name = _('neighborhood')
-        verbose_name_plural = _('neighborhoods')
-
-    name = models.CharField(max_length=100, db_index=True, verbose_name=_('Neighborhood|name'))
-    city = models.ForeignKey(City, null=True, blank=True, db_index=True, verbose_name=_('Neighborhood|city'))
-
-    def __unicode__(self):
-        return u'%s' % (self.name)
-
-
-class Address(TimeStampedModel):
-    """
-    Basic address entity. Should be completed according to necessity.
-    """
-
-    class Meta:
-        unique_together = ('street_name', 'house_number', 'neighborhood')
-        verbose_name = _('address')
-        verbose_name_plural = _('addresses')
-
-    street_name = models.CharField(max_length=500, null=True, blank=True, db_index=True,
-                                   verbose_name=_('Address|street_name'))
-    house_number = models.CharField(max_length=20, null=True, blank=True, verbose_name=_('Address|house_number'))
-    zip_code = models.IntegerField(max_length=12, null=True, blank=True, verbose_name=_('Address|zip_code'))
-    neighborhood = models.ForeignKey(Neighborhood, null=True, blank=True, db_index=True,
-                                     verbose_name=_('Address|neighborhood'))
-    additional_information = models.TextField(max_length=2000, null=True, blank=True,
-                                              verbose_name=_('Address|additional_information'))
-
-    def __unicode__(self):
-        return u'%s %s' % (self.street_name, self.house_number)
 
 #######################
 # CHECKIN DOMAIN
