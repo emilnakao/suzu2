@@ -22,9 +22,10 @@ from attendancebook.api.resources import HanResource, ReadOnlyHanResource, Yokos
     EventResource, \
     PresenceCountResource, PresenceResource
 
-from attendancebook.views import YokoshiListView, RegistrationHomeView, PresenceConfirmationView, \
+from attendancebook.views import YokoshiListView, AttendanceBookHome, PresenceConfirmationView, \
     singleevent_report, PresenceCancellationView, single_event_excel, yokoshihistory_report, mikumite_report, \
     mikumite_excel, inform_yokoshi_update, update_han, find_or_create_event_for_today
+from views import HomeView, route_request
 
 v1_api = Api(api_name='v1')
 v1_api.register(HanResource())
@@ -41,16 +42,27 @@ urlpatterns = [
     # urls do tastypie; api REST
     url(r'^api/', include(v1_api.urls)),
 
-    url(r'^yokoshi/list$', YokoshiListView.as_view(), "yokoshilist"),
-    url(r'^home$', RegistrationHomeView.as_view(), "registrationhome"),
-    url(r'^confirm_presence/$', PresenceConfirmationView.as_view(), "confirm_presence"),
-    url(r'^cancel_presence/$', PresenceCancellationView.as_view(), "cancel_presence"),
-    url(r'^presence_by_event/$', singleevent_report),
-    url(r'^presence_by_event_excel/$', single_event_excel),
-    url(r'^yokoshi_history/$', yokoshihistory_report),
-    url(r'^mikumite_report/$', mikumite_report),
-    url(r'^mikumite_excel/$', mikumite_excel),
-    url(r'^inform_yokoshi_update/$', inform_yokoshi_update),
-    url(r'^update_han/$', update_han),
-    url(r'^find_or_create_event_for_today/$', find_or_create_event_for_today),
+    # redireciona requests a templates/<arquivo> para o arquivo.html propriamente dito
+    url(r'^templates/(?P<path>.*)', route_request),
+
+    # # Login Screen
+    # url(r'^accounts/login/$', django.contrib., dict(template_name='login.html', ),
+    #     name='login', ),
+    #
+    # # Logout Screen
+    # url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',
+    #     dict(template_name='logout.html', ), name='logout', ),
+
+    url(r'^attendancebook/yokoshi/list$', YokoshiListView.as_view(), "yokoshilist"),
+    url(r'^$', HomeView.as_view()),
+    url(r'^attendancebook/confirm_presence/$', PresenceConfirmationView.as_view(), name='confirm_presence'),
+    url(r'^attendancebook/cancel_presence/$', PresenceCancellationView.as_view(), name="cancel_presence"),
+    url(r'^attendancebook/presence_by_event/$', singleevent_report),
+    url(r'^attendancebook/presence_by_event_excel/$', single_event_excel),
+    url(r'^attendancebook/yokoshi_history/$', yokoshihistory_report),
+    url(r'^attendancebook/mikumite_report/$', mikumite_report),
+    url(r'^attendancebook/mikumite_excel/$', mikumite_excel),
+    url(r'^attendancebook/inform_yokoshi_update/$', inform_yokoshi_update),
+    url(r'^attendancebook/update_han/$', update_han),
+    url(r'^attendancebook/find_or_create_event_for_today/$', find_or_create_event_for_today),
 ]

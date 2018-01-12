@@ -108,7 +108,7 @@ suzuClientApp.factory('eventService', ['$http', '$cookieStore', 'notificationSer
          * @param clbk
          */
         confirmPresence: function (user, clbk) {
-            var url = '/registration/confirm_presence/?current_event='+$cookieStore.get('event').id + '&yokoshi=' + user.id;
+            var url = '/attendancebook/confirm_presence/?current_event='+$cookieStore.get('event').id + '&yokoshi=' + user.id;
 
             if(user.firsttime === true){
                 url = url + '&is_first_time=true';
@@ -128,15 +128,15 @@ suzuClientApp.factory('eventService', ['$http', '$cookieStore', 'notificationSer
          * @param clbk
          */
         cancelPresence: function (user, clbk) {
-            $http.get('/registration/cancel_presence/?current_event='+ $cookieStore.get('event').id +'&yokoshi=' + user.id).success(function (data) {
+            $http.get('/attendancebook/cancel_presence/?current_event='+ $cookieStore.get('event').id +'&yokoshi=' + user.id).success(function (data) {
                 clbk(user);
 
             });
         },
 
         findOrCreateToday: function(eventType, clbk){
-            $http.post('/registration/find_or_create_event_for_today/?event_type_id='+ eventType).success(function(data){
-                clbk(data);
+            $http.post('/attendancebook/find_or_create_event_for_today/?event_type_id='+ eventType).success(function(data){
+                clbk(JSON.parse(data));
             });
         }
     }

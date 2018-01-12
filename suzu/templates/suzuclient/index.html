@@ -1,4 +1,4 @@
-{% load angularjs %}{% load i18n %}
+{% load angularjs %}{% load i18n %}{% load static %}
 <!doctype html>
 <html lang="pt" ng-app="suzuClientApp">
 <head>
@@ -7,13 +7,13 @@
     <!-- =================================================================================  -->
     <!-- ::: CSS ::: -->
     <!-- =================================================================================  -->
-    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/font-awesome.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/datepicker.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/suzu.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/jquery.pnotify.default.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/select2.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/select.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/datepicker.css' %}" rel="stylesheet">
+    <link href="{% static 'css/suzu.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jquery.pnotify.default.css' %}" rel="stylesheet">
+    <link href="{% static 'css/select2.css' %}" rel="stylesheet">
+    <link href="{% static 'css/select.css' %}" rel="stylesheet">
 </head>
 <body key-trap>
 <!-- =================================================================================  -->
@@ -160,52 +160,52 @@
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 -->
-<script src="{{ STATIC_URL }}js/third/jquery.js"></script>
+<script src="{% static 'js/third/jquery.js'%}"></script>
 <!-- o pnotify sem estar minimizado possui uma correcao para bootstrap 3-->
-<script src="{{ STATIC_URL }}js/third/jquery.pnotify.js"></script>
-<script src="{{ STATIC_URL }}js/third/moment.js"></script>
-<script src="{{ STATIC_URL }}js/third/bootstrap.js"></script>
-<script src="{{ STATIC_URL }}js/third/angular.js"></script>
-<script src="{{ STATIC_URL }}js/third/angular-cookies.js"></script>
-{#<script src="{{ STATIC_URL }}js/third/angular-mocks.js"></script>#}
-<script src="{{ STATIC_URL }}js/third/angular-route.js"></script>
-<script src="{{ STATIC_URL }}js/third/angular-sanitize.js"></script>
-<script src="{{ STATIC_URL }}js/third/angularstrap.js"></script>
-<script src="{{ STATIC_URL }}js/third/ui-bootstrap.js"></script>
-<script src="{{ STATIC_URL }}js/third/date.js"></script>
-<script src="{{ STATIC_URL }}js/third/bootstrap-datepicker.js"></script>
-<script src="{{ STATIC_URL }}js/third/messaging-services.js"></script>
-<script src="{{ STATIC_URL }}js/third/highcharts.js"></script>
-<script src="{{ STATIC_URL }}js/third/underscore.js"></script>
-<script src="{{ STATIC_URL }}js/third/typeahead.min.js"></script>
-<script src="{{ STATIC_URL }}js/third/select2.js"></script>
-<script src="{{ STATIC_URL }}js/third/select2_locale_pt-BR.js"></script>
-<script src="{{ STATIC_URL }}js/third/select.js"></script>
-<script src="{{ STATIC_URL }}js/keyevents.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/suzuclient.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/CheckInController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/DummyController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/EventController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/EventEditController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/YokoshiController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/YokoshiEditController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/SidebarController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/SingleEventReportController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/YokoshiHistoryReportController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/MikumiteReportController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/ExportReportController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/InformYokoshiUpdateController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/ModalCreateYokoshiController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/ModalYokoshiEditController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/controllers/UpdateHanController.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/services/EventService.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/services/YokoshiService.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/services/HanService.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/services/ReportService.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/services/NotificationService.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/directives/FocusDirective.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/directives/KeyTrapDirective.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/directives/EventSelectionDirective.js"></script>
-<script src="{{ STATIC_URL }}js/suzuclient/directives/EventCreationDirective.js"></script>
+<script src="{% static 'js/third/jquery.pnotify.js'%}"></script>
+<script src="{% static 'js/third/moment.js'%}"></script>
+<script src="{% static 'js/third/bootstrap.js'%}"></script>
+<script src="{% static 'js/third/angular.js'%}"></script>
+<script src="{% static 'js/third/angular-cookies.js'%}"></script>
+{#<script src="{% static 'js/third/angular-mocks.js'%}"></script>#}
+<script src="{% static 'js/third/angular-route.js'%}"></script>
+<script src="{% static 'js/third/angular-sanitize.js'%}"></script>
+<script src="{% static 'js/third/angularstrap.js'%}"></script>
+<script src="{% static 'js/third/ui-bootstrap.js'%}"></script>
+<script src="{% static 'js/third/date.js'%}"></script>
+<script src="{% static 'js/third/bootstrap-datepicker.js'%}"></script>
+<script src="{% static 'js/third/messaging-services.js'%}"></script>
+<script src="{% static 'js/third/highcharts.js'%}"></script>
+<script src="{% static 'js/third/underscore.js'%}"></script>
+<script src="{% static 'js/third/typeahead.min.js'%}"></script>
+<script src="{% static 'js/third/select2.js'%}"></script>
+<script src="{% static 'js/third/select2_locale_pt-BR.js'%}"></script>
+<script src="{% static 'js/third/select.js'%}"></script>
+<script src="{% static 'js/keyevents.js'%}"></script>
+<script src="{% static 'js/suzuclient/suzuclient.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/CheckInController.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/DummyController.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/EventController.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/EventEditController.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/YokoshiController.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/YokoshiEditController.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/SidebarController.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/SingleEventReportController.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/YokoshiHistoryReportController.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/MikumiteReportController.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/ExportReportController.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/InformYokoshiUpdateController.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/ModalCreateYokoshiController.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/ModalYokoshiEditController.js'%}"></script>
+<script src="{% static 'js/suzuclient/controllers/UpdateHanController.js'%}"></script>
+<script src="{% static 'js/suzuclient/services/EventService.js'%}"></script>
+<script src="{% static 'js/suzuclient/services/YokoshiService.js'%}"></script>
+<script src="{% static 'js/suzuclient/services/HanService.js'%}"></script>
+<script src="{% static 'js/suzuclient/services/ReportService.js'%}"></script>
+<script src="{% static 'js/suzuclient/services/NotificationService.js'%}"></script>
+<script src="{% static 'js/suzuclient/directives/FocusDirective.js'%}"></script>
+<script src="{% static 'js/suzuclient/directives/KeyTrapDirective.js'%}"></script>
+<script src="{% static 'js/suzuclient/directives/EventSelectionDirective.js'%}"></script>
+<script src="{% static 'js/suzuclient/directives/EventCreationDirective.js'%}"></script>
 </body>
 </html>

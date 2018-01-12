@@ -18,11 +18,11 @@ from api.resources import EventResource
 from .models import Yokoshi, Presence, Event, Han, EventType
 
 
-class RegistrationHomeView(LoginRequiredMixin, TemplateView):
+class AttendanceBookHome(LoginRequiredMixin, TemplateView):
     """
     Home screen; easy access to all registration screens
     """
-    template_name = 'registration/home.html'
+    template_name = 'attendancebook/home.html'
 
 
 class YokoshiListView(LoginRequiredMixin, ListView):
@@ -213,6 +213,6 @@ def find_or_create_event_for_today(request):
     event_bundle = res.build_bundle(request=request, obj=event_for_today[0])
     data = res.serialize(None, res.full_dehydrate(event_bundle), "application/json")
 
-    return HttpResponse(data, mimetype='application/json')
+    return JsonResponse(data, safe=False)
 
 

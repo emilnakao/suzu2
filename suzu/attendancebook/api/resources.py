@@ -108,7 +108,7 @@ class PresenceCountResource(ModelResource):
         # override default implementation
         event_id = bundle.request.GET['event_id']
         self._meta.queryset = Yokoshi.objects.extra(select={
-            'presence_count': 'select count(p) from registration_presence p where p.yokoshi_id = registration_yokoshi.id and p.event_id=%s'},
+            'presence_count': 'select count(p.id) from attendancebook_presence p where p.yokoshi_id = attendancebook_yokoshi.id and p.event_id=%s'},
                                                     select_params=[event_id]).order_by('complete_name')
 
         return super(PresenceCountResource, self).obj_get_list(bundle, **kwargs)

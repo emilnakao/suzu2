@@ -19,16 +19,13 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE
 """
 from braces.views import LoginRequiredMixin
-from django.contrib.auth.models import Permission
-from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import render_to_response, render
 from django.views.generic import TemplateView
-from .globalpermission import GlobalPermission
 
-GlobalPermission.objects.get_or_create(codename='suzu_admin', name='Can access admin screens')
-GlobalPermission.objects.get_or_create(codename='suzu_reports', name='Can access report screens')
-GlobalPermission.objects.get_or_create(codename='suzu_check_in', name='Can access check-in screens')
-GlobalPermission.objects.get_or_create(codename='suzu_past_events', name='Can access past events')
+# GlobalPermission.objects.get_or_create(codename='suzu_admin', name='Can access admin screens')
+# GlobalPermission.objects.get_or_create(codename='suzu_reports', name='Can access report screens')
+# GlobalPermission.objects.get_or_create(codename='suzu_check_in', name='Can access check-in screens')
+# GlobalPermission.objects.get_or_create(codename='suzu_past_events', name='Can access past events')
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
