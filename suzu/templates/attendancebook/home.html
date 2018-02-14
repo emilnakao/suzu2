@@ -1,4 +1,4 @@
-{% extends "root.html" %}
+{% extends "root.html" %}{% load static %}
 {% load i18n %}
 {% block page %}
     <h1><span class="glyphicon glyphicon-book"></span> Cadastros</h1>
@@ -8,7 +8,7 @@
       <!-- Three columns of text below the carousel -->
       <div class="row ">
         <div class="col-md-6">
-           <img class="img-thumbnail img-responsive" src="{{ STATIC_URL }}img/register_kumite.jpg" alt="Generic placeholder image">
+           <img class="img-thumbnail img-responsive" src="{% static 'img/register_kumite.jpg'%}" alt="Generic placeholder image">
           <h3>Kumite</h3>
           <p>Cadastre aqui amigos yokoshi que j&aacute; s&atilde;o kumite.</p>
           <p><a class="btn btn-default btn-lg btn-block" href="{% url 'yokoshicreate' %}"><span class="glyphicon glyphicon-plus"></span> Cadastrar &raquo;</a></p>
@@ -25,14 +25,14 @@
     <hr>
   <div class="row">
         <div class="col-md-6">
-           <img class="img-thumbnail img-responsive" src="{{ STATIC_URL }}img/register_eventtype.jpg" alt="Generic placeholder image">
+           <img class="img-thumbnail img-responsive" src="{% static 'img/register_eventtype.jpg'%}" alt="Generic placeholder image">
           <h3>Tipos de Evento</h3>
           <p>Exemplos de tipos de evento: cerim&ocaret;nia mensal, dia normal, frontal pelos dirigentes. </p>
            <p><a class="btn btn-default btn-lg btn-block" href="#"><span class="glyphicon glyphicon-plus"></span> Cadastrar &raquo;</a></p>
           <p><a class="btn btn-default btn-lg btn-block" href="#"><span class="glyphicon glyphicon-search"></span> Procurar &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-md-6">
-           <img class="img-thumbnail img-responsive" src="{{ STATIC_URL }}img/register_event.jpg" alt="Generic placeholder image">
+           <img class="img-thumbnail img-responsive" src="{% static 'img/register_event.jpg'%}" alt="Generic placeholder image">
           <h3>Eventos</h3>
           <p>S&atilde;o tipos de evento com data e local definidos.</p>
            <p><a class="btn btn-default btn-lg btn-block" href="#"><span class="glyphicon glyphicon-plus"></span> Cadastrar &raquo;</a></p>

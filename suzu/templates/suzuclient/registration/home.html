@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n %}{% load static %}
 <div class="container" id="container">
     <h1><span class="glyphicon glyphicon-book"></span> Cadastros</h1>
     <hr>
@@ -7,7 +7,7 @@
         <!-- Three columns of text below the carousel -->
         <div class="row ">
             <div class="col-md-6">
-                <img class="img-thumbnail img-responsive" src="{{ STATIC_URL }}img/register_kumite.jpg"
+                <img class="img-thumbnail img-responsive" src="{% static 'img/register_kumite.jpg'%}"
                      alt="Generic placeholder image">
 
                 <h3>Kumite</h3>
@@ -41,7 +41,7 @@
         <hr>
         <div class="row">
             <div class="col-md-6">
-                <img class="img-thumbnail img-responsive" src="{{ STATIC_URL }}img/register_eventtype.jpg"
+                <img class="img-thumbnail img-responsive" src="{% static 'img/register_eventtype.jpg'%}"
                      alt="Generic placeholder image">
 
                 <h3>Tipos de Evento</h3>
@@ -56,7 +56,7 @@
             </div>
             <!-- /.col-lg-4 -->
             <div class="col-md-6">
-                <img class="img-thumbnail img-responsive" src="{{ STATIC_URL }}img/register_event.jpg"
+                <img class="img-thumbnail img-responsive" src="{% static 'img/register_event.jpg'%}"
                      alt="Generic placeholder image">
 
                 <h3>Eventos</h3>

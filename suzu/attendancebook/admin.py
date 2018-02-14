@@ -33,7 +33,7 @@ export_yokoshi_csv.short_description = u"Exportar CSV"
 # def merge_selected_objects(modeladmin, request, queryset):
 #     selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
 #     ct = ContentType.objects.get_for_model(queryset.model)
-#     return HttpResponseRedirect("/registration/merge/?ct=%s&ids=%s" % (ct.pk, ",".join(selected)))
+#     return HttpResponseRedirect("/attendancebook/merge/?ct=%s&ids=%s" % (ct.pk, ",".join(selected)))
 #
 # merge_selected_objects.short_description = u"Unificar registros"
 

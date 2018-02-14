@@ -17,271 +17,271 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: registration/models.py:39
+#: attendancebook/models.py:39
 msgid "regional"
 msgstr "Regional"
 
-#: registration/models.py:40
+#: attendancebook/models.py:40
 msgid "regionals"
 msgstr "Regionais"
 
-#: registration/models.py:42
+#: attendancebook/models.py:42
 msgid "Regional|name"
 msgstr "Nome"
 
-#: registration/models.py:44
+#: attendancebook/models.py:44
 msgid "Regional|parent_regional"
 msgstr "Filiado a"
 
-#: registration/models.py:56
+#: attendancebook/models.py:56
 msgid "han"
 msgstr "Núcleo"
 
-#: registration/models.py:57
+#: attendancebook/models.py:57
 msgid "hans"
 msgstr "Núcleos"
 
-#: registration/models.py:60
+#: attendancebook/models.py:60
 msgid "Han|name"
 msgstr "Nome"
 
-#: registration/models.py:61
+#: attendancebook/models.py:61
 msgid "Han|regional"
 msgstr "Regional"
 
-#: registration/models.py:63
+#: attendancebook/models.py:63
 msgid "Han|additional_information"
 msgstr "Informações Adicionais"
 
-#: registration/models.py:74
+#: attendancebook/models.py:74
 msgid "none_omitama_level"
 msgstr "Desconhecido ou não se aplica"
 
-#: registration/models.py:74
+#: attendancebook/models.py:74
 msgid "basic_omitama_level"
 msgstr "Básico"
 
-#: registration/models.py:75
+#: attendancebook/models.py:75
 msgid "intermediate_omitama_level"
 msgstr "Intermediário"
 
-#: registration/models.py:76
+#: attendancebook/models.py:76
 msgid "advanced_omitama_level"
 msgstr "Superior"
 
-#: registration/models.py:78
+#: attendancebook/models.py:78
 msgid "Yokoshi|user"
 msgstr "Usuário do Suzu"
 
-#: registration/models.py:79
+#: attendancebook/models.py:79
 msgid "Yokoshi|complete_name"
 msgstr "Nome Completo"
 
-#: registration/models.py:82
+#: attendancebook/models.py:82
 msgid "Yokoshi|email"
 msgstr "Email"
 
-#: registration/models.py:83
+#: attendancebook/models.py:83
 msgid "Yokoshi|phone"
 msgstr "Telefone"
 
-#: registration/models.py:84
+#: attendancebook/models.py:84
 msgid "Yokoshi|address"
 msgstr "Endereço"
 
-#: registration/models.py:86
+#: attendancebook/models.py:86
 msgid "Yokoshi|additional_information"
 msgstr "Informações Adicionais"
 
-#: registration/models.py:87
+#: attendancebook/models.py:87
 msgid "Yokoshi|birthday"
 msgstr "Data de Nascimento"
 
-#: registration/models.py:88
+#: attendancebook/models.py:88
 msgid "Yokoshi|is_inactive"
 msgstr "Inativo"
 
-#: registration/models.py:89
+#: attendancebook/models.py:89
 msgid "Yokoshi|seminary_number"
 msgstr "Número do Seminário"
 
-#: registration/models.py:90
+#: attendancebook/models.py:90
 msgid "Yokoshi|han"
 msgstr "Núcleo"
 
-#: registration/models.py:91
+#: attendancebook/models.py:91
 msgid "Yokoshi|is_mtai"
 msgstr "É Mahikari-tai"
 
-#: registration/models.py:92
+#: attendancebook/models.py:92
 msgid "Yokoshi|is_ossuewanin"
 msgstr "É Ossuewanin"
 
-#: registration/models.py:93
+#: attendancebook/models.py:93
 msgid "Yokoshi|is_mikumite"
 msgstr "É Mi-kumite"
 
-#: registration/models.py:95
+#: attendancebook/models.py:95
 msgid "Yokoshi|indication"
 msgstr "Encaminhador"
 
-#: registration/models.py:98
+#: attendancebook/models.py:98
 msgid "yokoshi"
 msgstr "Yokoshi"
 
-#: registration/models.py:99
+#: attendancebook/models.py:99
 msgid "yokoshis"
 msgstr "Yokoshi"
 
-#: registration/models.py:118
+#: attendancebook/models.py:118
 msgid "Country|name"
 msgstr "Nome"
 
-#: registration/models.py:121
+#: attendancebook/models.py:121
 msgid "country"
 msgstr "País"
 
-#: registration/models.py:122
+#: attendancebook/models.py:122
 msgid "countries"
 msgstr "Países"
 
-#: registration/models.py:136
+#: attendancebook/models.py:136
 msgid "state"
 msgstr "Estado"
 
-#: registration/models.py:137
+#: attendancebook/models.py:137
 msgid "states"
 msgstr "Estados"
 
-#: registration/models.py:139
+#: attendancebook/models.py:139
 msgid "State|name"
 msgstr "Nome"
 
-#: registration/models.py:140
+#: attendancebook/models.py:140
 msgid "State|country"
 msgstr "País"
 
-#: registration/models.py:153
+#: attendancebook/models.py:153
 msgid "city"
 msgstr "Cidade"
 
-#: registration/models.py:154
+#: attendancebook/models.py:154
 msgid "cities"
 msgstr "Cidades"
 
-#: registration/models.py:156
+#: attendancebook/models.py:156
 msgid "City|name"
 msgstr "Nome"
 
-#: registration/models.py:157
+#: attendancebook/models.py:157
 msgid "City|state"
 msgstr "Estado"
 
-#: registration/models.py:170
+#: attendancebook/models.py:170
 msgid "neighborhood"
 msgstr "Bairro"
 
-#: registration/models.py:171
+#: attendancebook/models.py:171
 msgid "neighborhoods"
 msgstr "Bairros"
 
-#: registration/models.py:173
+#: attendancebook/models.py:173
 msgid "Neighborhood|name"
 msgstr "Nome"
 
-#: registration/models.py:174
+#: attendancebook/models.py:174
 msgid "Neighborhood|city"
 msgstr "Cidade"
 
-#: registration/models.py:187
+#: attendancebook/models.py:187
 msgid "address"
 msgstr "Endereços"
 
-#: registration/models.py:188
+#: attendancebook/models.py:188
 msgid "addresses"
 msgstr "Endereços"
 
-#: registration/models.py:191
+#: attendancebook/models.py:191
 msgid "Address|street_name"
 msgstr "Nome"
 
-#: registration/models.py:192
+#: attendancebook/models.py:192
 msgid "Address|house_number"
 msgstr "Número"
 
-#: registration/models.py:193
+#: attendancebook/models.py:193
 msgid "Address|zip_code"
 msgstr "CEP"
 
-#: registration/models.py:195
+#: attendancebook/models.py:195
 msgid "Address|neighborhood"
 msgstr "Bairro"
 
-#: registration/models.py:197
+#: attendancebook/models.py:197
 msgid "Address|additional_information"
 msgstr "Informações Adicionais"
 
-#: registration/models.py:224
+#: attendancebook/models.py:224
 msgid "event_type"
 msgstr "Tipo de Evento"
 
-#: registration/models.py:225
+#: attendancebook/models.py:225
 msgid "event_types"
 msgstr "Tipos de Eventos"
 
-#: registration/models.py:227
+#: attendancebook/models.py:227
 msgid "EventType|name"
 msgstr "Nome"
 
-#: registration/models.py:240
+#: attendancebook/models.py:240
 msgid "event"
 msgstr "Evento"
 
-#: registration/models.py:241
+#: attendancebook/models.py:241
 msgid "events"
 msgstr "Eventos"
 
-#: registration/models.py:243
+#: attendancebook/models.py:243
 msgid "Event|event_type"
 msgstr "Tipo de Evento"
 
-#: registration/models.py:244
+#: attendancebook/models.py:244
 msgid "Event|begin_date_time"
 msgstr "Início"
 
-#: registration/models.py:245
+#: attendancebook/models.py:245
 msgid "Event|details"
 msgstr "Detalhes"
 
-#: registration/models.py:254
+#: attendancebook/models.py:254
 msgid "presence"
 msgstr "Presença"
 
-#: registration/models.py:255
+#: attendancebook/models.py:255
 msgid "presences"
 msgstr "Presenças"
 
-#: registration/models.py:257
+#: attendancebook/models.py:257
 msgid "Presence|event"
 msgstr "Evento"
 
-#: registration/models.py:258
+#: attendancebook/models.py:258
 msgid "Presence|begin_date_time"
 msgstr "Início"
 
-#: registration/models.py:259
+#: attendancebook/models.py:259
 msgid "Presence|yokoshi"
 msgstr "Yokoshi"
 
-#: registration/models.py:260
+#: attendancebook/models.py:260
 msgid "Presence|additional_information"
 msgstr "Informações Adicionais"
 
-#: registration/models.py:261
+#: attendancebook/models.py:261
 msgid "Presence|is_first_time"
 msgstr "Primeira Vez"
 
-#: registration/views.py:79 registration/views.py:99
+#: attendancebook/views.py:79 attendancebook/views.py:99
 msgid "user_info.is_present_in.msg"
 msgstr "Está presente"
 

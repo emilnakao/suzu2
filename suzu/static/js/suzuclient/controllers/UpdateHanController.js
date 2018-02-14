@@ -44,7 +44,7 @@ suzuClientApp.controller('UpdateHanController', function ($scope, $http, $cookie
     $scope.updateHan = function(yokoshi){
         yokoshi.loading = true;
 
-        $http.post('/registration/update_han/?yokoshi_id=' + yokoshi.id + '&han_id=' + yokoshi.han.id
+        $http.post('/attendancebook/update_han/?yokoshi_id=' + yokoshi.id + '&han_id=' + yokoshi.han.id
             ).success(function(clbk){
                 yokoshi.loading = false;
                 yokoshi.done = true;

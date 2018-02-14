@@ -86,10 +86,10 @@ def singleevent_report(request):
     """
     cursor = connection.cursor()
     cursor.execute(
-        'SELECT y.complete_name as nome, h.name as han, y.is_mikumite as mikumite, p.is_first_time as firsttime from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by h.name asc, y.complete_name asc',
+        'SELECT y.complete_name as nome, h.name as han, y.is_mikumite as mikumite, p.is_first_time as firsttime from attendancebook_presence p inner join attendancebook_yokoshi y on y.id = p.yokoshi_id inner join attendancebook_han h on h.id = y.han_id where p.event_id = %s order by h.name asc, y.complete_name asc',
         [request.GET['event']])
     comments = dictfetchall(cursor)
-    # comments = Presence.objects.raw('SELECT p.id, y.complete_name as name, h.name as han from registration_presence p inner join registration_yokoshi y on y.id = p.yokoshi_id inner join registration_han h on h.id = y.han_id where p.event_id = %s order by y.complete_name asc, h.name asc', [request.GET['event']])
+    # comments = Presence.objects.raw('SELECT p.id, y.complete_name as name, h.name as han from attendancebook_presence p inner join attendancebook_yokoshi y on y.id = p.yokoshi_id inner join attendancebook_han h on h.id = y.han_id where p.event_id = %s order by y.complete_name asc, h.name asc', [request.GET['event']])
     return JsonResponse(comments, safe=False)
 
 
@@ -118,7 +118,7 @@ def yokoshihistory_report(request):
 
     cursor = connection.cursor()
     cursor.execute(
-        'select et.name as eventtype, e.begin_date_time as begindate from registration_presence p inner join registration_event e on p.event_id = e.id inner join registration_eventtype et on et.id = e.event_type_id where p.yokoshi_id = %s and p.begin_date_time >= %s and p.begin_date_time <= %s',
+        'select et.name as eventtype, e.begin_date_time as begindate from attendancebook_presence p inner join attendancebook_event e on p.event_id = e.id inner join attendancebook_eventtype et on et.id = e.event_type_id where p.yokoshi_id = %s and p.begin_date_time >= %s and p.begin_date_time <= %s',
         [yokoshiId, intervalStart, intervalEnd])
     comments = dictfetchall(cursor)
     return JsonResponse(comments, safe=False)
@@ -142,10 +142,10 @@ def mikumite_report(request):
         "coalesce(indication.complete_name, ' ') as indication_name, "
         "coalesce(indicationhan.name, ' ') as indication_han_name, "
         "count(p.id) as number_presences "
-        "from registration_presence p "
-        "inner join registration_yokoshi y on y.id = p.yokoshi_id "
-        "left outer join registration_yokoshi indication on indication.id = y.indication_id "
-        "left outer join registration_han indicationhan on indicationhan.id = indication.han_id "
+        "from attendancebook_presence p "
+        "inner join attendancebook_yokoshi y on y.id = p.yokoshi_id "
+        "left outer join attendancebook_yokoshi indication on indication.id = y.indication_id "
+        "left outer join attendancebook_han indicationhan on indicationhan.id = indication.han_id "
         "where y.is_mikumite = true "
         "and p.begin_date_time >= %s "
         "and p.begin_date_time <= %s"
@@ -189,7 +189,7 @@ def inform_yokoshi_update(request):
     yokoshi_list = json.loads(received_json['selectedYokoshis'])
 
     for yokoshi_id in yokoshi_list:
-        Yokoshi.objects.filter(pk=yokoshi_id).update(last_registration_update=datetime.now())
+        Yokoshi.objects.filter(pk=yokoshi_id).update(last_attendancebook_update=datetime.now())
 
     return HttpResponse('')
 
