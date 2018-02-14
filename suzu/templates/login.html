@@ -1,8 +1,8 @@
 {% extends 'root.html' %}
-{% load i18n %}
+{% load i18n %}{% load static %}
 {% block quicklogin %}{% endblock %}
 {% block styles %}
-    <link href="{{STATIC_URL}}css/login.css" rel="stylesheet">
+    <link href="{% static 'css/login.css'%}" rel="stylesheet">
 
 {% endblock %}
 {% block page %}

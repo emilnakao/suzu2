@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 from tastypie.api import Api
 
@@ -46,6 +47,8 @@ urlpatterns = [
     url(r'^templates/(?P<path>.*)', route_request),
 
     # # Login Screen
+    url(r'^accounts/login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
+    url(r'^accounts/logout/$', auth_views.login, {'template_name': 'logout.html'}, name='logout'),
     # url(r'^accounts/login/$', django.contrib., dict(template_name='login.html', ),
     #     name='login', ),
     #
@@ -54,7 +57,7 @@ urlpatterns = [
     #     dict(template_name='logout.html', ), name='logout', ),
 
     url(r'^attendancebook/yokoshi/list$', YokoshiListView.as_view(), "yokoshilist"),
-    url(r'^$', HomeView.as_view()),
+    url(r'^$', HomeView.as_view(), name='home'),
     url(r'^attendancebook/confirm_presence/$', PresenceConfirmationView.as_view(), name='confirm_presence'),
     url(r'^attendancebook/cancel_presence/$', PresenceCancellationView.as_view(), name="cancel_presence"),
     url(r'^attendancebook/presence_by_event/$', singleevent_report),

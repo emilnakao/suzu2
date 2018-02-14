@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Allows customization in django forms
+    'widget_tweaks',
+    # REST API Library
     'tastypie',
     'attendancebook',
 ]
@@ -128,3 +131,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# Django Auth
+LOGIN_REDIRECT_URL = 'home'

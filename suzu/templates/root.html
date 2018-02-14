@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt" ng-app="suzu">
 <head>
@@ -8,16 +9,16 @@
     <meta name="author" content="The Suzu Team">
 
     <!-- Le styles -->
-    <link href="{{STATIC_URL}}css/bootstrap.css" rel="stylesheet">
-    <link href="{{STATIC_URL}}css/datepicker.css" rel="stylesheet">
-    <link href="{{STATIC_URL}}css/suzu.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet">
+    <link href="{% static 'css/datepicker.css'%}" rel="stylesheet">
+    <link href="{% static 'css/suzu.css'%}" rel="stylesheet">
     <style type="text/css">
         body {
             padding-top: 60px;
             padding-bottom: 40px;
         }
     </style>
-    <link href="{{STATIC_URL}}css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-responsive.css'%}" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -73,15 +74,15 @@
 <!-- Le javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="{{ STATIC_URL }}js/third/jquery.js"></script>
-<script src="{{STATIC_URL}}js/third/bootstrap.js"></script>
-<script src="{{STATIC_URL}}js/third/angular.js"></script>
-<script src="{{STATIC_URL}}js/third/angularstrap.js"></script>
-<script src="{{STATIC_URL}}js/third/bootstrap-datepicker.js"></script>
-<script src="{{STATIC_URL}}js/third/messaging-services.js"></script>
-<script src="{{STATIC_URL}}js/keyevents.js"></script>
-<script src="{{STATIC_URL}}js/suzu-angular.js"></script>
-<script src="{{STATIC_URL}}js/third/date.js"></script>
+<script src="{%  static 'js/third/jquery.js'%}"></script>
+<script src="{% static 'js/third/bootstrap.js'%}"></script>
+<script src="{% static 'js/third/angular.js'%}"></script>
+<script src="{% static 'js/third/angularstrap.js'%}"></script>
+<script src="{% static 'js/third/bootstrap-datepicker.js'%}"></script>
+<script src="{% static 'js/third/messaging-services.js'%}"></script>
+<script src="{% static 'js/keyevents.js'%}"></script>
+<script src="{% static 'js/suzu-angular.js'%}"></script>
+<script src="{% static 'js/third/date.js'%}"></script>
 {% block scripts %}{% endblock %}
 
 </body>
