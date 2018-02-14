@@ -99,7 +99,7 @@ def single_event_excel(request):
     :param request:
     :return:
     """
-    response = HttpResponse(mimetype="application/ms-excel")
+    response = HttpResponse(content_type="application/ms-excel")
     response['Content-Disposition'] = 'attachment; filename=relatorio_evento.xls'
     workbook = xlsreports.single_event_report(long(request.GET['event']))
     workbook.save(response)
@@ -168,7 +168,7 @@ def mikumite_excel(request):
     intervalStart = request.GET['start']
     intervalEnd = request.GET['end']
 
-    response = HttpResponse(mimetype="application/ms-excel")
+    response = HttpResponse(content_type="application/ms-excel")
     response['Content-Disposition'] = 'attachment; filename=relatorio_evento.xls'
     workbook = xlsreports.mikumite_report(intervalStart, intervalEnd)
     workbook.save(response)
