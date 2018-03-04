@@ -6,3 +6,4 @@ venv*
 *.log
 *.xls
 django11*
+node_modules
