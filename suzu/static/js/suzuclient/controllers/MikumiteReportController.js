@@ -18,7 +18,7 @@ suzuClientApp.controller('MikumiteReportController', function ($scope, $http, $c
 
 
     $scope.generateReport = function () {
-        $http.get(_.template('/registration/mikumite_report/?start=<%=start%>&end=<%=end%>')({start: $scope.start, end: $scope.end})).success(function (data) {
+        $http.get(_.template('/attendancebook/mikumite_report/?start=<%=start%>&end=<%=end%>')({start: $scope.start, end: $scope.end})).success(function (data) {
             $scope.data = data;
             notificationService.success("Relatório gerado!", "Presenças de Mikumite");
             $scope.itemsPerPage = data.length;

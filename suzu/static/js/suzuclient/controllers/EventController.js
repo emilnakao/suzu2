@@ -27,7 +27,7 @@ suzuClientApp.controller('EventController', function ($scope, $rootScope, $http,
 
     $scope.findOrCreateEvent = function(eventType){
         eventService.findOrCreateToday(eventType, function(data){
-            $scope.selectEvent(data)
+            $scope.selectEvent(JSON.parse(data))
             $('#createEventModal').modal('hide');
         });
     };

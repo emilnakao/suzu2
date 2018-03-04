@@ -50,7 +50,7 @@ suzuClientApp.controller('InformYokoshiUpdateController', function ($scope, $htt
                ids.push(elem.id);
             });
 
-            $http.post('/registration/inform_yokoshi_update/',
+            $http.post('/attendancebook/inform_yokoshi_update/',
                 {
                     selectedYokoshis : angular.toJson(ids)
                 }).success(function(data){

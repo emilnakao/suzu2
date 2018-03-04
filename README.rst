@@ -1,3 +1,20 @@
+# Desenvolvendo
+
+## Branch nova: django11
+
+`workon django11`
+
+## Migrações de banco
+
+```
+python manage.py migrate
+```
+
+```
+
+```
+
+
 # Para rodar pela primeira vez:
 
 - Execute na pasta raiz do projeto o comando `docker-compose up`

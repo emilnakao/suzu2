@@ -23,7 +23,7 @@ suzuClientApp.controller('YokoshiHistoryReportController', function ($scope, $ht
     $scope.searchText = '';
 
     $scope.generateReport = function () {
-        $http.get(_.template('/registration/yokoshi_history/?yokoshi=<%=yokoshiId%>&start=<%=start%>&end=<%=end%>')({yokoshiId: $scope.yokoshi.id, start: $scope.start, end: $scope.end})).success(function (data) {
+        $http.get(_.template('/attendancebook/yokoshi_history/?yokoshi=<%=yokoshiId%>&start=<%=start%>&end=<%=end%>')({yokoshiId: $scope.yokoshi.id, start: $scope.start, end: $scope.end})).success(function (data) {
             $scope.data = data;
             notificationService.success("Relatório gerado!", "Histórico de presenças de " + $scope.yokoshi.complete_name);
             $scope.itemsPerPage = data.length;

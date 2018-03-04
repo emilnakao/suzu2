@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n %}{% load static %}
 <div class="container" id="container">
     <h1><span class="glyphicon glyphicon-list-alt"></span> Relat&oacute;rios</h1>
     <hr>
@@ -7,7 +7,7 @@
         <!-- Three columns of text below the carousel -->
         <div class="row ">
             <div class="col-md-4">
-                <img class="img-thumbnail img-responsive" src="{{ STATIC_URL }}img/register_kumite.jpg"
+                <img class="img-thumbnail img-responsive" src="{% static 'img/register_kumite.jpg'%}"
                      alt="Generic placeholder image">
 
                 <h3>Presen&ccedil;as por Evento</h3>
@@ -20,7 +20,7 @@
             </div>
             <!-- /.col-lg-4 -->
             <div class="col-md-4">
-                <img class="img-thumbnail img-responsive" src="{{ STATIC_URL }}img/register_mikumite.jpg"
+                <img class="img-thumbnail img-responsive" src="{% static 'img/register_mikumite.jpg'%}"
                      alt="Generic placeholder image">
 
                 <h3>Mikumites</h3>
@@ -33,7 +33,7 @@
 
             </div>
             <div class="col-md-4">
-                <img class="img-thumbnail img-responsive" src="{{ STATIC_URL }}img/register_eventtype.jpg"
+                <img class="img-thumbnail img-responsive" src="{% static 'img/register_eventtype.jpg'%}"
                      alt="Generic placeholder image">
 
                 <h3>Histórico de Yokoshi</h3>
