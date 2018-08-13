@@ -105,7 +105,7 @@ def mikumite_report(start_date, end_date):
     """
     cursor = connection.cursor()
     cursor.execute((
-        "select row_number() over() as resultnumber, "
+        "select count(1) as resultnumber, "
         "y.complete_name as mikumite_name, "
         "coalesce(y.email, ' ') as email, "
         "coalesce(y.phone, ' ') as phone, "
@@ -116,7 +116,7 @@ def mikumite_report(start_date, end_date):
         "inner join attendancebook_yokoshi y on y.id = p.yokoshi_id "
         "left outer join attendancebook_yokoshi indication on indication.id = y.indication_id "
         "left outer join attendancebook_han indicationhan on indicationhan.id = indication.han_id "
-        "where y.is_mikumite = true "
+        "where y.is_mikumite = 1 "
         "and p.begin_date_time >= %s "
         "and p.begin_date_time <= %s"
         "group by y.complete_name, y.email, y.phone, indication.complete_name, indicationhan.name "
