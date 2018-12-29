@@ -30,3 +30,13 @@ python manage.py migrate
 `docker exec -i -t <id> /bin/bash`
 
 3) rode o comando `suzu/manage.py createsuperuser --settings=suzu.settings.docker`
+
+## Gerando arquivos de fixture para testes
+
+1. Subir a aplicação e popular o banco
+2. Rodar o comando `suzu/manage.py dumpdata`. Exemplo:
+
+```
+suzu/manage.py dumpdata --format=json --settings=suzu.settings.dev_emil auth > suzu/attendancebook/fixtures/auth.json
+suzu/manage.py dumpdata --format=json --settings=suzu.settings.dev_emil attendancebook > suzu/attendancebook/fixtures/attendancebook.json
+```

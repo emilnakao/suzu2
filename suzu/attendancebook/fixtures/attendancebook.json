@@ -1,0 +1,560 @@
+[
+  {
+    "model": "attendancebook.regional",
+    "pk": 1,
+    "fields": {
+      "created": "2018-01-12T21:10:10.761Z",
+      "modified": "2018-01-12T21:10:10.765Z",
+      "name": "S\u00e3o Joaquim Tyu Dojo",
+      "parent_regional": null
+    }
+  },
+  {
+    "model": "attendancebook.regional",
+    "pk": 2,
+    "fields": {
+      "created": "2018-01-12T21:10:19.561Z",
+      "modified": "2018-01-12T21:10:19.564Z",
+      "name": "Pinheiros Sho Dojo",
+      "parent_regional": null
+    }
+  },
+  {
+    "model": "attendancebook.regional",
+    "pk": 3,
+    "fields": {
+      "created": "2018-01-12T21:10:27.316Z",
+      "modified": "2018-01-12T21:10:27.319Z",
+      "name": "S\u00e3o Paulo Dai Dojo",
+      "parent_regional": null
+    }
+  },
+  {
+    "model": "attendancebook.regional",
+    "pk": 4,
+    "fields": {
+      "created": "2018-01-12T21:10:45.173Z",
+      "modified": "2018-01-12T21:10:45.181Z",
+      "name": "S\u00e3o Jos\u00e9 dos Campos Okiyome-Sho",
+      "parent_regional": 1
+    }
+  },
+  {
+    "model": "attendancebook.han",
+    "pk": 1,
+    "fields": {
+      "created": "2018-01-12T21:11:12.498Z",
+      "modified": "2018-01-12T21:11:12.506Z",
+      "name": "Ciranda",
+      "regional": 4,
+      "additional_information": ""
+    }
+  },
+  {
+    "model": "attendancebook.han",
+    "pk": 2,
+    "fields": {
+      "created": "2018-01-12T21:11:23.614Z",
+      "modified": "2018-01-12T21:11:23.620Z",
+      "name": "Lib\u00e9lula",
+      "regional": 4,
+      "additional_information": ""
+    }
+  },
+  {
+    "model": "attendancebook.han",
+    "pk": 3,
+    "fields": {
+      "created": "2018-01-12T21:11:29.626Z",
+      "modified": "2018-01-12T21:11:29.632Z",
+      "name": "Vale",
+      "regional": 4,
+      "additional_information": ""
+    }
+  },
+  {
+    "model": "attendancebook.han",
+    "pk": 4,
+    "fields": {
+      "created": "2018-01-12T22:58:08.655Z",
+      "modified": "2018-01-12T22:58:08.656Z",
+      "name": "Desconhecido",
+      "regional": null,
+      "additional_information": null
+    }
+  },
+  {
+    "model": "attendancebook.yokoshi",
+    "pk": 1,
+    "fields": {
+      "created": "2018-01-12T22:58:08.650Z",
+      "modified": "2018-02-16T22:32:34.438Z",
+      "user": [
+        "emilnakao"
+      ],
+      "complete_name": "Emil Nakao",
+      "phonetic_name": null,
+      "email": null,
+      "phone": null,
+      "additional_information": "",
+      "birthday": "1987-03-22",
+      "is_inactive": false,
+      "seminary_number": null,
+      "han": 2,
+      "is_mtai": true,
+      "is_ossuewanin": false,
+      "is_mikumite": false,
+      "omitama_level": "advanced",
+      "indication": null,
+      "last_registration_update": "2018-02-14"
+    }
+  },
+  {
+    "model": "attendancebook.yokoshi",
+    "pk": 2,
+    "fields": {
+      "created": "2018-01-12T23:11:09.278Z",
+      "modified": "2018-01-12T23:11:09.282Z",
+      "user": null,
+      "complete_name": "Kamila Nakao",
+      "phonetic_name": null,
+      "email": null,
+      "phone": null,
+      "additional_information": null,
+      "birthday": null,
+      "is_inactive": false,
+      "seminary_number": null,
+      "han": 2,
+      "is_mtai": false,
+      "is_ossuewanin": false,
+      "is_mikumite": false,
+      "omitama_level": "none",
+      "indication": null,
+      "last_registration_update": "2018-02-14"
+    }
+  },
+  {
+    "model": "attendancebook.yokoshi",
+    "pk": 3,
+    "fields": {
+      "created": "2018-01-12T23:11:29.201Z",
+      "modified": "2018-01-12T23:11:29.207Z",
+      "user": null,
+      "complete_name": "Lia Nakao",
+      "phonetic_name": null,
+      "email": null,
+      "phone": null,
+      "additional_information": null,
+      "birthday": null,
+      "is_inactive": false,
+      "seminary_number": null,
+      "han": 1,
+      "is_mtai": false,
+      "is_ossuewanin": false,
+      "is_mikumite": false,
+      "omitama_level": "none",
+      "indication": null,
+      "last_registration_update": "2018-02-14"
+    }
+  },
+  {
+    "model": "attendancebook.yokoshi",
+    "pk": 4,
+    "fields": {
+      "created": "2018-03-04T15:21:54.158Z",
+      "modified": "2018-03-04T15:21:54.167Z",
+      "user": null,
+      "complete_name": "Mariana da Silva",
+      "phonetic_name": null,
+      "email": null,
+      "phone": null,
+      "additional_information": null,
+      "birthday": null,
+      "is_inactive": false,
+      "seminary_number": null,
+      "han": 2,
+      "is_mtai": false,
+      "is_ossuewanin": false,
+      "is_mikumite": true,
+      "omitama_level": "none",
+      "indication": null,
+      "last_registration_update": null
+    }
+  },
+  {
+    "model": "attendancebook.yokoshi",
+    "pk": 5,
+    "fields": {
+      "created": "2018-03-04T15:22:13.323Z",
+      "modified": "2018-03-04T15:22:13.328Z",
+      "user": null,
+      "complete_name": "Maria do Bairro",
+      "phonetic_name": null,
+      "email": null,
+      "phone": null,
+      "additional_information": null,
+      "birthday": null,
+      "is_inactive": false,
+      "seminary_number": null,
+      "han": 3,
+      "is_mtai": false,
+      "is_ossuewanin": false,
+      "is_mikumite": false,
+      "omitama_level": "none",
+      "indication": null,
+      "last_registration_update": null
+    }
+  },
+  {
+    "model": "attendancebook.yokoshi",
+    "pk": 6,
+    "fields": {
+      "created": "2018-03-04T20:56:09.333Z",
+      "modified": "2018-03-04T20:56:09.342Z",
+      "user": null,
+      "complete_name": "Fabio Kawasaki",
+      "phonetic_name": null,
+      "email": null,
+      "phone": null,
+      "additional_information": null,
+      "birthday": null,
+      "is_inactive": false,
+      "seminary_number": null,
+      "han": 3,
+      "is_mtai": false,
+      "is_ossuewanin": false,
+      "is_mikumite": false,
+      "omitama_level": "none",
+      "indication": null,
+      "last_registration_update": null
+    }
+  },
+  {
+    "model": "attendancebook.yokoshi",
+    "pk": 7,
+    "fields": {
+      "created": "2018-03-04T20:56:25.940Z",
+      "modified": "2018-03-04T20:56:25.944Z",
+      "user": null,
+      "complete_name": "Andreia Silva",
+      "phonetic_name": null,
+      "email": null,
+      "phone": null,
+      "additional_information": null,
+      "birthday": null,
+      "is_inactive": false,
+      "seminary_number": null,
+      "han": 1,
+      "is_mtai": false,
+      "is_ossuewanin": false,
+      "is_mikumite": true,
+      "omitama_level": "none",
+      "indication": null,
+      "last_registration_update": null
+    }
+  },
+  {
+    "model": "attendancebook.yokoshi",
+    "pk": 8,
+    "fields": {
+      "created": "2018-03-04T20:57:40.622Z",
+      "modified": "2018-03-04T20:58:01.691Z",
+      "user": null,
+      "complete_name": "Pedro Paulo Gomes Domingues de Oliveira Santos",
+      "phonetic_name": null,
+      "email": null,
+      "phone": null,
+      "additional_information": null,
+      "birthday": null,
+      "is_inactive": false,
+      "seminary_number": null,
+      "han": 4,
+      "is_mtai": true,
+      "is_ossuewanin": false,
+      "is_mikumite": false,
+      "omitama_level": "none",
+      "indication": null,
+      "last_registration_update": null
+    }
+  },
+  {
+    "model": "attendancebook.country",
+    "pk": 1,
+    "fields": {
+      "created": "2018-01-12T21:08:24.103Z",
+      "modified": "2018-01-12T21:08:24.105Z",
+      "name": "Brasil"
+    }
+  },
+  {
+    "model": "attendancebook.state",
+    "pk": 1,
+    "fields": {
+      "created": "2018-01-12T21:09:14.266Z",
+      "modified": "2018-01-12T21:09:14.275Z",
+      "name": "S\u00e3o Paulo",
+      "country": 1
+    }
+  },
+  {
+    "model": "attendancebook.state",
+    "pk": 2,
+    "fields": {
+      "created": "2018-01-12T21:09:24.073Z",
+      "modified": "2018-01-12T21:09:24.082Z",
+      "name": "Goi\u00e2nia",
+      "country": 1
+    }
+  },
+  {
+    "model": "attendancebook.city",
+    "pk": 1,
+    "fields": {
+      "created": "2018-01-12T21:09:38.195Z",
+      "modified": "2018-01-12T21:09:38.201Z",
+      "name": "S\u00e3o Paulo",
+      "state": 1
+    }
+  },
+  {
+    "model": "attendancebook.city",
+    "pk": 2,
+    "fields": {
+      "created": "2018-01-12T21:09:49.907Z",
+      "modified": "2018-01-12T21:09:49.913Z",
+      "name": "S\u00e3o Jos\u00e9 dos Campos",
+      "state": 1
+    }
+  },
+  {
+    "model": "attendancebook.eventtype",
+    "pk": 1,
+    "fields": {
+      "name": "Dia Normal",
+      "additional_information": ""
+    }
+  },
+  {
+    "model": "attendancebook.eventtype",
+    "pk": 2,
+    "fields": {
+      "name": "Cerim\u00f4nia Mensal",
+      "additional_information": ""
+    }
+  },
+  {
+    "model": "attendancebook.eventtype",
+    "pk": 3,
+    "fields": {
+      "name": "Kambu OkiyomeBi",
+      "additional_information": ""
+    }
+  },
+  {
+    "model": "attendancebook.eventtype",
+    "pk": 4,
+    "fields": {
+      "name": "Gohoshi da Cerim\u00f4nia",
+      "additional_information": ""
+    }
+  },
+  {
+    "model": "attendancebook.event",
+    "pk": 1,
+    "fields": {
+      "event_type": 1,
+      "begin_date_time": "2018-01-12T00:00:00Z",
+      "details": null
+    }
+  },
+  {
+    "model": "attendancebook.event",
+    "pk": 2,
+    "fields": {
+      "event_type": 2,
+      "begin_date_time": "2018-01-12T00:00:00Z",
+      "details": null
+    }
+  },
+  {
+    "model": "attendancebook.event",
+    "pk": 3,
+    "fields": {
+      "event_type": 1,
+      "begin_date_time": "2018-03-04T00:00:00Z",
+      "details": null
+    }
+  },
+  {
+    "model": "attendancebook.event",
+    "pk": 4,
+    "fields": {
+      "event_type": 2,
+      "begin_date_time": "2018-03-04T00:00:00Z",
+      "details": null
+    }
+  },
+  {
+    "model": "attendancebook.event",
+    "pk": 5,
+    "fields": {
+      "event_type": 1,
+      "begin_date_time": "2018-03-08T00:00:00Z",
+      "details": null
+    }
+  },
+  {
+    "model": "attendancebook.presence",
+    "pk": 1,
+    "fields": {
+      "event": 2,
+      "begin_date_time": "2018-01-12T23:09:36.756Z",
+      "yokoshi": 1,
+      "additional_information": "",
+      "is_first_time": false
+    }
+  },
+  {
+    "model": "attendancebook.presence",
+    "pk": 2,
+    "fields": {
+      "event": 1,
+      "begin_date_time": "2018-01-12T23:11:09.360Z",
+      "yokoshi": 2,
+      "additional_information": "",
+      "is_first_time": false
+    }
+  },
+  {
+    "model": "attendancebook.presence",
+    "pk": 3,
+    "fields": {
+      "event": 1,
+      "begin_date_time": "2018-01-12T23:11:15.964Z",
+      "yokoshi": 1,
+      "additional_information": "",
+      "is_first_time": false
+    }
+  },
+  {
+    "model": "attendancebook.presence",
+    "pk": 4,
+    "fields": {
+      "event": 1,
+      "begin_date_time": "2018-01-12T23:11:29.286Z",
+      "yokoshi": 3,
+      "additional_information": "",
+      "is_first_time": false
+    }
+  },
+  {
+    "model": "attendancebook.presence",
+    "pk": 5,
+    "fields": {
+      "event": 3,
+      "begin_date_time": "2018-03-04T15:21:54.274Z",
+      "yokoshi": 4,
+      "additional_information": "",
+      "is_first_time": true
+    }
+  },
+  {
+    "model": "attendancebook.presence",
+    "pk": 6,
+    "fields": {
+      "event": 3,
+      "begin_date_time": "2018-03-04T15:22:13.378Z",
+      "yokoshi": 5,
+      "additional_information": "",
+      "is_first_time": false
+    }
+  },
+  {
+    "model": "attendancebook.presence",
+    "pk": 7,
+    "fields": {
+      "event": 1,
+      "begin_date_time": "2018-03-04T17:46:13.953Z",
+      "yokoshi": 4,
+      "additional_information": "",
+      "is_first_time": false
+    }
+  },
+  {
+    "model": "attendancebook.presence",
+    "pk": 8,
+    "fields": {
+      "event": 1,
+      "begin_date_time": "2018-03-04T20:56:09.451Z",
+      "yokoshi": 6,
+      "additional_information": "",
+      "is_first_time": false
+    }
+  },
+  {
+    "model": "attendancebook.presence",
+    "pk": 9,
+    "fields": {
+      "event": 1,
+      "begin_date_time": "2018-03-04T20:56:25.998Z",
+      "yokoshi": 7,
+      "additional_information": "",
+      "is_first_time": true
+    }
+  },
+  {
+    "model": "attendancebook.presence",
+    "pk": 10,
+    "fields": {
+      "event": 4,
+      "begin_date_time": "2018-03-04T20:56:45.182Z",
+      "yokoshi": 1,
+      "additional_information": "",
+      "is_first_time": false
+    }
+  },
+  {
+    "model": "attendancebook.presence",
+    "pk": 11,
+    "fields": {
+      "event": 4,
+      "begin_date_time": "2018-03-04T20:56:50.215Z",
+      "yokoshi": 6,
+      "additional_information": "",
+      "is_first_time": false
+    }
+  },
+  {
+    "model": "attendancebook.presence",
+    "pk": 12,
+    "fields": {
+      "event": 4,
+      "begin_date_time": "2018-03-04T20:57:00.073Z",
+      "yokoshi": 4,
+      "additional_information": "",
+      "is_first_time": false
+    }
+  },
+  {
+    "model": "attendancebook.presence",
+    "pk": 13,
+    "fields": {
+      "event": 4,
+      "begin_date_time": "2018-03-04T20:57:40.704Z",
+      "yokoshi": 8,
+      "additional_information": "",
+      "is_first_time": false
+    }
+  },
+  {
+    "model": "attendancebook.presence",
+    "pk": 14,
+    "fields": {
+      "event": 2,
+      "begin_date_time": "2018-08-13T00:22:37.442Z",
+      "yokoshi": 5,
+      "additional_information": "",
+      "is_first_time": false
+    }
+  }
+]
