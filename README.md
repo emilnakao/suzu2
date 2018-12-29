@@ -37,6 +37,8 @@ python manage.py migrate
 2. Rodar o comando `suzu/manage.py dumpdata`. Exemplo:
 
 ```
-suzu/manage.py dumpdata --format=json --settings=suzu.settings.dev_emil auth > suzu/attendancebook/fixtures/auth.json
-suzu/manage.py dumpdata --format=json --settings=suzu.settings.dev_emil attendancebook > suzu/attendancebook/fixtures/attendancebook.json
+suzu/manage.py dumpdata --format=json --settings=suzu.settings.dev_emil --natural-foreign auth > suzu/attendancebook/fixtures/auth.json
+suzu/manage.py dumpdata --format=json --settings=suzu.settings.dev_emil --natural-foreign attendancebook > suzu/attendancebook/fixtures/attendancebook.json
 ```
+
+A opção `--natural-foreign` gera referências a chaves naturais de alguns registros, como `content-type`, ao invés de depender de pks que podem variar de execução a execução.

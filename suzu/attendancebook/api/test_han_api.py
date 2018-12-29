@@ -7,6 +7,9 @@ from tastypie.test import ResourceTestCaseMixin
 
 
 class HanResourceTest(ResourceTestCaseMixin, TestCase):
+    """
+    Reference: https://django-tastypie.readthedocs.io/en/latest/testing.html
+    """
 
     fixtures = ['auth.json', 'attendancebook.json']
 
