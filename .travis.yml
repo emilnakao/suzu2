@@ -12,5 +12,5 @@ before_script:
     - sh -e /etc/init.d/xvfb start
 
 script:
-    - suzu/manage.py test
+    - suzu/manage.py test --settings=suzu.settings.tests
     - cd suzufront && npm install && npm test
