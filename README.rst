@@ -1,3 +1,5 @@
+# SUZU 2 [![Build Status](https://travis-ci.org/emilnakao/suzu2.svg?branch=master)](https://travis-ci.org/emilnakao/suzu2)
+
 # Desenvolvendo
 
 ## Branch nova: django11
