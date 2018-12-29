@@ -5,12 +5,12 @@ python:
 
 install:
     - pip install -r requirements.txt
-    - nvm install 0.10
+#    - nvm install 0.10
 
 before_script:
-    - export DISPLAY=:99.0
-    - sh -e /etc/init.d/xvfb start
+#    - export DISPLAY=:99.0
+#    - sh -e /etc/init.d/xvfb start
 
 script:
     - suzu/manage.py test attendancebook --settings=suzu.settings.configtest
-    - cd suzufront && npm install && npm test
+#    - cd suzufront && npm install && npm test
