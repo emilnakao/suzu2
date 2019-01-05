@@ -7,7 +7,6 @@ before_script:
 - docker pull suzusystems/suzu2 || true
 script:
 - docker build --pull --cache-from suzusystems/suzu2 --tag suzusystems/suzu2 .
-- docker run suzusystems/suzu2
 sudo: required
 services:
 - docker
