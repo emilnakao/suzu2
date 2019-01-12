@@ -52,6 +52,6 @@
 
     - assert:
         that:
-          - "suzu2_web_1.state.running"
-          - "suzu2_db_1.state.running"
+          - "db.suzu2_db_1.state.running"
+          - "web.suzu2_web_1.state.running"
 
