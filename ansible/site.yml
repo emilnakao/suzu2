@@ -1,0 +1,56 @@
+---
+- name: Ensure Python 2 is installed on Ubuntu Servers
+  hosts: all
+  gather_facts: False
+
+  tasks:
+  - name: install python 2
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+    when: ansible_distribution == 'Ubuntu'
+    become: yes
+
+- name: Install PIP and Docker on Ubuntu Servers
+  hosts: all
+  tags:
+    - config
+  roles:
+    - name: geerlingguy.pip
+      when: ansible_distribution == 'Ubuntu'
+      become: yes
+    - name: nickjj.docker
+      when: ansible_distribution == 'Ubuntu'
+      become: yes
+
+- name: Run Postgres and Suzu2
+  hosts: all
+  tags:
+    - services
+  tasks:
+    - set_fact: compose_dir=/var/tmp/ansible-docker-service
+
+    - file:
+        path: "{{ compose_dir }}"
+        state: directory
+
+    - name: Upload docker-compose files
+      synchronize:
+        src: "{{ item }}"
+        dest: "{{ compose_dir }}"
+      with_items:
+        - docker-compose
+
+    - docker_service:
+        project_name: suzu2
+        debug: yes
+        project_src: "{{ compose_dir }}/docker-compose"
+        build: no
+      register: output
+
+    - debug:
+        var: output
+
+    - assert:
+        that:
+          - "suzu2_web_1.state.running"
+          - "suzu2_db_1.state.running"
+

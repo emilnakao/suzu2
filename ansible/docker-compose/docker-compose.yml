@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+  web:
+    image: suzusystems/suzu2
+    entrypoint: ./run_inside_docker.sh
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

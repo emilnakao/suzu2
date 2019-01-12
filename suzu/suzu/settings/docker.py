@@ -38,3 +38,5 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default.
     }
 }
+
+ALLOWED_HOSTS = [u'68.183.162.242', u'0.0.0.0', u'127.0.0.1']
