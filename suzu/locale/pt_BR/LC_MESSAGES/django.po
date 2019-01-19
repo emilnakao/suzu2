@@ -6,239 +6,238 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: emilnakao@gmail.com\n"
-"POT-Creation-Date: 2019-01-19 16:25-0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-19 16:42-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Emil Nakao <emilnakao@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: pt_BR"
-"MIME-Version: 1.0\n"
+"Language: pt_BRMIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: attendancebook/models.py:12
-msgid "attendancebook"
+#: attendancebook/apps.py:10
+#| msgid "attendancebook"
+msgid "attendancebook.verbose_name"
 msgstr "Livro de Presenças"
 
-#: attendancebook/models.py:21
+#: attendancebook/models.py:19
 msgid "regional"
 msgstr "Regional"
 
-#: attendancebook/models.py:22
+#: attendancebook/models.py:20
 msgid "regionals"
 msgstr "Regionais"
 
-#: attendancebook/models.py:24
+#: attendancebook/models.py:22
 msgid "Regional|name"
 msgstr "Nome"
 
-#: attendancebook/models.py:26
-#| msgid "regional|parent_regional"
+#: attendancebook/models.py:24
 msgid "Regional|parent_regional"
 msgstr "Regional Pai"
 
-#: attendancebook/models.py:37
+#: attendancebook/models.py:35
 msgid "han"
 msgstr "Han"
 
-#: attendancebook/models.py:38
+#: attendancebook/models.py:36
 msgid "hans"
 msgstr "Hans"
 
-#: attendancebook/models.py:41
+#: attendancebook/models.py:39
 msgid "Han|name"
 msgstr "Nome"
 
-#: attendancebook/models.py:42
+#: attendancebook/models.py:40
 msgid "Han|regional"
 msgstr "Regional"
 
-#: attendancebook/models.py:44
+#: attendancebook/models.py:42
 msgid "Han|additional_information"
 msgstr "Informações Adicionais"
 
-#: attendancebook/models.py:55
+#: attendancebook/models.py:53
 msgid "none_omitama_level"
 msgstr "Grau do Omitama"
 
-#: attendancebook/models.py:55
+#: attendancebook/models.py:53
 msgid "basic_omitama_level"
 msgstr "Básico"
 
-#: attendancebook/models.py:56
+#: attendancebook/models.py:54
 msgid "intermediate_omitama_level"
 msgstr "Intermediário"
 
-#: attendancebook/models.py:57
+#: attendancebook/models.py:55
 msgid "advanced_omitama_level"
 msgstr "Superior"
 
-#: attendancebook/models.py:59
+#: attendancebook/models.py:57
 msgid "Yokoshi|user"
 msgstr "Usuário"
 
-#: attendancebook/models.py:60
+#: attendancebook/models.py:58
 msgid "Yokoshi|complete_name"
 msgstr "Nome Completo"
 
-#: attendancebook/models.py:63
+#: attendancebook/models.py:61
 msgid "Yokoshi|email"
 msgstr "E-mail"
 
-#: attendancebook/models.py:64
+#: attendancebook/models.py:62
 msgid "Yokoshi|phone"
 msgstr "Telefone"
 
-#: attendancebook/models.py:66
+#: attendancebook/models.py:64
 msgid "Yokoshi|additional_information"
 msgstr "Informações Adicionais"
 
-#: attendancebook/models.py:67
+#: attendancebook/models.py:65
 msgid "Yokoshi|birthday"
 msgstr "Data de Nascimento"
 
-#: attendancebook/models.py:68
+#: attendancebook/models.py:66
 msgid "Yokoshi|is_inactive"
 msgstr "Inativo"
 
-#: attendancebook/models.py:69
+#: attendancebook/models.py:67
 msgid "Yokoshi|seminary_number"
 msgstr "Número do Seminário"
 
-#: attendancebook/models.py:70
+#: attendancebook/models.py:68
 msgid "Yokoshi|han"
 msgstr "Han"
 
-#: attendancebook/models.py:71
+#: attendancebook/models.py:69
 msgid "Yokoshi|is_mtai"
 msgstr "Mahikari-tai"
 
-#: attendancebook/models.py:72
+#: attendancebook/models.py:70
 msgid "Yokoshi|is_ossuewanin"
 msgstr "Osuewanin"
 
-#: attendancebook/models.py:73
+#: attendancebook/models.py:71
 msgid "Yokoshi|is_mikumite"
 msgstr "Mi-Kumite"
 
-#: attendancebook/models.py:75
+#: attendancebook/models.py:73
 msgid "Yokoshi|indication"
 msgstr "Encaminhador"
 
-#: attendancebook/models.py:76
+#: attendancebook/models.py:74
 msgid "Yokoshi|last_registration_update"
 msgstr "Última Atualização"
 
-#: attendancebook/models.py:79
+#: attendancebook/models.py:77
 msgid "yokoshi"
 msgstr "Yokoshi"
 
-#: attendancebook/models.py:80
+#: attendancebook/models.py:78
 msgid "yokoshis"
 msgstr "Yokoshi"
 
-#: attendancebook/models.py:103
+#: attendancebook/models.py:101
 msgid "Country|name"
 msgstr "País"
 
-#: attendancebook/models.py:106
+#: attendancebook/models.py:104
 msgid "country"
 msgstr "País"
 
-#: attendancebook/models.py:107
+#: attendancebook/models.py:105
 msgid "countries"
 msgstr "Países"
 
-#: attendancebook/models.py:121
+#: attendancebook/models.py:119
 msgid "state"
 msgstr "Estado"
 
-#: attendancebook/models.py:122
+#: attendancebook/models.py:120
 msgid "states"
 msgstr "Estados"
 
-#: attendancebook/models.py:124
+#: attendancebook/models.py:122
 msgid "State|name"
 msgstr "Estado"
 
-#: attendancebook/models.py:125
+#: attendancebook/models.py:123
 msgid "State|country"
 msgstr "País"
 
-#: attendancebook/models.py:138
+#: attendancebook/models.py:136
 msgid "city"
 msgstr "Cidade"
 
-#: attendancebook/models.py:139
+#: attendancebook/models.py:137
 msgid "cities"
 msgstr "Cidades"
 
-#: attendancebook/models.py:141
+#: attendancebook/models.py:139
 msgid "City|name"
 msgstr "Cidade"
 
-#: attendancebook/models.py:142
+#: attendancebook/models.py:140
 msgid "City|state"
 msgstr "Estado"
 
-#: attendancebook/models.py:170
+#: attendancebook/models.py:168
 msgid "event_type"
 msgstr "Tipo de Evento"
 
-#: attendancebook/models.py:171
+#: attendancebook/models.py:169
 msgid "event_types"
 msgstr "Tipos de Evento"
 
-#: attendancebook/models.py:173
+#: attendancebook/models.py:171
 msgid "EventType|name"
 msgstr "Nome"
 
-#: attendancebook/models.py:186
+#: attendancebook/models.py:184
 msgid "event"
 msgstr "Evento"
 
-#: attendancebook/models.py:187
+#: attendancebook/models.py:185
 msgid "events"
 msgstr "Eventos"
 
-#: attendancebook/models.py:189
+#: attendancebook/models.py:187
 msgid "Event|event_type"
 msgstr "Tipo de Evento"
 
-#: attendancebook/models.py:190
+#: attendancebook/models.py:188
 msgid "Event|begin_date_time"
 msgstr "Início"
 
-#: attendancebook/models.py:191
+#: attendancebook/models.py:189
 msgid "Event|details"
 msgstr "Detalhes"
 
-#: attendancebook/models.py:200
+#: attendancebook/models.py:198
 msgid "presence"
 msgstr "Presença"
 
-#: attendancebook/models.py:201
+#: attendancebook/models.py:199
 msgid "presences"
 msgstr "Presenças"
 
-#: attendancebook/models.py:203
+#: attendancebook/models.py:201
 msgid "Presence|event"
 msgstr "Evento"
 
-#: attendancebook/models.py:204
+#: attendancebook/models.py:202
 msgid "Presence|begin_date_time"
 msgstr "Início"
 
-#: attendancebook/models.py:205
+#: attendancebook/models.py:203
 msgid "Presence|yokoshi"
 msgstr "Presente"
 
-#: attendancebook/models.py:206
+#: attendancebook/models.py:204
 msgid "Presence|additional_information"
 msgstr "Informações Adicionais"
 
-#: attendancebook/models.py:207
+#: attendancebook/models.py:205
 msgid "Presence|is_first_time"
 msgstr "Primeira Vez"
 

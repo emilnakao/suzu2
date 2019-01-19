@@ -9,8 +9,6 @@ from model_utils import Choices
 from model_utils.models import TimeStampedModel
 from querysets import YokoshiQuerySet
 
-VERBOSE_NAME = _('attendancebook')
-
 
 class Regional(TimeStampedModel):
     """
