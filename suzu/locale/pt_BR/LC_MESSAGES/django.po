@@ -30,7 +30,7 @@ msgid "Regional|name"
 msgstr "Nome"
 
 #: attendancebook/models.py:24
-msgid "Regional|parent_regional"
+msgid "regional|parent_regional"
 msgstr "Regional Pai"
 
 #: attendancebook/models.py:35
