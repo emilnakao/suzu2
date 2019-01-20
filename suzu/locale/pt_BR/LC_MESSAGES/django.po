@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-19 16:42-0200\n"
+"POT-Creation-Date: 2019-01-19 16:45-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Emil Nakao <emilnakao@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: attendancebook/apps.py:10
-#| msgid "attendancebook"
 msgid "attendancebook.verbose_name"
 msgstr "Livro de Presenças"
 
@@ -192,6 +191,11 @@ msgstr "Tipos de Evento"
 #: attendancebook/models.py:171
 msgid "EventType|name"
 msgstr "Nome"
+
+#: attendancebook/models.py:172
+#| msgid "Han|additional_information"
+msgid "EventType|additional_information"
+msgstr "Informações Adicionais"
 
 #: attendancebook/models.py:184
 msgid "event"
