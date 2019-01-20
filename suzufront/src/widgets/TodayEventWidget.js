@@ -1,5 +1,7 @@
 
 import React, { Component } from 'react';
+import CreateEventModal from "./CreateEventModal";
+import SelectEventModal from "./SelectEventModal";
 
 class TodayEventWidget extends Component {
 
@@ -22,10 +24,12 @@ class TodayEventWidget extends Component {
                     <p className="card-text">12/12/2019</p>
 
                 </div>
-                <div class="card-footer">
-                    <a href="#" class="btn-sm btn-secondary float-left">Eventos Passados</a>
-                    <a href="#" class="btn-sm btn-secondary float-right">Evento de Hoje</a>
+                <div className="card-footer">
+                    <button className="btn-sm btn-outline-dark float-left" data-toggle="modal" data-target="#selectEventModal">Eventos Passados</button>
+                    <button className="btn-sm btn-outline-dark float-right" data-toggle="modal" data-target="#createEventModal">Evento de Hoje</button>
                 </div>
+                <CreateEventModal id={"createEventModal"}/>
+                <SelectEventModal id={"selectEventModal"}/>
             </div>
         );
     }

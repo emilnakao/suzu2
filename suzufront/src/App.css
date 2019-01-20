@@ -56,3 +56,18 @@ div.suzu-checkin-row.highlight .btn-success:after, div.suzu-checkin-row.highligh
 .suzu-checkin-row h4 {
   color: #34789a;
 }
+
+.presence-counter {
+  font-size: 2em;
+  text-align: center;
+  color: white;
+  padding: 2px;
+  font-weight: bold;
+}
+
+.presence-label {
+  color: white;
+  text-align: center;
+  padding: 1px;
+  font-size: smaller;
+}
