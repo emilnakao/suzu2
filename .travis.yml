@@ -23,7 +23,7 @@ before_script:
 - docker pull suzusystems/suzu2 || true
 
 script:
-- cd suzufront && npm build && cd ..
+- cd suzufront && npm run build && cd ..
 - docker build --pull --cache-from suzusystems/suzu2 --tag suzusystems/suzu2 .
 
 after_script:
