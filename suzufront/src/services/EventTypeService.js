@@ -5,7 +5,8 @@ class EventTypeService {
 
 
     get(searchToken){
-        axios.get(`${}`)
+        // TODO
+        //axios.get(`${}`)
     }
 }
 

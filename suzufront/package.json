@@ -24,6 +24,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build && mv build/index.html build/prototype.html",
     "test": "react-scripts test",
+    "testall": "react-scripts test --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
