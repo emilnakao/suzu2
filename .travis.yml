@@ -31,7 +31,7 @@ matrix:
       after_script:
       - docker images
       before_deploy:
-      - echo $REGISTRY_PASS | docker login --username $REGISTRY_USER --password-stdin
+      - echo docker login -u $REGISTRY_USER -p $REGISTRY_PASS
       deploy:
         provider: script
         script: docker push suzusystems/suzu2
