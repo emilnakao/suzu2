@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.views.generic.base import TemplateView
 
 from tastypie.api import Api
 
@@ -68,4 +69,9 @@ urlpatterns = [
     url(r'^attendancebook/inform_yokoshi_update/$', inform_yokoshi_update),
     url(r'^attendancebook/update_han/$', update_han),
     url(r'^attendancebook/find_or_create_event_for_today/$', find_or_create_event_for_today),
+
+    # novo frontend: prototipo
+    url(r'^.*/', TemplateView.as_view(template_name="prototype.html"), name='base')
+
+
 ]

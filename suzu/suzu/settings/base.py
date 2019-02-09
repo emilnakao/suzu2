@@ -57,7 +57,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates')
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, '../suzufront/build'),
+
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -118,6 +120,8 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, '../suzufront/build/static'),
+
 ]
 
 # Django Auth

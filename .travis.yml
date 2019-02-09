@@ -1,25 +1,37 @@
-language: python
-python:
-- 2.7
-install:
-- pip install -r requirements.txt
-before_script:
-- docker pull suzusystems/suzu2 || true
-script:
-- docker build --pull --cache-from suzusystems/suzu2 --tag suzusystems/suzu2 .
-sudo: required
-services:
-- docker
-env:
-  global:
-  - REGISTRY_USER=automationsuzubr
-  - secure: ewpchqFH64C/Pd7F/NaYxKdZAPz7XKZsQ84LaiTtpHjijIzkLlOjJr5MadtVbUZVCWfeXFiTcpfG0uOtmywgsDVWdJHWZtqbycKccOcPRLFmz5yvbvNZzRGTx6lUJlDa4IYrGo3Zbs/VmRgoG3WiyYIxldQCpRxJPPUubSj3KKfXdIsQBzQxu7dJb+fMZgf5UfmKT5k7DwndJPkJqfksE5PgXs6d5M7Liw71qBP9syJxHaws1l53/+li8N6G393nTM2qe94WqX4PpPX8w/pyDOMmEJ60O+P/tuHqPPd73qwXGZ7Oa6j7Q5UxIwXWmwkKHtcax5jjmoI/XrZBEne4Dw58opp4p+55qsppKb9tmtqszWJdvmyyaJx/X/1Gytod9Tq26yHEYBGHpGxC3uV81JIUMQMb1jwmGMPfx6M90q9/47+y/AKLaPI48IjVwPjeOHLVL3nJP+Cq1dHscr9MknIhgcZqZX8gD9x1FcmDw3jCHiX6bJjsAIM7zLaxO/AVx606zYlaDAJdlD5TgjyUKItUxeaI49l3qfKfPCwcrhYq8VC9D7QqZnq5Vhoh6JZi9pGgBux6DI3Jq7MS+YTRMQ5fflOBFgaS8JQWJtCpUgsJ4G2VbvF3kpoKGwijvKC9pDlJElkkqIwdcRpeSHDGYue6aPddIlTG9L5Luq1Jl3Y=
-after_script:
-- docker images
-before_deploy:
-- docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
-deploy:
-  provider: script
-  script: docker push suzusystems/suzu2
-  on:
-    branch: master
+matrix:
+  include:
+    - language: node_js
+      node_js:
+      - 4.8
+      before_script:
+      - cd suzufront
+      install:
+      - npm install
+      script:
+      - npm test
+
+    - language: python
+      python:
+      - 2.7
+      install:
+      - pip install -r requirements.txt
+      before_script:
+      - docker pull suzusystems/suzu2 || true
+      script:
+      - docker build --pull --cache-from suzusystems/suzu2 --tag suzusystems/suzu2 .
+      sudo: required
+      services:
+      - docker
+      env:
+        global:
+        - REGISTRY_USER=automationsuzubr
+        - secure: ewpchqFH64C/Pd7F/NaYxKdZAPz7XKZsQ84LaiTtpHjijIzkLlOjJr5MadtVbUZVCWfeXFiTcpfG0uOtmywgsDVWdJHWZtqbycKccOcPRLFmz5yvbvNZzRGTx6lUJlDa4IYrGo3Zbs/VmRgoG3WiyYIxldQCpRxJPPUubSj3KKfXdIsQBzQxu7dJb+fMZgf5UfmKT5k7DwndJPkJqfksE5PgXs6d5M7Liw71qBP9syJxHaws1l53/+li8N6G393nTM2qe94WqX4PpPX8w/pyDOMmEJ60O+P/tuHqPPd73qwXGZ7Oa6j7Q5UxIwXWmwkKHtcax5jjmoI/XrZBEne4Dw58opp4p+55qsppKb9tmtqszWJdvmyyaJx/X/1Gytod9Tq26yHEYBGHpGxC3uV81JIUMQMb1jwmGMPfx6M90q9/47+y/AKLaPI48IjVwPjeOHLVL3nJP+Cq1dHscr9MknIhgcZqZX8gD9x1FcmDw3jCHiX6bJjsAIM7zLaxO/AVx606zYlaDAJdlD5TgjyUKItUxeaI49l3qfKfPCwcrhYq8VC9D7QqZnq5Vhoh6JZi9pGgBux6DI3Jq7MS+YTRMQ5fflOBFgaS8JQWJtCpUgsJ4G2VbvF3kpoKGwijvKC9pDlJElkkqIwdcRpeSHDGYue6aPddIlTG9L5Luq1Jl3Y=
+      after_script:
+      - docker images
+      before_deploy:
+      - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+      deploy:
+        provider: script
+        script: docker push suzusystems/suzu2
+        on:
+          branch: master
