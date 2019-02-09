@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import TodayEventWidget from "../widgets/TodayEventWidget";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faCheck, faMapMarkerAlt, faUserAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import PresenceListWidget from "../widgets/PresenceListWidget";
 
 import {HotKeys} from 'react-hotkeys';

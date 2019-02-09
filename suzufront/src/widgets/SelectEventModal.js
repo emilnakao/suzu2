@@ -76,7 +76,7 @@ class SelectEventModal extends Component {
                                     <td>{event.eventType.name}</td>
                                     <td>{event.date}</td>
                                 </tr>)
-                            }.bind(this))
+                            })
                             }
 
                         </table>

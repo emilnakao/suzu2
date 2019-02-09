@@ -11,3 +11,5 @@ class Requester {
         return axios.post(`${this.BASE_URL}/${url}`, data);
     }
 }
+
+export default new Requester();
