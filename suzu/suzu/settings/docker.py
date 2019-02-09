@@ -39,6 +39,6 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = [u'68.183.162.242', u'0.0.0.0', u'127.0.0.1', u'localhost']
+ALLOWED_HOSTS = [u'138.197.50.85', u'0.0.0.0', u'127.0.0.1', u'localhost']
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static_root")
