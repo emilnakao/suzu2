@@ -1,7 +1,6 @@
-jobs:
+matrix:
   include:
-    - stage: frontend build
-      language: node_js
+    - language: node_js
       node_js:
       - 10.15.0
       before_install:
@@ -12,9 +11,10 @@ jobs:
       - npm run testall
       script:
       - npm run build
+      deploy:
+        skip_cleanup: true
 
-    - stage: deploy
-      language: python
+    - language: python
       python:
       - 2.7
       install:
