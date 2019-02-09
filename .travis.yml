@@ -11,8 +11,6 @@ matrix:
       - npm run testall
       script:
       - npm run build
-      deploy:
-        skip_cleanup: true
 
     - language: python
       python:
