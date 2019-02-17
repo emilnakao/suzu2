@@ -1,27 +1,18 @@
 import React, {Component} from 'react';
+import PresenceService from "../services/PresenceService";
+import SessionService from "../services/ContextService";
 
 class PresenceListWidget extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
+        let presences = PresenceService.findContextPresences();
         this.state = {
-            event: {
-                eventType: {
-                    name: 'Dia Normal'
-                },
-
-            },
-            presences: [
-                {yokoshi: {name: 'Emil Nakao'}},
-                {yokoshi: {name: 'Kamila Nakao'}},
-            ],
-            kumiteCount:90,
+            event: SessionService.getCurrentContext().event,
+            presences: presences,
             kumiteLabel:'KUMITE',
-            mikumiteCount:50,
             mikumiteLabel:'MIKUMITE',
-            firstTimeCount:20,
             firstTimeLabel:'1a VEZ',
-            mtaiCount:10,
             mtaiLabel:'MTAI'
         }
     }
@@ -33,19 +24,19 @@ class PresenceListWidget extends Component {
                 <div className="py-1">
                     <div className="d-flex flex-row m-1">
                         <div className="m-1 rounded" style={{height:"80px", backgroundColor:"#428bca", flexBasis: "100%"}}>
-                            <div className="presence-counter">{this.state.kumiteCount}</div>
+                            <div className="presence-counter">{this.state.presences.filter(p => {return !p.yokoshi.is_mikumite}).length}</div>
                             <div className="presence-label">{this.state.kumiteLabel}</div>
                         </div>
                         <div className="m-1 rounded" style={{height:"80px", backgroundColor:"#2b542c", flexBasis: "100%"}}>
-                            <div className="presence-counter">{this.state.mtaiCount}</div>
+                            <div className="presence-counter">{this.state.presences.filter(p => {return p.yokoshi.is_mtai}).length}</div>
                             <div className="presence-label">{this.state.mtaiLabel}</div>
                         </div>
                         <div className="m-1 rounded" style={{height:"80px", backgroundColor:"#5cb85c", flexBasis: "100%"}}>
-                            <div className="presence-counter">{this.state.mikumiteCount}</div>
+                            <div className="presence-counter">{this.state.presences.filter(p => {return p.yokoshi.is_mikumite}).length}</div>
                             <div className="presence-label">{this.state.mikumiteLabel}</div>
                         </div>
                         <div className="m-1 rounded" style={{height:"80px", backgroundColor:"#d9534f", flexBasis: "100%"}}>
-                            <div className="presence-counter">{this.state.firstTimeCount}</div>
+                            <div className="presence-counter">{this.state.presences.filter(p => {return p.is_first_time}).length}</div>
                             <div className="presence-label">{this.state.firstTimeLabel}</div>
                         </div>
                     </div>
@@ -61,7 +52,7 @@ class PresenceListWidget extends Component {
                             this.state.presences.map(function (presence, idx) {
                                 return <tr>
                                     <td>{idx + 1}</td>
-                                    <td>{presence.yokoshi.name}</td>
+                                    <td>{presence.yokoshi.complete_name}</td>
                                 </tr>
                             })
                         }

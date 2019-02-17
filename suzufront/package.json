@@ -42,5 +42,6 @@
     "enzyme-adapter-react-16": "^1.8.0",
     "enzyme-to-json": "^3.3.5",
     "sinon": "^7.2.3"
-  }
+  },
+  "proxy":"http://localhost:8000"
 }

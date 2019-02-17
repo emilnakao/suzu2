@@ -2,16 +2,15 @@
 import React, { Component } from 'react';
 import CreateEventModal from "./CreateEventModal";
 import SelectEventModal from "./SelectEventModal";
+import ContextService from "../services/ContextService";
+import EventFormatter from "../utils/EventFormatter";
 
 class TodayEventWidget extends Component {
 
     constructor(props){
         super(props)
-        this.state = {event: {
-                eventType: {
-                  name: 'Dia Normal'
-              }
-            }
+        this.state = {
+            event:ContextService.getCurrentContext().event
         }
     }
 
@@ -20,8 +19,8 @@ class TodayEventWidget extends Component {
             <div className="card my-2">
                 <h5 className="card-header">Evento </h5>
                 <div className="card-body text-center">
-                    <h5 className="card-title">{this.state.event.eventType.name}</h5>
-                    <p className="card-text">12/12/2019</p>
+                    <h5 className="card-title">{this.state.event.event_type.name}</h5>
+                    <p className="card-text">{EventFormatter.formatEventDate(this.state.event)}</p>
 
                 </div>
                 <div className="card-footer">

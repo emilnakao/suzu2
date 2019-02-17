@@ -7,6 +7,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import PresenceListWidget from "../widgets/PresenceListWidget";
 
 import {HotKeys} from 'react-hotkeys';
+import PresenceService from "../services/PresenceService";
 
 const keyMap = {
     moveUp: 'up',
@@ -22,10 +23,7 @@ class SelfCheckIn extends Component {
             nameNotFoundMsg: "Não encontrou seu nome? Aperte Enter para cadastrar.",
             outraRegionalMsg: "É de outra regional? Clique aqui",
             nameNotFound: false,
-            suggestions: [
-                {name: 'Emil Yoshigae Nakao'},
-                {name: 'Lia Yoshigae Nakao'},
-            ],
+            suggestions: [],
             focusIndex: 0
         }
 
@@ -49,9 +47,25 @@ class SelfCheckIn extends Component {
         };
     }
 
+    handleNameChange = (event) => {
+        // TODO: definir política de busca (não fazer por exemplo buscas consecutivas em menos de 1s)
+        PresenceService.findYokoshi(event.target.value).then((data) => {
+            let updatedState = {...this.state};
+            updatedState.suggestions = data.objects;
+            this.setState(updatedState);
+        })
+    };
+
+    togglePresence = (argument) => {
+        let yokoshi = argument;
+        return ()=>{
+            PresenceService.registerPresence(yokoshi);
+        }
+    };
+
     render(){
         return (
-            <HotKeys keyMap={keyMap} handlers={this.keyboardHandlers} role="main" class="container-fluid d-flex flex-fill bg-dark">
+            <HotKeys keyMap={keyMap} handlers={this.keyboardHandlers} role="main" className="container-fluid d-flex flex-fill bg-dark">
                 <div className="flex-fill d-flex flex-row">
                     <div className="col-3 mr-n2 flex-fill d-flex flex-column">
                         <TodayEventWidget/>
@@ -61,7 +75,7 @@ class SelfCheckIn extends Component {
                         <div className="card mt-2 mb-2 mx-2 flex-fill">
                             <h5 className="card-header"><FontAwesomeIcon icon={faCheck}/> Marcar Presenças </h5>
                             <div className="card-body">
-                                <input type="text" className="form-control form-control-lg mb-2" placeholder={this.state.placeholderNome} autoFocus={true}/>
+                                <input id={'selfCheckinNameSearchInput'} type="text" className="form-control form-control-lg mb-2" placeholder={this.state.placeholderNome} autoFocus={true} onChange={this.handleNameChange}/>
 
                                 {/* Caso nenhuma sugestão tenha sido encontrada, mostra msg */}
                                 {this.state.nameNotFound &&
@@ -75,10 +89,10 @@ class SelfCheckIn extends Component {
                                 {/* Lista de opções de nomes */}
                                 {this.state.suggestions.map(function(suggestion, index){
                                     return <div className={"suzu-checkin-row rounded " + (index === this.state.focusIndex ? 'highlight' : '')} >
-                                        <h4>{suggestion.name}</h4>
-                                        <button class="btn btn-outline-secondary btn-sm" ng-click="editYokoshi(yokoshi)"><span class="fa fa-pencil text-warning"></span> Corrigir Cadastro</button>
-                                        <button class="btn btn-outline-secondary btn-sm" ng-click="cancelPresence(yokoshi)" ng-disabled="!isYokoshiPresent(yokoshi)"><span class="fa fa-minus-square text-danger"></span> Cancelar Presença</button>
-                                        <button class="suzu-checkin-row-presencebtn btn btn-success float-right my-auto" ng-disabled="isYokoshiPresent(yokoshi)" ng-click="togglePresence(yokoshi)"><span class="fa fa-check"></span> Marcar Presença</button>
+                                        <h4>{suggestion.complete_name}</h4>
+                                        <button className="btn btn-outline-secondary btn-sm" ng-click="editYokoshi(yokoshi)"><span className="fa fa-pencil text-warning"></span> Corrigir Cadastro</button>
+                                        <button className="btn btn-outline-secondary btn-sm" ng-click="cancelPresence(yokoshi)" ng-disabled="!isYokoshiPresent(yokoshi)"><span className="fa fa-minus-square text-danger"></span> Cancelar Presença</button>
+                                        <button className="suzu-checkin-row-presencebtn btn btn-success float-right my-auto" ng-disabled="isYokoshiPresent(yokoshi)" onClick={this.togglePresence(suggestion)}><span className="fa fa-check"></span> Marcar Presença</button>
 
                                     </div>;
                                 }.bind(this))}
