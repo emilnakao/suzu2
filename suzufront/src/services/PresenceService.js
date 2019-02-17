@@ -21,7 +21,7 @@ class PresenceService {
         }
 
         // TODO: buscar de acordo com a contextualização, levando em conta a regional
-        let currentRegional = ContextService.getCurrentContext().regional;
+        // let currentRegional = ContextService.getCurrentContext().regional;
         let currentEvent = ContextService.getCurrentContext().event;
 
         if (!currentEvent) {
