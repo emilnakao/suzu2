@@ -2,7 +2,7 @@ alabaster==0.7.10
 Babel==2.5.1
 certifi==2017.11.5
 chardet==3.0.4
-Django==1.11.7
+Django>=1.11.18
 django-autocomplete-light==3.2.10
 django-braces==1.11.0
 django-crispy-forms==1.7.0
@@ -25,7 +25,7 @@ Pygments==2.2.0
 python-dateutil==2.6.1
 python-mimeparse==1.6.0
 pytz==2017.3
-requests==2.18.4
+requests==2.20.0
 selenium==3.7.0
 six==1.11.0
 snowballstemmer==1.2.1
@@ -34,7 +34,7 @@ sphinxcontrib-websupport==1.0.1
 splinter==0.7.7
 typing==3.6.2
 Unipath==1.1
-urllib3==1.22
+urllib3==1.23
 uWSGI==2.0.15
 xlrd==1.1.0
 xlwt==1.3.0
