@@ -5,6 +5,8 @@ services:
     image: postgres
     ports:
       - "5432:5432"
+    networks:
+      - suzu-network
   web:
     build: .
     entrypoint: ./run_inside_docker.sh
@@ -12,5 +14,11 @@ services:
       - .:/code
     ports:
       - "8000:8000"
+    networks:
+      - suzu-network
     depends_on:
       - db
+
+networks:
+  suzu-network:
+    driver: bridge
