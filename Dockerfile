@@ -1,5 +1,5 @@
 # Start with a Python image.
-FROM python:2.7-onbuild
+FROM python:2.7.16-jessie
 
 # Some stuff that everyone has been copy-pasting
 # since the dawn of time.
