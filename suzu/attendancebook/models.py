@@ -56,6 +56,8 @@ class Yokoshi(TimeStampedModel):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, blank=True, db_index=True, verbose_name=_('Yokoshi|user'))
     complete_name = models.CharField(max_length=500, db_index=True, verbose_name=_('Yokoshi|complete_name'))
+    last_name = models.CharField(null=True, max_length=200, db_index=True, verbose_name=_('Yokoshi|last_name'))
+    first_name = models.CharField(null=True, max_length=300, db_index=True, verbose_name=_('Yokoshi|first_name'))
     phonetic_name = models.CharField(max_length=500, null=True, blank=True, db_index=True, editable=False,
                                      verbose_name=('Yokoshi|phonetic_name'))
     email = models.EmailField(null=True, blank=True, verbose_name=_('Yokoshi|email'))
@@ -203,6 +205,14 @@ class Presence(models.Model):
     yokoshi = models.ForeignKey(Yokoshi, db_index=True, verbose_name=_('Presence|yokoshi'))
     additional_information = models.TextField(max_length=2000, verbose_name=_('Presence|additional_information'))
     is_first_time = models.BooleanField(default=False, verbose_name=_('Presence|is_first_time'))
+    complete_name = models.CharField(null=True, max_length=500, db_index=True, verbose_name=_('Yokoshi|complete_name'))
+    last_name = models.CharField(null=True, max_length=200, db_index=True, verbose_name=_('Yokoshi|last_name'))
+    first_name = models.CharField(null=True, max_length=300, db_index=True, verbose_name=_('Yokoshi|first_name'))
+    han = models.ForeignKey(Han, null=True, blank=True, db_index=True, verbose_name=_('Yokoshi|han'))
+    is_mtai = models.BooleanField(default=False, verbose_name=_('Yokoshi|is_mtai'))
+    is_ossuewanin = models.BooleanField(default=False, verbose_name=_('Yokoshi|is_ossuewanin'))
+    is_mikumite = models.BooleanField(default=False, verbose_name=_('Yokoshi|is_mikumite'))
+
 
     @classmethod
     def confirmPresence(cls, who, event, arrival, first_time=False):
@@ -213,7 +223,18 @@ class Presence(models.Model):
         @return the new presence instance, retrieved from the db or saved in case it didn't exists
         """
         used_arrival = arrival or datetime.now()
-        presence = Presence.objects.get_or_create(event=event, yokoshi=who, is_first_time=first_time)[0]
+        presence = Presence.objects.get_or_create(
+            event=event,
+            yokoshi=who,
+            is_first_time=first_time,
+            complete_name=who.complete_name,
+            last_name=who.last_name,
+            first_name=who.first_name,
+            han=who.han,
+            is_mtai=who.is_mtai,
+            is_ossuewanin=who.is_ossuewanin,
+            is_mikumite=who.is_mikumite
+        )[0]
         if presence.begin_date_time is None:
             presence.begin_date_time = used_arrival
 

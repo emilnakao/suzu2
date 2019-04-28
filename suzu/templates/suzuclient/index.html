@@ -118,12 +118,12 @@
                             <tr ng-repeat="presence in presences">
                                 <td>{% ng presences.length - $index %}</td>
                                 <td>
-                                    <i class="fa fa-circle" style="color: #428bca" title="Kumite" ng-show="presence.yokoshi.is_mikumite==false"></i>
-                                    <i class="fa fa-circle" style="color: #2b542c" title="Mahikari-tai" ng-show="presence.yokoshi.is_mtai==true"></i>
-                                    <i class="fa fa-circle" style="color: #5cb85c" title="Mi-Kumite" ng-show="presence.yokoshi.is_mikumite==true"></i>
+                                    <i class="fa fa-circle" style="color: #428bca" title="Kumite" ng-show="presence.is_mikumite==false"></i>
+                                    <i class="fa fa-circle" style="color: #2b542c" title="Mahikari-tai" ng-show="presence.is_mtai==true"></i>
+                                    <i class="fa fa-circle" style="color: #5cb85c" title="Mi-Kumite" ng-show="presence.is_mikumite==true"></i>
                                     <i class="fa fa-circle" style="color: #d9534f" title="1&ordf; Vez" ng-show="presence.is_first_time==true"></i>
-                                    {% ng presence.yokoshi.complete_name %}
-                                    <span class="label label-light">{% ng presence.yokoshi.han.name %}</span>
+                                    {% ng presence.complete_name %}
+                                    <span class="label label-light">{% ng presence.han.name %}</span>
                                 </td>
                             </tr>
                         </tbody>

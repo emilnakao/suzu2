@@ -50,10 +50,10 @@ suzuClientApp.controller('SidebarController', function($scope, $rootScope, $http
                     if(elem.is_first_time == true){
                         ftime++;
                     }
-                    if(elem.yokoshi.is_mtai == true){
+                    if(elem.is_mtai == true){
                         mtai++;
                     }
-                    if(elem.yokoshi.is_mikumite == true){
+                    if(elem.is_mikumite == true){
                         mikumite++;
                     }else{
                         kumite++;

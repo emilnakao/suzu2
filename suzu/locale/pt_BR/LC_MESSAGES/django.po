@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-19 16:45-0200\n"
+"POT-Creation-Date: 2019-04-05 14:51-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Emil Nakao <emilnakao@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,263 +16,274 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: attendancebook/apps.py:10
+#: suzu/attendancebook/apps.py:10
 msgid "attendancebook.verbose_name"
 msgstr "Livro de Presenças"
 
-#: attendancebook/models.py:19
+#: suzu/attendancebook/models.py:19
 msgid "regional"
 msgstr "Regional"
 
-#: attendancebook/models.py:20
+#: suzu/attendancebook/models.py:20
 msgid "regionals"
 msgstr "Regionais"
 
-#: attendancebook/models.py:22
+#: suzu/attendancebook/models.py:22
 msgid "Regional|name"
 msgstr "Nome"
 
-#: attendancebook/models.py:24
+#: suzu/attendancebook/models.py:24
 msgid "Regional|parent_regional"
 msgstr "Regional Pai"
 
-#: attendancebook/models.py:35
+#: suzu/attendancebook/models.py:35
 msgid "han"
 msgstr "Han"
 
-#: attendancebook/models.py:36
+#: suzu/attendancebook/models.py:36
 msgid "hans"
 msgstr "Hans"
 
-#: attendancebook/models.py:39
+#: suzu/attendancebook/models.py:39
 msgid "Han|name"
 msgstr "Nome"
 
-#: attendancebook/models.py:40
+#: suzu/attendancebook/models.py:40
 msgid "Han|regional"
 msgstr "Regional"
 
-#: attendancebook/models.py:42
+#: suzu/attendancebook/models.py:42
 msgid "Han|additional_information"
 msgstr "Informações Adicionais"
 
-#: attendancebook/models.py:53
+#: suzu/attendancebook/models.py:53
 msgid "none_omitama_level"
 msgstr "Grau do Omitama"
 
-#: attendancebook/models.py:53
+#: suzu/attendancebook/models.py:53
 msgid "basic_omitama_level"
 msgstr "Básico"
 
-#: attendancebook/models.py:54
+#: suzu/attendancebook/models.py:54
 msgid "intermediate_omitama_level"
 msgstr "Intermediário"
 
-#: attendancebook/models.py:55
+#: suzu/attendancebook/models.py:55
 msgid "advanced_omitama_level"
 msgstr "Superior"
 
-#: attendancebook/models.py:57
+#: suzu/attendancebook/models.py:57
 msgid "Yokoshi|user"
 msgstr "Usuário"
 
-#: attendancebook/models.py:58
+#: suzu/attendancebook/models.py:58 suzu/attendancebook/models.py:208
 msgid "Yokoshi|complete_name"
 msgstr "Nome Completo"
 
-#: attendancebook/models.py:61
+#: suzu/attendancebook/models.py:59 suzu/attendancebook/models.py:209
+#, fuzzy
+#| msgid "Yokoshi|complete_name"
+msgid "Yokoshi|last_name"
+msgstr "Nome Completo"
+
+#: suzu/attendancebook/models.py:60 suzu/attendancebook/models.py:210
+#, fuzzy
+#| msgid "Yokoshi|is_inactive"
+msgid "Yokoshi|first_name"
+msgstr "Inativo"
+
+#: suzu/attendancebook/models.py:63
 msgid "Yokoshi|email"
 msgstr "E-mail"
 
-#: attendancebook/models.py:62
+#: suzu/attendancebook/models.py:64
 msgid "Yokoshi|phone"
 msgstr "Telefone"
 
-#: attendancebook/models.py:64
+#: suzu/attendancebook/models.py:66
 msgid "Yokoshi|additional_information"
 msgstr "Informações Adicionais"
 
-#: attendancebook/models.py:65
+#: suzu/attendancebook/models.py:67
 msgid "Yokoshi|birthday"
 msgstr "Data de Nascimento"
 
-#: attendancebook/models.py:66
+#: suzu/attendancebook/models.py:68
 msgid "Yokoshi|is_inactive"
 msgstr "Inativo"
 
-#: attendancebook/models.py:67
+#: suzu/attendancebook/models.py:69
 msgid "Yokoshi|seminary_number"
 msgstr "Número do Seminário"
 
-#: attendancebook/models.py:68
+#: suzu/attendancebook/models.py:70 suzu/attendancebook/models.py:211
 msgid "Yokoshi|han"
 msgstr "Han"
 
-#: attendancebook/models.py:69
+#: suzu/attendancebook/models.py:71 suzu/attendancebook/models.py:212
 msgid "Yokoshi|is_mtai"
 msgstr "Mahikari-tai"
 
-#: attendancebook/models.py:70
+#: suzu/attendancebook/models.py:72 suzu/attendancebook/models.py:213
 msgid "Yokoshi|is_ossuewanin"
 msgstr "Osuewanin"
 
-#: attendancebook/models.py:71
+#: suzu/attendancebook/models.py:73 suzu/attendancebook/models.py:214
 msgid "Yokoshi|is_mikumite"
 msgstr "Mi-Kumite"
 
-#: attendancebook/models.py:73
+#: suzu/attendancebook/models.py:75
 msgid "Yokoshi|indication"
 msgstr "Encaminhador"
 
-#: attendancebook/models.py:74
+#: suzu/attendancebook/models.py:76
 msgid "Yokoshi|last_registration_update"
 msgstr "Última Atualização"
 
-#: attendancebook/models.py:77
+#: suzu/attendancebook/models.py:79
 msgid "yokoshi"
 msgstr "Yokoshi"
 
-#: attendancebook/models.py:78
+#: suzu/attendancebook/models.py:80
 msgid "yokoshis"
 msgstr "Yokoshi"
 
-#: attendancebook/models.py:101
+#: suzu/attendancebook/models.py:103
 msgid "Country|name"
 msgstr "País"
 
-#: attendancebook/models.py:104
+#: suzu/attendancebook/models.py:106
 msgid "country"
 msgstr "País"
 
-#: attendancebook/models.py:105
+#: suzu/attendancebook/models.py:107
 msgid "countries"
 msgstr "Países"
 
-#: attendancebook/models.py:119
+#: suzu/attendancebook/models.py:121
 msgid "state"
 msgstr "Estado"
 
-#: attendancebook/models.py:120
+#: suzu/attendancebook/models.py:122
 msgid "states"
 msgstr "Estados"
 
-#: attendancebook/models.py:122
+#: suzu/attendancebook/models.py:124
 msgid "State|name"
 msgstr "Estado"
 
-#: attendancebook/models.py:123
+#: suzu/attendancebook/models.py:125
 msgid "State|country"
 msgstr "País"
 
-#: attendancebook/models.py:136
+#: suzu/attendancebook/models.py:138
 msgid "city"
 msgstr "Cidade"
 
-#: attendancebook/models.py:137
+#: suzu/attendancebook/models.py:139
 msgid "cities"
 msgstr "Cidades"
 
-#: attendancebook/models.py:139
+#: suzu/attendancebook/models.py:141
 msgid "City|name"
 msgstr "Cidade"
 
-#: attendancebook/models.py:140
+#: suzu/attendancebook/models.py:142
 msgid "City|state"
 msgstr "Estado"
 
-#: attendancebook/models.py:168
+#: suzu/attendancebook/models.py:170
 msgid "event_type"
 msgstr "Tipo de Evento"
 
-#: attendancebook/models.py:169
+#: suzu/attendancebook/models.py:171
 msgid "event_types"
 msgstr "Tipos de Evento"
 
-#: attendancebook/models.py:171
+#: suzu/attendancebook/models.py:173
 msgid "EventType|name"
 msgstr "Nome"
 
-#: attendancebook/models.py:172
-#| msgid "Han|additional_information"
-msgid "EventType|additional_information"
-msgstr "Informações Adicionais"
-
-#: attendancebook/models.py:184
+#: suzu/attendancebook/models.py:186
 msgid "event"
 msgstr "Evento"
 
-#: attendancebook/models.py:185
+#: suzu/attendancebook/models.py:187
 msgid "events"
 msgstr "Eventos"
 
-#: attendancebook/models.py:187
+#: suzu/attendancebook/models.py:189
 msgid "Event|event_type"
 msgstr "Tipo de Evento"
 
-#: attendancebook/models.py:188
+#: suzu/attendancebook/models.py:190
 msgid "Event|begin_date_time"
 msgstr "Início"
 
-#: attendancebook/models.py:189
+#: suzu/attendancebook/models.py:191
 msgid "Event|details"
 msgstr "Detalhes"
 
-#: attendancebook/models.py:198
+#: suzu/attendancebook/models.py:200
 msgid "presence"
 msgstr "Presença"
 
-#: attendancebook/models.py:199
+#: suzu/attendancebook/models.py:201
 msgid "presences"
 msgstr "Presenças"
 
-#: attendancebook/models.py:201
+#: suzu/attendancebook/models.py:203
 msgid "Presence|event"
 msgstr "Evento"
 
-#: attendancebook/models.py:202
+#: suzu/attendancebook/models.py:204
 msgid "Presence|begin_date_time"
 msgstr "Início"
 
-#: attendancebook/models.py:203
+#: suzu/attendancebook/models.py:205
 msgid "Presence|yokoshi"
 msgstr "Presente"
 
-#: attendancebook/models.py:204
+#: suzu/attendancebook/models.py:206
 msgid "Presence|additional_information"
 msgstr "Informações Adicionais"
 
-#: attendancebook/models.py:205
+#: suzu/attendancebook/models.py:207
 msgid "Presence|is_first_time"
 msgstr "Primeira Vez"
 
-#: attendancebook/views.py:55 attendancebook/views.py:75
+#: suzu/attendancebook/views.py:55 suzu/attendancebook/views.py:75
 msgid "user_info.is_present_in.msg"
 msgstr "Está presente"
 
-#: templates/base.html:128
+#: suzu/templates/base.html:128
 msgid "Powered by"
 msgstr "Com contribuição de"
 
-#: templates/base.html:131
+#: suzu/templates/base.html:131
 msgid "and"
 msgstr "e"
 
-#: templates/base.html:134
+#: suzu/templates/base.html:134
 msgid "Theme by"
 msgstr "Tema por"
 
-#: templates/base.html:137
+#: suzu/templates/base.html:137
 msgid "View Mobile Site"
 msgstr "Ver versão mobile"
 
-#: templates/login.html:12 templates/login.html:15
+#: suzu/templates/login.html:12 suzu/templates/login.html:15
 msgid "login"
 msgstr "Login"
 
-#: templates/logout.html:8
+#: suzu/templates/logout.html:8
 msgid "auth.root.logged_out.msg"
 msgstr "Desconectado com sucesso"
 
-#: templates/logout.html:10
+#: suzu/templates/logout.html:10
 msgid "auth.root.login_again.btn"
 msgstr "Entre novamente"
+
+#~| msgid "Han|additional_information"
+#~ msgid "EventType|additional_information"
+#~ msgstr "Informações Adicionais"
