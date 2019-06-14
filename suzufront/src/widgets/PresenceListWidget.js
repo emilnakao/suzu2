@@ -6,15 +6,21 @@ class PresenceListWidget extends Component {
 
     constructor(props) {
         super(props);
-        let presences = PresenceService.findContextPresences();
+
         this.state = {
             event: SessionService.getCurrentContext().event,
-            presences: presences,
+            presences: [],
             kumiteLabel:'KUMITE',
             mikumiteLabel:'MIKUMITE',
             firstTimeLabel:'1a VEZ',
             mtaiLabel:'MTAI'
-        }
+        };
+
+        PresenceService.findContextPresences().then(result => {
+            console.log(result);
+            this.setState({presences:result.objects});
+        });
+
     }
 
     render() {

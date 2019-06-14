@@ -8,6 +8,7 @@ import PresenceListWidget from "../widgets/PresenceListWidget";
 
 import {HotKeys} from 'react-hotkeys';
 import Switch from "react-switch";
+import PresenceService from "../services/PresenceService";
 
 const keyMap = {
     moveUp: 'up',
@@ -20,14 +21,16 @@ class Okiyome extends Component {
         super(props)
         this.state = {
             noPresencesMsg:'Não há ninguém presente no momento.',
-            presences: [
-                {yokoshi:{name: 'Floriano Peixoto'}},
-                {yokoshi:{name: 'Maria do Bairro'}},
-            ],
+            presences: [],
             focusIndex: 0,
             showMikumite: false,
             showKumite: true
-        }
+        };
+
+        PresenceService.findContextPresences().then(result => {
+            console.log(result);
+            this.setState({presences:result.objects});
+        });
 
         this.keyboardHandlers = {
             'moveUp': (event) => {
@@ -88,28 +91,22 @@ class Okiyome extends Component {
                                 {/* Lista de presentes */}
                                 {this.state.presences.map(function(presence, index){
                                     return <div className={"suzu-checkin-row rounded " + (index === this.state.focusIndex ? 'highlight' : '')} >
-                                        <h4>{presence.yokoshi.name} <span className={"float-right"}><small>Recebeu: 8</small></span></h4>
+                                        <h4>{presence.yokoshi.complete_name} <span className={"float-right"}><small>Recebeu: 8</small></span></h4>
                                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                <button type="button" class="btn btn-outline-danger" focused="true">F <FontAwesomeIcon icon={faTimes}/></button>
-                                                <button type="button" class="btn btn-outline-success">C <FontAwesomeIcon icon={faCheck}/></button>
+                                                <Switch onChange={this.handleKumiteSwitch} checked={this.state.showKumite} id="kumiteSwitch" className={"mx-1"}/> Frontal
+                                                <Switch onChange={this.handleKumiteSwitch} checked={this.state.showKumite} id="kumiteSwitch" className={"mx-1"}/> Completo
+                                                <Switch onChange={this.handleKumiteSwitch} checked={this.state.showKumite} id="kumiteSwitch" className={"mx-1"}/> Outros
                                             </div>
                                             <div class="btn-group mr-2" role="group" aria-label="Second group">
                                                 <button type="button" class="btn btn-outline-secondary"><FontAwesomeIcon icon={faCommentAlt}/></button>
                                                 <button type="button" class="btn btn-outline-secondary"><FontAwesomeIcon icon={faEllipsisH}/></button>
-                                            </div>
-                                            <div class="btn-group mr-2" role="group" aria-label="Third group">
-                                                <button type="button" class="btn btn-outline-success"><FontAwesomeIcon icon={faPlay}/></button>
-                                                <button type="button" class="btn btn-outline-danger"><FontAwesomeIcon icon={faStop}/></button>
                                             </div>
                                         </div>
 
                                     </div>;
                                 }.bind(this))}
 
-                                <div class="alert alert-warning" role="alert">
-                                    <FontAwesomeIcon icon={faExclamationTriangle}/> Informações pessoais ficam armazenadas apenas neste computador. Elas não devem ser enviadas ao servidor central.
-                                </div>
                             </div>
                         </div>
                     </div>

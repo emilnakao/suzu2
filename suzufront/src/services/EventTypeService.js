@@ -2,11 +2,8 @@ import axios from 'axios'
 
 class EventTypeService {
 
-
-
-    get(searchToken){
-        // TODO
-        //axios.get(`${}`)
+    findAll(){
+        return axios.get('/api/v1/event_type/?format=json');
     }
 }
 

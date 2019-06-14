@@ -62,7 +62,8 @@ class PresenceService {
     }
 
     findContextPresences(){
-        return this.currentEventPresences;
+        let currentEventId = ContextService.getCurrentContext().event.id;
+        return Requester.get(`api/v1/presence/?format=json&event__id=${currentEventId}`).then(data => {return Requester.convertFromTastypie(data);});
     }
 
     registerPresence(yokoshi){
@@ -78,4 +79,4 @@ class PresenceService {
     }
 }
 
-export default new PresenceService()
+export default new PresenceService();

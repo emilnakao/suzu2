@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Select from 'react-select';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
+import eventService from '../services/EventService';
 
 class SelectEventModal extends Component {
 
@@ -11,16 +12,14 @@ class SelectEventModal extends Component {
             selectedEvent: {
                 eventType: undefined
             },
-            events: [
-                {eventType: {name: 'Dia Normal'}},
-                {eventType: {name: 'Cerimônia Mensal'}}
-            ],
+            events: [],
             selectedEventType: undefined,
-            eventTypes: [
-                {name: 'Dia Normal'},
-                {name: 'Cerimônia Mensal'}
-            ]
-        }
+            eventTypes: []
+        };
+
+        eventService.findEventTypes().then((eventTypes) => {
+            this.setState({eventTypes:eventTypes});
+        })
 
     }
 
