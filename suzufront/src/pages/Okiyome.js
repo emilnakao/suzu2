@@ -62,7 +62,7 @@ class Okiyome extends Component {
 
     render(){
         return (
-            <HotKeys keyMap={keyMap} handlers={this.keyboardHandlers} role="main" class="container-fluid d-flex flex-fill bg-dark">
+            <HotKeys keyMap={keyMap} handlers={this.keyboardHandlers} role="main" className="container-fluid d-flex flex-fill bg-dark">
                 <div className="flex-fill d-flex flex-row">
                     <div className="col-3 mr-n2 flex-fill d-flex flex-column">
                         <TodayEventWidget/>
@@ -92,15 +92,15 @@ class Okiyome extends Component {
                                 {this.state.presences.map(function(presence, index){
                                     return <div className={"suzu-checkin-row rounded " + (index === this.state.focusIndex ? 'highlight' : '')} >
                                         <h4>{presence.yokoshi.complete_name} <span className={"float-right"}><small>Recebeu: 8</small></span></h4>
-                                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                        <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                            <div className="btn-group mr-2" role="group" aria-label="First group">
                                                 <Switch onChange={this.handleKumiteSwitch} checked={this.state.showKumite} id="kumiteSwitch" className={"mx-1"}/> Frontal
                                                 <Switch onChange={this.handleKumiteSwitch} checked={this.state.showKumite} id="kumiteSwitch" className={"mx-1"}/> Completo
                                                 <Switch onChange={this.handleKumiteSwitch} checked={this.state.showKumite} id="kumiteSwitch" className={"mx-1"}/> Outros
                                             </div>
-                                            <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                                <button type="button" class="btn btn-outline-secondary"><FontAwesomeIcon icon={faCommentAlt}/></button>
-                                                <button type="button" class="btn btn-outline-secondary"><FontAwesomeIcon icon={faEllipsisH}/></button>
+                                            <div className="btn-group mr-2" role="group" aria-label="Second group">
+                                                <button type="button" className="btn btn-outline-secondary"><FontAwesomeIcon icon={faCommentAlt}/></button>
+                                                <button type="button" className="btn btn-outline-secondary"><FontAwesomeIcon icon={faEllipsisH}/></button>
                                             </div>
                                         </div>
 
