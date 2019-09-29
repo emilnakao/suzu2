@@ -1,9 +1,8 @@
-
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import TodayEventWidget from "../widgets/TodayEventWidget";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay, faStop, faCheck, faTimes, faCommentAlt, faEllipsisH, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faCheck, faCommentAlt, faEllipsisH} from '@fortawesome/free-solid-svg-icons'
 import PresenceListWidget from "../widgets/PresenceListWidget";
 
 import {HotKeys} from 'react-hotkeys';
