@@ -3,10 +3,12 @@ version: '3'
 services:
   db:
     image: postgres
+    restart: unless-stopped
     ports:
-      - 5432:5432
+      - 5433:5432
   web:
     image: suzusystems/suzu2
+    restart: unless-stopped
     entrypoint: ./run_inside_docker.sh
     ports:
       - "8000:8000"
